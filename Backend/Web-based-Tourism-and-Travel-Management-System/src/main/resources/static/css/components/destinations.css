@@ -1,0 +1,16 @@
+/* Destination carousel and destination image consistency. */
+
+.homeDestinationsCarousel__slide{position:relative!important;isolation:isolate!important;overflow:hidden!important}
+.homeDestinationsCarousel__slide::before{content:""!important;position:absolute!important;inset:-2%!important;z-index:-3!important;background-image:var(--destination-bg)!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;transform:scale(1.04)!important}
+.homeDestinationsCarousel__slide::after{content:""!important;position:absolute!important;inset:0!important;z-index:-2!important;background:rgba(15,13,11,.48)!important;pointer-events:none!important}
+.homeDestinationsCarousel__images,.homeDestinationsCarousel__title{position:relative!important;z-index:3!important}
+.homeDestinationsCarousel__image img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+
+/* Destination photo consistency */
+.destination-photo-matched img,
+.destination-photo-matched [style*="background-image"] {
+    object-fit: cover !important;
+    object-position: center !important;
+    background-size: cover !important;
+    background-position: center !important;
+}

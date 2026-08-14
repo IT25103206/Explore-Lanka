@@ -1,0 +1,19 @@
+/* Shared Explore Lanka theme tokens and global image defaults. */
+:root {
+    --explore-lanka-red: #7b261d;
+    --explore-lanka-gold: #d6a345;
+    --explore-lanka-green: #244f3e;
+}
+
+img {
+    object-fit: cover;
+    object-position: center;
+}
+
+.explore-lanka-account-menu {
+    background: var(--explore-lanka-red);
+}
+
+.explore-lanka-account-menu a:hover {
+    background: rgba(255,255,255,.12);
+}

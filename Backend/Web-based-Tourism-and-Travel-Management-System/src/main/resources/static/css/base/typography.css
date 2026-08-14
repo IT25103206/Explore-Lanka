@@ -1,0 +1,22 @@
+/* Shared content typography.
+   This block previously appeared in several separate override files. */
+.contentBlock h2,
+.contentBlock h3,
+.textBlock h2,
+.textBlock h3 {
+    font-size: 20px !important;
+    line-height: 1.35 !important;
+}
+
+.contentBlock p,
+.textBlock p {
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+}
+
+.contentBlock .button,
+.contentBlock .btn,
+.textBlock .button,
+.textBlock .btn {
+    font-size: 20px !important;
+}
