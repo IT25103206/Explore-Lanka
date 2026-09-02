@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.project</groupId>
-    <artifactId>Web-based-Tourism-and-Travel-Management-System</artifactId>
+    <artifactId>Explore-Lanka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Web-based-Tourism-and-Travel-Management-System</name>
     <description>Web-based-Tourism-and-Travel-Management-System</description>
@@ -140,3 +140,4 @@
     </build>
 
 </project>
+
