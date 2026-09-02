@@ -1,0 +1,121 @@
+/* Vision section styles. */
+/* FINAL authoritative vision-section styling */
+
+.explore-vision-label {
+    margin: 0 0 32px !important;
+    color: #453d36 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 80px !important;
+    line-height: 1.05 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.03em !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.explore-vision-label,
+.explore-vision-label *,
+.explore-vision-label > div,
+.explore-vision-label span {
+    font-size: 80px !important;
+    line-height: 1.05 !important;
+}
+
+/* Main paragraph */
+.explore-vision-copy {
+    width: min(48vw, 900px) !important;
+    max-width: 900px !important;
+    margin: 0 0 48px !important;
+    color: #8B8680 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 75px !important;
+    line-height: 1.32 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Force every generated animation wrapper to inherit the same large type */
+.explore-vision-copy,
+.explore-vision-copy *,
+.explore-vision-copy > div,
+.explore-vision-copy > span {
+    font-size: 75px !important;
+    line-height: 1.32 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: #8B8680 !important;
+    letter-spacing: -0.01em !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Override font-size-xl variable for vision copy */
+p.explore-vision-copy.font-size-xl {
+    --font-size-xl: 75px !important;
+    font-size: 75px !important;
+}
+
+/* Remove transform-based shrinking/offset from generated wrappers */
+.explore-vision-copy > div,
+.explore-vision-copy > span {
+    transform: none !important;
+    translate: none !important;
+    text-align: left !important;
+}
+
+/* Button */
+.explore-vision-button {
+    min-width: 250px !important;
+    min-height: 72px !important;
+    padding: 8px 10px 8px 30px !important;
+    border-radius: 999px !important;
+}
+
+.explore-vision-button .btn__label {
+    font-size: 22px !important;
+}
+
+.explore-vision-button .btn__icon {
+    width: 54px !important;
+    height: 54px !important;
+}
+
+@media (max-width: 1199px) {
+    .explore-vision-label,
+    .explore-vision-label * {
+        font-size: 60px !important;
+    }
+
+    .explore-vision-copy,
+    .explore-vision-copy * {
+        width: 100% !important;
+        max-width: 760px !important;
+        font-size: 55px !important;
+        line-height: 1.28 !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .explore-vision-label,
+    .explore-vision-label * {
+        font-size: 42px !important;
+    }
+
+    .explore-vision-copy,
+    .explore-vision-copy * {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 38px !important;
+        line-height: 1.35 !important;
+    }
+
+    .explore-vision-button {
+        min-width: 190px !important;
+        min-height: 58px !important;
+    }
+
+    .explore-vision-button .btn__label {
+        font-size: 18px !important;
+    }
+}

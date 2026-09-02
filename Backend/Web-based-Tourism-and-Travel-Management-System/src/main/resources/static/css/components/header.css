@@ -1,0 +1,63 @@
+/* Header/logo/icon styles. */
+/* Explore Lanka header branding and icon repair */
+.siteHeader__logo {
+    display: grid !important;
+    justify-items: center;
+    align-content: center;
+    width: auto !important;
+    min-width: 220px;
+    height: auto !important;
+    color: inherit;
+    text-decoration: none;
+    line-height: 1;
+}
+.siteHeader__logo > svg { display: none !important; }
+.explore-lanka-logo-main {
+    display: block;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(21px, 2vw, 33px);
+    font-weight: 400;
+    letter-spacing: .16em;
+    white-space: nowrap;
+}
+.explore-lanka-logo-sub {
+    display: block;
+    margin-top: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: .28em;
+    white-space: nowrap;
+    opacity: .72;
+}
+.siteHeader .right {
+    display: flex !important;
+    align-items: center;
+    gap: 18px;
+}
+.explore-header-icon {
+    display: inline-grid !important;
+    place-items: center;
+    width: 31px;
+    height: 31px;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+.explore-header-icon svg {
+    width: 25px !important;
+    height: 25px !important;
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.4 !important;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+@media (max-width: 900px) {
+    .siteHeader__logo { min-width: 150px; }
+    .explore-lanka-logo-main { font-size: 17px; }
+    .explore-lanka-logo-sub { display: none; }
+}
