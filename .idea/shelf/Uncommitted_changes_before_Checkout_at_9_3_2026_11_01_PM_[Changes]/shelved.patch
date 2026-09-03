@@ -1,0 +1,32 @@
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile name=\"Annotation profile for Web-based-Tourism-and-Travel-Management-System\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <processorPath useClasspath=\"false\">\r\n          <entry name=\"$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar\" />\r\n          <entry name=\"$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar\" />\r\n        </processorPath>\r\n        <module name=\"Web-based-Tourism-and-Travel-Management-System\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"Explore-Lanka\" options=\"-parameters\" />\r\n      <module name=\"Web-based-Tourism-and-Travel-Management-System\" options=\"-parameters\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision ddd42f35f3722056675c608200b1f5b2ea8e1ee0)
++++ b/.idea/compiler.xml	(date 1788456604347)
+@@ -16,7 +16,6 @@
+   </component>
+   <component name="JavacSettings">
+     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+-      <module name="Explore-Lanka" options="-parameters" />
+       <module name="Web-based-Tourism-and-Travel-Management-System" options="-parameters" />
+     </option>
+   </component>
+Index: Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/DTO/PartnerDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/DTO/PartnerDTO.java b/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/DTO/PartnerDTO.java
+new file mode 100644
+--- /dev/null	(date 1788456604380)
++++ b/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/DTO/PartnerDTO.java	(date 1788456604380)
+@@ -0,0 +1,4 @@
++package com.project.webbasedtourismandtravelmanagementsystem.Partner.DTO;
++
++public class PartnerDTO {
++}
