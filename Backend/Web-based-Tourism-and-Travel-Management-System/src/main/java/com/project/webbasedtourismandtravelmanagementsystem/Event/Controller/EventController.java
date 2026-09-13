@@ -2,8 +2,9 @@ package com.project.webbasedtourismandtravelmanagementsystem.Event.Controller;
 
 
 
-import com.explorelanka.event.model.Event;
-import com.explorelanka.event.service.EventService;
+import com.project.webbasedtourismandtravelmanagementsystem.Event.Controller.EventController;
+import com.project.webbasedtourismandtravelmanagementsystem.Event.Model.Event;
+import com.project.webbasedtourismandtravelmanagementsystem.Event.Service.EventService;
 
 
 import org.springframework.web.bind.annotation.*;
