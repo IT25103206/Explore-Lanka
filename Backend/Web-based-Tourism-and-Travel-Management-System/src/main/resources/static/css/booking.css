@@ -1,0 +1,295 @@
+/* =====================================
+   Explore Lanka Booking Management CSS
+   ===================================== */
+
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background-color:#f7f3ea;
+
+    margin:0;
+
+}
+
+
+
+/* Main Container */
+
+.booking-container {
+
+    width:90%;
+
+    margin:40px auto;
+
+}
+
+
+
+
+/* Title */
+
+.booking-title {
+
+    text-align:center;
+
+    color:#6b3e26;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+/* Booking Form */
+
+.booking-form {
+
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+    margin-bottom:40px;
+
+}
+
+
+
+
+.booking-form input,
+.booking-form select {
+
+
+    width:100%;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+}
+
+
+
+
+.save-booking-btn {
+
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+.save-booking-btn:hover {
+
+    background:#245727;
+
+}
+
+
+
+
+
+/* Booking Cards */
+
+
+.booking-grid {
+
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+
+
+
+.booking-card {
+
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+    border-left:6px solid #2e7032;
+
+}
+
+
+
+
+
+.booking-card h3 {
+
+
+    color:#6b3e26;
+
+}
+
+
+
+
+
+.booking-package {
+
+
+    color:#2e7032;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.booking-date {
+
+
+    color:#a68b58;
+
+}
+
+
+
+
+
+.booking-status {
+
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    background:#2e7032;
+
+    color:white;
+
+    display:inline-block;
+
+}
+
+
+
+
+
+/* Buttons */
+
+
+.edit-booking-btn {
+
+
+    background:#a68b58;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.delete-booking-btn {
+
+
+    background:#b33a3a;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+.edit-booking-btn:hover,
+.delete-booking-btn:hover {
+
+    opacity:0.8;
+
+}
+
+
+
+
+
+/* Customer Booking */
+
+
+.my-booking-card {
+
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+
+.cancel-booking-btn {
+
+
+    background:#b33a3a;
+
+    color:white;
+
+    padding:10px 20px;
+
+    border:none;
+
+    border-radius:8px;
+
+}
