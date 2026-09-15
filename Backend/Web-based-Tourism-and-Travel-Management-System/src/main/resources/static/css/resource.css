@@ -1,0 +1,326 @@
+/* =====================================
+   Explore Lanka Resource Management CSS
+   ===================================== */
+
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background-color: #f7f3ea;
+
+    margin:0;
+
+}
+
+
+
+/* Main Container */
+
+.resource-container {
+
+    width:90%;
+
+    margin:40px auto;
+
+}
+
+
+
+/* Title */
+
+.resource-title {
+
+    text-align:center;
+
+    color:#6b3e26;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+
+/* Add Resource Button */
+
+.add-resource-btn {
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+.add-resource-btn:hover {
+
+    background:#245727;
+
+}
+
+
+
+
+
+/* Resource Form */
+
+.resource-form {
+
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:
+            0 5px 15px rgba(0,0,0,0.1);
+
+    margin-bottom:35px;
+
+}
+
+
+
+
+
+.resource-form input,
+.resource-form select,
+.resource-form textarea {
+
+
+    width:100%;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+}
+
+
+
+
+
+.save-resource-btn {
+
+
+    background:#6b3e26;
+
+    color:white;
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+/* Resource Cards */
+
+.resource-grid {
+
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+
+
+
+
+.resource-card {
+
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:
+            0 5px 15px rgba(0,0,0,0.1);
+
+    border-top:6px solid #2e7032;
+
+}
+
+
+
+
+
+.resource-card h3 {
+
+    color:#6b3e26;
+
+    font-size:22px;
+
+}
+
+
+
+
+
+.resource-type {
+
+    background:#6b3e26;
+
+    color:white;
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    display:inline-block;
+
+}
+
+
+
+
+
+.resource-cost {
+
+
+    color:#2e7032;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.resource-status {
+
+
+    color:#a68b58;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+/* Buttons */
+
+
+.edit-resource-btn {
+
+
+    background:#a68b58;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.delete-resource-btn {
+
+
+    background:#b33a3a;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+.edit-resource-btn:hover,
+.delete-resource-btn:hover {
+
+    opacity:0.8;
+
+}
+
+
+
+
+
+/* Customer View */
+
+.customer-resource-card {
+
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:
+            0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+.view-resource-btn {
+
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:10px;
+
+}
