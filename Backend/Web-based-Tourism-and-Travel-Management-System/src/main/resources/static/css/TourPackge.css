@@ -1,0 +1,421 @@
+/* =====================================
+   Explore Lanka Tour Package CSS
+   ===================================== */
+
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background-color:#f7f3ea;
+
+    margin:0;
+
+}
+
+
+
+
+/* Main Container */
+
+.package-container {
+
+    width:90%;
+
+    margin:40px auto;
+
+}
+
+
+
+
+/* Page Title */
+
+.package-title {
+
+    text-align:center;
+
+    color:#6b3e26;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+
+/* Add Package Button */
+
+.add-package-btn {
+
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+.add-package-btn:hover {
+
+    background:#245727;
+
+}
+
+
+
+
+
+/* Package Form */
+
+.package-form {
+
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+    margin-bottom:35px;
+
+}
+
+
+
+
+.package-form input,
+.package-form textarea,
+.package-form select {
+
+
+    width:100%;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+}
+
+
+
+
+.package-form textarea {
+
+    height:120px;
+
+    resize:none;
+
+}
+
+
+
+
+.save-package-btn {
+
+
+    background:#6b3e26;
+
+    color:white;
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+
+/* Package Cards */
+
+.package-grid {
+
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+
+
+
+
+.package-card {
+
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+    border-top:6px solid #2e7032;
+
+}
+
+
+
+
+
+.package-card h3 {
+
+
+    color:#6b3e26;
+
+    font-size:23px;
+
+}
+
+
+
+
+.package-description {
+
+
+    color:#555;
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+.package-price {
+
+
+    color:#2e7032;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.package-duration {
+
+
+    color:#a68b58;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.package-category {
+
+
+    background:#6b3e26;
+
+    color:white;
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    display:inline-block;
+
+}
+
+
+
+
+
+
+/* Buttons */
+
+.edit-package-btn {
+
+
+    background:#a68b58;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.delete-package-btn {
+
+
+    background:#b33a3a;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+.edit-package-btn:hover,
+.delete-package-btn:hover {
+
+
+    opacity:0.8;
+
+}
+
+
+
+
+
+
+/* Customer Package View */
+
+
+.customer-package-card {
+
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+.customer-package-card h2 {
+
+
+    color:#6b3e26;
+
+}
+
+
+
+
+.view-package-btn {
+
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+
+/* Details Page */
+
+.package-details {
+
+
+    width:70%;
+
+    margin:50px auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+
+.package-details h1 {
+
+
+    color:#6b3e26;
+
+}
+
+
+
+.book-now-btn {
+
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:15px 35px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+}
