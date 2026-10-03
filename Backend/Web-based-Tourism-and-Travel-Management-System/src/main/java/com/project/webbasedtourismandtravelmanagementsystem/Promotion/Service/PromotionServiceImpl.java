@@ -1,7 +1,7 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Promotion.Service;
+package com.project.webbasedtourismandtravelmanagementsystem.promotion.service;
 
-import com.project.webbasedtourismandtravelmanagementsystem.Promotion.Model.Promotion;
-import com.project.webbasedtourismandtravelmanagementsystem.Promotion.Repository.Promotion_Repository;
+import com.project.webbasedtourismandtravelmanagementsystem.promotion.model.Promotion;
+import com.project.webbasedtourismandtravelmanagementsystem.promotion.repository.Promotion_Repository;
 
 import org.springframework.stereotype.Service;
 
@@ -70,6 +70,9 @@ import java.util.List;
             existing.setDiscountPercentage(
                     promotion.getDiscountPercentage());
 
+            existing.setDiscountType(
+                    promotion.getDiscountType());
+
             existing.setStartDate(
                     promotion.getStartDate());
 
@@ -91,4 +94,3 @@ import java.util.List;
             promotionRepository.deleteById(id);
         }
     }
-

@@ -1,7 +1,7 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Promotion.Service;
+package com.project.webbasedtourismandtravelmanagementsystem.promotion.service;
 
 
-import com.project.webbasedtourismandtravelmanagementsystem.Promotion.Model.Promotion;
+import com.project.webbasedtourismandtravelmanagementsystem.promotion.model.Promotion;
 import java.util.List;
 
 public interface Promotion_Service {
