@@ -4,9 +4,10 @@ package com.project.webbasedtourismandtravelmanagementsystem.booking.model;
 import com.project.webbasedtourismandtravelmanagementsystem.tourpackage.model.TourPackage;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.model.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-        import java.time.LocalDate;
+import java.time.LocalDate;
 
 
 
@@ -25,6 +26,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonIgnoreProperties({"password", "nic", "hibernateLazyInitializer", "handler"})
     private User customer;
 
 
@@ -52,6 +54,11 @@ public class Booking {
 
 
     private String status;
+
+    private String pickupLocation;
+
+    @Column(columnDefinition = "TEXT")
+    private String specialRequests;
 
 
 
@@ -171,4 +178,20 @@ public class Booking {
         this.status = status;
     }
 
+
+    public String getPickupLocation() {
+        return pickupLocation;
+    }
+
+    public void setPickupLocation(String pickupLocation) {
+        this.pickupLocation = pickupLocation;
+    }
+
+    public String getSpecialRequests() {
+        return specialRequests;
+    }
+
+    public void setSpecialRequests(String specialRequests) {
+        this.specialRequests = specialRequests;
+    }
 }

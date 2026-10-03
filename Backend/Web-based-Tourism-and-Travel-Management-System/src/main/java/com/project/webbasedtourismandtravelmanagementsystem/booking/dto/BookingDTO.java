@@ -30,6 +30,8 @@ public class BookingDTO {
 
 
     private String status;
+    private String pickupLocation;
+    private String specialRequests;
 
 
 
@@ -121,4 +123,20 @@ public class BookingDTO {
         this.status = status;
     }
 
+
+    public String getPickupLocation() {
+        return pickupLocation;
+    }
+
+    public void setPickupLocation(String pickupLocation) {
+        this.pickupLocation = pickupLocation;
+    }
+
+    public String getSpecialRequests() {
+        return specialRequests;
+    }
+
+    public void setSpecialRequests(String specialRequests) {
+        this.specialRequests = specialRequests;
+    }
 }
