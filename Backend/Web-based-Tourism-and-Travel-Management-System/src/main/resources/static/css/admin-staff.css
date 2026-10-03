@@ -1,0 +1,28 @@
+/* ===== Owner: staff management ===== */
+.staff-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:20px;align-items:start;margin-top:22px}
+.pw-row{display:flex;gap:8px}
+.pw-row input{flex:1;min-width:0;font-family:Consolas,monospace}
+.field .hint{font-size:9px;color:var(--muted)}
+.field input.invalid{border-color:#c0473c;box-shadow:0 0 0 3px rgba(192,71,60,.08)}
+.st-alert{display:none;margin-bottom:14px;padding:12px 14px;border-radius:12px;font-size:11px;font-weight:600}
+.st-alert.show{display:block}
+.st-alert.error{background:#f8e0dc;color:#9f3b32}
+.st-alert.ok{background:#e5f3e2;color:#27642d}
+.cred-card h3{font:700 20px Georgia,serif;color:var(--brown);margin-bottom:12px}
+.cred-empty{font-size:11px;line-height:1.7;color:var(--muted)}
+.cred-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed #e6dccf;font-size:11px}
+.cred-row span{color:var(--muted)}
+.cred-row b{color:var(--brown);font-family:Consolas,monospace;word-break:break-all;text-align:right}
+.cred-card .btn{margin-top:14px;width:100%;justify-content:center}
+.cred-warn{font-size:9px;color:#9f3b32;margin-top:10px}
+.cred-card.flash{animation:credFlash 1.2s ease}
+@keyframes credFlash{0%{box-shadow:0 0 0 0 rgba(46,112,50,.45)}100%{box-shadow:0 0 0 18px rgba(46,112,50,0)}}
+.st-empty{text-align:center;color:var(--muted);padding:30px!important}
+.st-actions{display:flex;gap:6px;flex-wrap:wrap}
+.st-actions button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;font-size:9px;font-weight:700;cursor:pointer;color:var(--brown)}
+.st-actions button:hover{background:#f4ede3}
+.st-actions button.danger{color:#9f3b32;border-color:#efc9c3}
+.st-actions button[disabled]{opacity:.5;cursor:not-allowed}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none}
+@media(max-width:980px){.staff-layout{grid-template-columns:1fr}}
+@media(max-width:640px){.staff-layout .form-grid{grid-template-columns:1fr}}
