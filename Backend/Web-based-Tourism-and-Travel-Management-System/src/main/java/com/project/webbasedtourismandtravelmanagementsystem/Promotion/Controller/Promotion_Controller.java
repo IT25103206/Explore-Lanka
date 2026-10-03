@@ -1,8 +1,8 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Promotion.Controller;
+package com.project.webbasedtourismandtravelmanagementsystem.promotion.controller;
 
 
-import com.project.webbasedtourismandtravelmanagementsystem.Promotion.Model.Promotion;
-import com.project.webbasedtourismandtravelmanagementsystem.Promotion.Service.Promotion_Service;
+import com.project.webbasedtourismandtravelmanagementsystem.promotion.model.Promotion;
+import com.project.webbasedtourismandtravelmanagementsystem.promotion.service.Promotion_Service;
 
 import org.springframework.web.bind.annotation.*;
 
