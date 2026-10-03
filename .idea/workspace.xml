@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9226cc0-b6ca-4203-b31d-3198693c1271" name="Changes" comment="Project Resource Allocation Files Update">
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="d9226cc0-b6ca-4203-b31d-3198693c1271" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "IT25101444"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/IT25103206/Explore-Lanka.git",
+    "accountId": "4e551b77-e87c-4ee2-a39b-f7cfb84f542f"
+  }
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
