@@ -6,9 +6,12 @@ import com.project.webbasedtourismandtravelmanagementsystem.resource.service.Res
 
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -94,6 +97,24 @@ public class ResourceController {
 
 
         return "Resource deleted successfully";
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> invalidResource(IllegalArgumentException exception) {
+        return ResponseEntity.badRequest()
+                .body(Map.of("success", false, "message", exception.getMessage()));
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<Map<String, Object>> resourceInUse(IllegalStateException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("success", false, "message", exception.getMessage()));
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, Object>> resourceNotFound(RuntimeException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("success", false, "message", exception.getMessage()));
     }
 
 }

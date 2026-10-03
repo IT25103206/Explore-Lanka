@@ -1,0 +1,22 @@
+ADMIN/CUSTOMER LOGIN ROUTING FIX
+================================
+
+Fixed issues:
+1. Landing page Admin Login links now open the canonical /admin/login route.
+2. Added a real Management Login interface in templates/auth/admin-login.html.
+3. Management form calls POST /api/auth/admin-login.
+4. Backend rejects CUSTOMER roles with HTTP 403 at /api/auth/admin-login; the admin page displays that denial and stays on the admin login page.
+5. Customer login now routes only CUSTOMER accounts to /ui/customer-dashboard.
+6. Added browser-side dashboard route guards in portal.js:
+   - CUSTOMER cannot open /ui/admin-* pages.
+   - OWNER/MANAGEMENT_SERVICE cannot be accidentally treated as CUSTOMER in customer UI pages.
+
+Allowed management roles (as defined by AuthController):
+- OWNER
+- MANAGEMENT_SERVICE
+
+Customer role:
+- CUSTOMER
+
+IMPORTANT:
+Server-side sessions now protect management/customer pages and APIs. sessionStorage is used only for interface display and is synchronized from /api/auth/session.
