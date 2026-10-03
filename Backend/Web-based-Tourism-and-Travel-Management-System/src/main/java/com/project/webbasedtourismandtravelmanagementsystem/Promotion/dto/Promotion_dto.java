@@ -1,5 +1,6 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Promotion.dto;
+package com.project.webbasedtourismandtravelmanagementsystem.promotion.dto;
 
+import com.project.webbasedtourismandtravelmanagementsystem.promotion.model.Promotion;
 import java.time.LocalDate;
 
 public class Promotion_dto {
@@ -11,6 +12,8 @@ public class Promotion_dto {
     private String description;
 
     private Double discountPercentage;
+
+    private Promotion.DiscountType discountType = Promotion.DiscountType.PERCENTAGE;
 
     private LocalDate startDate;
 
@@ -56,6 +59,16 @@ public class Promotion_dto {
 
     public void setDiscountPercentage(Double discountPercentage) {
         this.discountPercentage = discountPercentage;
+    }
+
+
+    public Promotion.DiscountType getDiscountType() {
+        return discountType;
+    }
+
+
+    public void setDiscountType(Promotion.DiscountType discountType) {
+        this.discountType = discountType;
     }
 
 
