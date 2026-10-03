@@ -10,289 +10,1114 @@ import com.project.webbasedtourismandtravelmanagementsystem.booking.repository.B
 import com.project.webbasedtourismandtravelmanagementsystem.booking.repository.ItineraryRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.common.exception.BusinessException;
 import com.project.webbasedtourismandtravelmanagementsystem.common.exception.NotFoundException;
-import com.project.webbasedtourismandtravelmanagementsystem.notification.model.Notification;
-import com.project.webbasedtourismandtravelmanagementsystem.notification.service.NotificationService;
-import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.*;
-import com.project.webbasedtourismandtravelmanagementsystem.resource.model.*;
-import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.*;
+import com.project.webbasedtourismandtravelmanagementsystem.partner.model.Supplier;
+import com.project.webbasedtourismandtravelmanagementsystem.partner.repository.SupplierRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.Assignment;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.BlockDatesRequest;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.BlockedDateResponse;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.CalendarDay;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.GuideResponse;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.HotelResponse;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.ScheduleUpdateRequest;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.VehicleRequest;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.VehicleResponse;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.dto.ResourceDtos.WaypointRequest;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.model.Hotel;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.model.HotelAvailability;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.model.ResourceAllocation;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.model.ResourceBlockedDate;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.model.ResourceType;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.model.TourGuide;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.model.Vehicle;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.HotelAvailabilityRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.HotelRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.ResourceAllocationRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.ResourceBlockedDateRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.TourGuideRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.VehicleRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-/**
- * Logistic partner portal (IT25103206 Kodagoda O.I):
- *  - UC-03 Update Hotel Schedule Manually (hotel partners)
- *  - vehicle choices and unavailable days (transport providers, PBI-11)
- *  - assigned tours, unavailable days and manual route waypoints (tour guides, PBI-10)
- *  - booking details for allocated resources (PBI-12)
- */
 @Service
 @Transactional
 public class PartnerScheduleService {
 
-    private static final DateTimeFormatter DAY = DateTimeFormatter.ofPattern("dd MMM yyyy");
-
     private final CurrentUser currentUser;
+
     private final HotelRepository hotelRepository;
     private final HotelAvailabilityRepository hotelAvailabilityRepository;
+
     private final VehicleRepository vehicleRepository;
+
     private final TourGuideRepository guideRepository;
+
     private final ResourceAllocationRepository allocationRepository;
+    private final ResourceBlockedDateRepository blockedDateRepository;
+
     private final BookingRepository bookingRepository;
     private final ItineraryRepository itineraryRepository;
-    private final ResourceService resourceService;
-    private final NotificationService notificationService;
 
-    public PartnerScheduleService(CurrentUser currentUser, HotelRepository hotelRepository,
-                                  HotelAvailabilityRepository hotelAvailabilityRepository, VehicleRepository vehicleRepository,
-                                  TourGuideRepository guideRepository, ResourceAllocationRepository allocationRepository,
-                                  BookingRepository bookingRepository, ItineraryRepository itineraryRepository,
-                                  ResourceService resourceService, NotificationService notificationService) {
+    private final SupplierRepository supplierRepository;
+
+
+    public PartnerScheduleService(
+            CurrentUser currentUser,
+            HotelRepository hotelRepository,
+            HotelAvailabilityRepository hotelAvailabilityRepository,
+            VehicleRepository vehicleRepository,
+            TourGuideRepository guideRepository,
+            ResourceAllocationRepository allocationRepository,
+            ResourceBlockedDateRepository blockedDateRepository,
+            BookingRepository bookingRepository,
+            ItineraryRepository itineraryRepository,
+            SupplierRepository supplierRepository) {
+
         this.currentUser = currentUser;
+
         this.hotelRepository = hotelRepository;
-        this.hotelAvailabilityRepository = hotelAvailabilityRepository;
+        this.hotelAvailabilityRepository =
+                hotelAvailabilityRepository;
+
         this.vehicleRepository = vehicleRepository;
+
         this.guideRepository = guideRepository;
-        this.allocationRepository = allocationRepository;
-        this.bookingRepository = bookingRepository;
-        this.itineraryRepository = itineraryRepository;
-        this.resourceService = resourceService;
-        this.notificationService = notificationService;
+
+        this.allocationRepository =
+                allocationRepository;
+
+        this.blockedDateRepository =
+                blockedDateRepository;
+
+        this.bookingRepository =
+                bookingRepository;
+
+        this.itineraryRepository =
+                itineraryRepository;
+
+        this.supplierRepository =
+                supplierRepository;
     }
 
-    // ------------------------------------------------------------------ hotel partner (UC-03)
+
+    // =========================================================
+    // HOTEL PARTNER
+    // =========================================================
 
     @Transactional(readOnly = true)
     public List<HotelResponse> myHotels() {
-        User me = requireRole(Role.HOTEL_PARTNER);
-        return hotelRepository.findBySupplierIdOrderByNameAsc(supplierId(me)).stream().map(HotelResponse::from).toList();
-    }
 
-    @Transactional(readOnly = true)
-    public List<CalendarDay> hotelCalendar(Long hotelId, LocalDate from, LocalDate to) {
-        ownHotel(hotelId);
-        return resourceService.hotelCalendar(hotelId, from, to);
-    }
+        requireRole(
+                Role.HOTEL_PARTNER
+        );
 
-    /**
-     * UC-03 main scenario: validate (4a), check conflicts with existing bookings (5a),
-     * store the new availability and notify the Logistic Supplier Management team (step 5 sync).
-     */
-    public List<CalendarDay> updateHotelSchedule(Long hotelId, ScheduleUpdateRequest r) {
-        Hotel hotel = ownHotel(hotelId);
-        ResourceService.validateRange(r.startDate(), r.endDate());   // 4a invalid dates
-
-        Map<LocalDate, HotelAvailability> rows = new HashMap<>();
-        hotelAvailabilityRepository.findByHotelIdAndDateBetweenOrderByDateAsc(hotelId, r.startDate(), r.endDate())
-                .forEach(row -> rows.put(row.getDate(), row));
-
-        // 5a: a partner cannot go below the rooms already booked - list the affected booking refs
-        List<String> conflicts = new ArrayList<>();
-        Set<String> refs = new TreeSet<>();
-        List<ResourceAllocation> allocations = allocationRepository.findOverlapping(ResourceType.HOTEL, hotelId,
-                r.startDate(), r.endDate(), ResourceAllocation.Status.ALLOCATED);
-        for (LocalDate d = r.startDate(); !d.isAfter(r.endDate()); d = d.plusDays(1)) {
-            HotelAvailability row = rows.get(d);
-            int booked = row == null ? 0 : row.getBookedRooms();
-            if (r.availableRooms() < booked) {
-                final LocalDate night = d;
-                List<String> onNight = allocations.stream()
-                        .filter(a -> !night.isBefore(a.getStartDate()) && night.isBefore(a.getEndDate()))
-                        .map(a -> a.getBooking().getReference())
-                        .toList();
-                refs.addAll(onNight);
-                conflicts.add(DAY.format(d) + ": " + booked + " room(s) already booked by " + String.join(", ", onNight));
-            }
-        }
-        if (!conflicts.isEmpty()) {
-            notificationService.notifyRoleIndependently(Role.LOGISTIC_SUPPLIER_MANAGER, Notification.Type.SCHEDULE,
-                    "Schedule conflict at " + hotel.getName(),
-                    hotel.getName() + " tried to reduce rooms to " + r.availableRooms() + " between " + DAY.format(r.startDate())
-                            + " and " + DAY.format(r.endDate()) + ", which affects bookings " + String.join(", ", refs)
-                            + ". Please contact the partner.",
-                    "/admin/allocations.html");
-            throw BusinessException.conflict("Pending bookings need more rooms than you entered. The update was not saved and the Logistic Supplier Management team has been informed.", conflicts);
-        }
-
-        for (LocalDate d = r.startDate(); !d.isAfter(r.endDate()); d = d.plusDays(1)) {
-            final LocalDate date = d;
-            HotelAvailability row = rows.getOrDefault(d, null);
-            if (row == null) {
-                row = new HotelAvailability(hotel, date);
-            }
-            row.setAvailableRooms(r.availableRooms());
-            hotelAvailabilityRepository.save(row);
-        }
-        notificationService.notifyRole(Role.LOGISTIC_SUPPLIER_MANAGER, Notification.Type.SCHEDULE,
-                "Availability updated: " + hotel.getName(),
-                hotel.getName() + " now offers " + r.availableRooms() + " room(s) per night from " + DAY.format(r.startDate())
-                        + " to " + DAY.format(r.endDate()) + ".",
-                "/admin/resources.html");
-        return resourceService.hotelCalendar(hotelId, r.startDate(), r.endDate());
-    }
-
-    // ------------------------------------------------------------------ transport provider
-
-    @Transactional(readOnly = true)
-    public List<VehicleResponse> myVehicles() {
-        User me = requireRole(Role.TRANSPORT_PROVIDER);
-        return vehicleRepository.findBySupplierIdOrderByModelAsc(supplierId(me)).stream().map(VehicleResponse::from).toList();
-    }
-
-    /** PBI-11: transport providers add their own vehicle choices (always under their own supplier). */
-    public VehicleResponse saveMyVehicle(Long id, VehicleRequest r) {
-        User me = requireRole(Role.TRANSPORT_PROVIDER);
-        if (id != null) {
-            ownVehicle(id);
-        }
-        VehicleRequest scoped = new VehicleRequest(supplierId(me), r.type(), r.model(), r.registrationNo(), r.seats(),
-                r.pricePerDay(), r.driverName(), r.airConditioned(), r.active());
-        return resourceService.saveVehicle(id, scoped);
-    }
-
-    // ------------------------------------------------------------------ blocked days (vehicles + guide)
-
-    @Transactional(readOnly = true)
-    public List<BlockedDateResponse> blockedDates(ResourceType type, Long id) {
-        checkOwnership(type, id);
-        return resourceService.blockedDates(type, id);
-    }
-
-    public List<BlockedDateResponse> block(ResourceType type, Long id, BlockDatesRequest r) {
-        checkOwnership(type, id);
-        List<BlockedDateResponse> result = resourceService.block(type, id, r);
-        notificationService.notifyRole(Role.LOGISTIC_SUPPLIER_MANAGER, Notification.Type.SCHEDULE,
-                "Partner marked days unavailable",
-                currentUser.details().getFullName() + " blocked " + type.name().toLowerCase(Locale.ROOT) + " #" + id
-                        + " from " + DAY.format(r.startDate()) + " to " + DAY.format(r.endDate())
-                        + (r.reason() == null || r.reason().isBlank() ? "" : " (" + r.reason() + ")") + ".",
-                "/admin/resources.html");
-        return result;
-    }
-
-    public void unblock(ResourceType type, Long id, Long blockedDateId) {
-        checkOwnership(type, id);
-        resourceService.unblock(type, id, blockedDateId);
-    }
-
-    // ------------------------------------------------------------------ tour guide
-
-    @Transactional(readOnly = true)
-    public GuideResponse myGuideProfile() {
-        return GuideResponse.from(myGuide());
-    }
-
-    /** PBI-10 extension "Add manual waypoints": the assigned guide adds a stop to the booking's route plan. */
-    public void addWaypoint(Long bookingId, WaypointRequest r) {
-        TourGuide guide = myGuide();
-        boolean assigned = allocationRepository.findByBookingIdAndStatus(bookingId, ResourceAllocation.Status.ALLOCATED).stream()
-                .anyMatch(a -> a.getResourceType() == ResourceType.GUIDE && a.getResourceId().equals(guide.getId()));
-        if (!assigned) {
-            throw new BusinessException(HttpStatus.FORBIDDEN, "You can only add waypoints to tours assigned to you");
-        }
-        Booking b = bookingRepository.findById(bookingId).orElseThrow(() -> new NotFoundException("Booking", bookingId));
-        int totalDays = b.nights() + 1;
-        if (r.dayNumber() > totalDays) {
-            throw new BusinessException("This tour has only " + totalDays + " day(s)");
-        }
-        Itinerary itinerary = itineraryRepository.findByBookingId(bookingId)
-                .orElseThrow(() -> new BusinessException("The itinerary for this booking has not been generated yet"));
-        itinerary.addItem(new ItineraryItem(r.dayNumber(), b.getStartDate().plusDays(r.dayNumber() - 1L),
-                ItineraryItem.Type.WAYPOINT, r.title().trim(), r.description(), r.location(), r.route(), guide.getFullName()));
-    }
-
-    // ------------------------------------------------------------------ assignments (all partner types)
-
-    /** Upcoming allocations for the logged-in partner's hotels, vehicles or guide profile. */
-    @Transactional(readOnly = true)
-    public List<Assignment> myAssignments() {
-        User me = currentUser.entity();
-        ResourceType type;
-        List<Long> ids;
-        switch (me.getRole()) {
-            case HOTEL_PARTNER -> {
-                type = ResourceType.HOTEL;
-                ids = hotelRepository.findBySupplierIdOrderByNameAsc(supplierId(me)).stream().map(Hotel::getId).toList();
-            }
-            case TRANSPORT_PROVIDER -> {
-                type = ResourceType.VEHICLE;
-                ids = vehicleRepository.findBySupplierIdOrderByModelAsc(supplierId(me)).stream().map(Vehicle::getId).toList();
-            }
-            case TOUR_GUIDE -> {
-                type = ResourceType.GUIDE;
-                ids = List.of(myGuide().getId());
-            }
-            default -> throw new BusinessException(HttpStatus.FORBIDDEN, "Only logistic partners have assignments");
-        }
-        if (ids.isEmpty()) {
-            return List.of();
-        }
-        return allocationRepository.findByResourceTypeAndResourceIdInAndStatusAndEndDateGreaterThanEqualOrderByStartDateAsc(
-                        type, ids, ResourceAllocation.Status.ALLOCATED, LocalDate.now().minusDays(1)).stream()
-                .map(a -> {
-                    Booking b = a.getBooking();
-                    String lead = b.getTravelers().isEmpty() ? b.getCustomer().getFullName() : b.getTravelers().get(0).getFullName();
-                    return new Assignment(a.getId(), b.getId(), b.getReference(), b.getTourPackage().getName(),
-                            a.getResourceName(), a.getResourceType(), a.getStartDate(), a.getEndDate(), a.getQuantity(),
-                            b.travellerCount(), lead, b.getCustomer().getPhone(), b.getSpecialRequests(), b.getGuideLanguage());
-                })
+        /*
+         * Current User entity does not have a Supplier field.
+         * Therefore supplier ownership cannot be resolved from
+         * the logged-in user yet.
+         */
+        return hotelRepository
+                .findAllByOrderByCityAscNameAsc()
+                .stream()
+                .map(
+                        HotelResponse::from
+                )
                 .toList();
     }
 
-    // ------------------------------------------------------------------ ownership helpers
 
-    private void checkOwnership(ResourceType type, Long id) {
-        switch (type) {
-            case VEHICLE -> ownVehicle(id);
-            case GUIDE -> {
-                if (!myGuide().getId().equals(id)) {
-                    throw new BusinessException(HttpStatus.FORBIDDEN, "You can only manage your own schedule");
-                }
+    // =========================================================
+    // HOTEL CALENDAR
+    // =========================================================
+
+    @Transactional(readOnly = true)
+    public List<CalendarDay> hotelCalendar(
+            Long hotelId,
+            LocalDate from,
+            LocalDate to) {
+
+        requireRole(
+                Role.HOTEL_PARTNER
+        );
+
+        Hotel hotel =
+                findHotel(
+                        hotelId
+                );
+
+        validateRange(
+                from,
+                to
+        );
+
+
+        Map<LocalDate, HotelAvailability> rows =
+                new HashMap<>();
+
+
+        hotelAvailabilityRepository
+                .findByHotelIdAndDateBetweenOrderByDateAsc(
+                        hotelId,
+                        from,
+                        to
+                )
+                .forEach(row ->
+                        rows.put(
+                                row.getDate(),
+                                row
+                        )
+                );
+
+
+        List<ResourceAllocation> allocations =
+                allocationRepository
+                        .findOverlapping(
+                                ResourceType.HOTEL,
+                                hotelId,
+                                from,
+                                to,
+                                ResourceAllocation.Status.ALLOCATED
+                        );
+
+
+        List<CalendarDay> result =
+                new ArrayList<>();
+
+
+        for (
+                LocalDate date = from;
+                !date.isAfter(to);
+                date = date.plusDays(1)
+        ) {
+
+            HotelAvailability row =
+                    rows.get(
+                            date
+                    );
+
+
+            int capacity =
+                    row == null
+                            ? hotel.getTotalRooms()
+                            : row.getAvailableRooms();
+
+
+            int booked =
+                    row == null
+                            ? 0
+                            : row.getBookedRooms();
+
+
+            final LocalDate currentDate =
+                    date;
+
+
+            List<String> references =
+                    allocations.stream()
+
+                            .filter(allocation ->
+                                    !currentDate.isBefore(
+                                            allocation.getStartDate()
+                                    )
+                                            && currentDate.isBefore(
+                                            allocation.getEndDate()
+                                    )
+                            )
+
+                            .map(allocation ->
+                                    bookingReference(
+                                            allocation.getBooking()
+                                    )
+                            )
+
+                            .toList();
+
+
+            result.add(
+                    new CalendarDay(
+                            date,
+                            capacity,
+                            booked,
+                            Math.max(
+                                    0,
+                                    capacity - booked
+                            ),
+                            references
+                    )
+            );
+        }
+
+
+        return result;
+    }
+
+
+    // =========================================================
+    // UPDATE HOTEL SCHEDULE
+    // =========================================================
+
+    public List<CalendarDay> updateHotelSchedule(
+            Long hotelId,
+            ScheduleUpdateRequest request) {
+
+        requireRole(
+                Role.HOTEL_PARTNER
+        );
+
+        Hotel hotel =
+                findHotel(
+                        hotelId
+                );
+
+
+        validateRange(
+                request.startDate(),
+                request.endDate()
+        );
+
+
+        Map<LocalDate, HotelAvailability> existing =
+                new HashMap<>();
+
+
+        hotelAvailabilityRepository
+                .findByHotelIdAndDateBetweenOrderByDateAsc(
+                        hotelId,
+                        request.startDate(),
+                        request.endDate()
+                )
+                .forEach(row ->
+                        existing.put(
+                                row.getDate(),
+                                row
+                        )
+                );
+
+
+        for (
+                LocalDate date =
+                request.startDate();
+
+                !date.isAfter(
+                        request.endDate()
+                );
+
+                date =
+                        date.plusDays(1)
+        ) {
+
+            HotelAvailability row =
+                    existing.get(
+                            date
+                    );
+
+
+            if (row == null) {
+
+                row =
+                        new HotelAvailability(
+                                hotel,
+                                date
+                        );
             }
-            case HOTEL -> ownHotel(id);
+
+
+            if (request.availableRooms()
+                    < row.getBookedRooms()) {
+
+                throw new BusinessException(
+                        "Available rooms cannot be less than "
+                                + row.getBookedRooms()
+                                + " because rooms are already booked on "
+                                + date
+                );
+            }
+
+
+            row.setAvailableRooms(
+                    request.availableRooms()
+            );
+
+
+            hotelAvailabilityRepository.save(
+                    row
+            );
         }
+
+
+        return hotelCalendar(
+                hotelId,
+                request.startDate(),
+                request.endDate()
+        );
     }
 
-    private Hotel ownHotel(Long hotelId) {
-        User me = requireRole(Role.HOTEL_PARTNER);
-        Hotel h = resourceService.hotel(hotelId);
-        if (h.getSupplier() == null || !h.getSupplier().getId().equals(supplierId(me))) {
-            throw new BusinessException(HttpStatus.FORBIDDEN, "This hotel does not belong to your company");
-        }
-        return h;
+
+    // =========================================================
+    // VEHICLES
+    // =========================================================
+
+    @Transactional(readOnly = true)
+    public List<VehicleResponse> myVehicles() {
+
+        requireRole(
+                Role.TRANSPORT_PROVIDER
+        );
+
+
+        return vehicleRepository
+                .findAllByOrderBySeatsAscModelAsc()
+                .stream()
+                .map(
+                        VehicleResponse::from
+                )
+                .toList();
     }
 
-    private Vehicle ownVehicle(Long vehicleId) {
-        User me = requireRole(Role.TRANSPORT_PROVIDER);
-        Vehicle v = resourceService.vehicle(vehicleId);
-        if (v.getSupplier() == null || !v.getSupplier().getId().equals(supplierId(me))) {
-            throw new BusinessException(HttpStatus.FORBIDDEN, "This vehicle does not belong to your company");
+
+    // =========================================================
+    // SAVE / UPDATE VEHICLE
+    // =========================================================
+
+    public VehicleResponse saveMyVehicle(
+            Long id,
+            VehicleRequest request) {
+
+        requireRole(
+                Role.TRANSPORT_PROVIDER
+        );
+
+
+        Vehicle vehicle;
+
+
+        if (id == null) {
+
+            vehicle =
+                    new Vehicle();
+
+        } else {
+
+            vehicle =
+                    vehicleRepository
+                            .findById(id)
+                            .orElseThrow(() ->
+                                    new NotFoundException(
+                                            "Vehicle",
+                                            id
+                                    )
+                            );
         }
-        return v;
+
+
+        if (request.supplierId()
+                != null) {
+
+            Supplier supplier =
+                    supplierRepository
+                            .findById(
+                                    request.supplierId()
+                            )
+                            .orElseThrow(() ->
+                                    new NotFoundException(
+                                            "Supplier",
+                                            request.supplierId()
+                                    )
+                            );
+
+
+            vehicle.setSupplier(
+                    supplier
+            );
+        }
+
+
+        vehicle.setType(
+                request.type()
+        );
+
+        vehicle.setModel(
+                request.model()
+        );
+
+        vehicle.setRegistrationNo(
+                request.registrationNo()
+        );
+
+        vehicle.setSeats(
+                request.seats()
+        );
+
+        vehicle.setPricePerDay(
+                request.pricePerDay()
+        );
+
+        vehicle.setDriverName(
+                request.driverName()
+        );
+
+        vehicle.setAirConditioned(
+                request.airConditioned()
+        );
+
+        vehicle.setActive(
+                request.active()
+        );
+
+
+        Vehicle saved =
+                vehicleRepository.save(
+                        vehicle
+                );
+
+
+        return VehicleResponse.from(
+                saved
+        );
     }
+
+
+    // =========================================================
+    // BLOCKED DATES
+    // =========================================================
+
+    @Transactional(readOnly = true)
+    public List<BlockedDateResponse> blockedDates(
+            ResourceType type,
+            Long id) {
+
+        checkResourceExists(
+                type,
+                id
+        );
+
+
+        return blockedDateRepository
+                .findByResourceTypeAndResourceIdAndDateGreaterThanEqualOrderByDateAsc(
+                        type,
+                        id,
+                        LocalDate.now()
+                )
+                .stream()
+                .map(
+                        BlockedDateResponse::from
+                )
+                .toList();
+    }
+
+
+    // =========================================================
+    // BLOCK RESOURCE DATES
+    // =========================================================
+
+    public List<BlockedDateResponse> block(
+            ResourceType type,
+            Long id,
+            BlockDatesRequest request) {
+
+        checkResourceExists(
+                type,
+                id
+        );
+
+
+        validateRange(
+                request.startDate(),
+                request.endDate()
+        );
+
+
+        for (
+                LocalDate date =
+                request.startDate();
+
+                !date.isAfter(
+                        request.endDate()
+                );
+
+                date =
+                        date.plusDays(1)
+        ) {
+
+            boolean alreadyBlocked =
+                    blockedDateRepository
+                            .findByResourceTypeAndResourceIdAndDate(
+                                    type,
+                                    id,
+                                    date
+                            )
+                            .isPresent();
+
+
+            if (!alreadyBlocked) {
+
+                blockedDateRepository.save(
+                        new ResourceBlockedDate(
+                                type,
+                                id,
+                                date,
+                                request.reason()
+                        )
+                );
+            }
+        }
+
+
+        return blockedDateRepository
+                .findByResourceTypeAndResourceIdAndDateBetweenOrderByDateAsc(
+                        type,
+                        id,
+                        request.startDate(),
+                        request.endDate()
+                )
+                .stream()
+                .map(
+                        BlockedDateResponse::from
+                )
+                .toList();
+    }
+
+
+    // =========================================================
+    // UNBLOCK DATE
+    // =========================================================
+
+    public void unblock(
+            ResourceType type,
+            Long id,
+            Long blockedDateId) {
+
+        checkResourceExists(
+                type,
+                id
+        );
+
+
+        ResourceBlockedDate blocked =
+                blockedDateRepository
+                        .findById(
+                                blockedDateId
+                        )
+                        .orElseThrow(() ->
+                                new NotFoundException(
+                                        "Blocked date",
+                                        blockedDateId
+                                )
+                        );
+
+
+        if (blocked.getResourceType()
+                != type
+                || !blocked.getResourceId()
+                .equals(id)) {
+
+            throw new BusinessException(
+                    HttpStatus.FORBIDDEN,
+                    "This blocked date does not belong to this resource"
+            );
+        }
+
+
+        blockedDateRepository.delete(
+                blocked
+        );
+    }
+
+
+    // =========================================================
+    // GUIDE PROFILE
+    // =========================================================
+
+    @Transactional(readOnly = true)
+    public GuideResponse myGuideProfile() {
+
+        return GuideResponse.from(
+                myGuide()
+        );
+    }
+
+
+    // =========================================================
+    // ADD WAYPOINT
+    // =========================================================
+
+    public void addWaypoint(
+            Long bookingId,
+            WaypointRequest request) {
+
+        TourGuide guide =
+                myGuide();
+
+
+        boolean assigned =
+                allocationRepository
+                        .findByBookingIdAndStatus(
+                                bookingId,
+                                ResourceAllocation.Status.ALLOCATED
+                        )
+                        .stream()
+
+                        .anyMatch(allocation ->
+                                allocation.getResourceType()
+                                        == ResourceType.GUIDE
+                                        && allocation
+                                        .getResourceId()
+                                        .equals(
+                                                guide.getId()
+                                        )
+                        );
+
+
+        if (!assigned) {
+
+            throw new BusinessException(
+                    HttpStatus.FORBIDDEN,
+                    "You can only add waypoints to tours assigned to you"
+            );
+        }
+
+
+        Booking booking =
+                bookingRepository
+                        .findById(
+                                bookingId
+                        )
+                        .orElseThrow(() ->
+                                new NotFoundException(
+                                        "Booking",
+                                        bookingId
+                                )
+                        );
+
+
+        if (booking.getTravelDate()
+                == null) {
+
+            throw new BusinessException(
+                    "Booking does not have a travel date"
+            );
+        }
+
+
+        Itinerary itinerary =
+                itineraryRepository
+                        .findByBookingId(
+                                bookingId
+                        )
+                        .orElseThrow(() ->
+                                new BusinessException(
+                                        "The itinerary for this booking has not been generated yet"
+                                )
+                        );
+
+
+        LocalDate waypointDate =
+                booking
+                        .getTravelDate()
+                        .plusDays(
+                                request.dayNumber() - 1L
+                        );
+
+
+        itinerary.addItem(
+                new ItineraryItem(
+
+                        request.dayNumber(),
+
+                        waypointDate,
+
+                        ItineraryItem.Type.WAYPOINT,
+
+                        request.title().trim(),
+
+                        request.description(),
+
+                        request.location(),
+
+                        request.route(),
+
+                        guide.getFullName()
+                )
+        );
+
+
+        itineraryRepository.save(
+                itinerary
+        );
+    }
+
+
+    // =========================================================
+    // ASSIGNMENTS
+    // =========================================================
+
+    @Transactional(readOnly = true)
+    public List<Assignment> myAssignments() {
+
+        Role role =
+                currentUser.role();
+
+
+        ResourceType resourceType;
+
+        List<Long> resourceIds;
+
+
+        switch (role) {
+
+            case HOTEL_PARTNER -> {
+
+                resourceType =
+                        ResourceType.HOTEL;
+
+                resourceIds =
+                        hotelRepository
+                                .findAll()
+                                .stream()
+                                .map(
+                                        Hotel::getId
+                                )
+                                .toList();
+            }
+
+
+            case TRANSPORT_PROVIDER -> {
+
+                resourceType =
+                        ResourceType.VEHICLE;
+
+                resourceIds =
+                        vehicleRepository
+                                .findAll()
+                                .stream()
+                                .map(
+                                        Vehicle::getId
+                                )
+                                .toList();
+            }
+
+
+            case TOUR_GUIDE -> {
+
+                resourceType =
+                        ResourceType.GUIDE;
+
+                resourceIds =
+                        List.of(
+                                myGuide()
+                                        .getId()
+                        );
+            }
+
+
+            default ->
+
+                    throw new BusinessException(
+                            HttpStatus.FORBIDDEN,
+                            "Only logistic partners have assignments"
+                    );
+        }
+
+
+        if (resourceIds.isEmpty()) {
+
+            return List.of();
+        }
+
+
+        return allocationRepository
+                .findByResourceTypeAndResourceIdInAndStatusAndEndDateGreaterThanEqualOrderByStartDateAsc(
+
+                        resourceType,
+
+                        resourceIds,
+
+                        ResourceAllocation.Status.ALLOCATED,
+
+                        LocalDate.now()
+                                .minusDays(1)
+                )
+
+                .stream()
+
+                .map(allocation -> {
+
+                    Booking booking =
+                            allocation.getBooking();
+
+
+                    String customerName =
+                            customerName(
+                                    booking
+                            );
+
+
+                    return new Assignment(
+
+                            allocation.getId(),
+
+                            booking.getBookingId(),
+
+                            bookingReference(
+                                    booking
+                            ),
+
+                            booking.getTourPackage()
+                                    == null
+                                    ? "Tour"
+                                    : booking
+                                    .getTourPackage()
+                                    .getName(),
+
+                            allocation.getResourceName(),
+
+                            allocation.getResourceType(),
+
+                            allocation.getStartDate(),
+
+                            allocation.getEndDate(),
+
+                            allocation.getQuantity(),
+
+                            booking.getNumberOfPeople()
+                                    == null
+                                    ? 0
+                                    : booking
+                                    .getNumberOfPeople(),
+
+                            customerName,
+
+                            booking.getCustomer()
+                                    == null
+                                    ? null
+                                    : booking
+                                    .getCustomer()
+                                    .getPhone(),
+
+                            booking.getSpecialRequests(),
+
+                            null
+                    );
+                })
+
+                .toList();
+    }
+
+
+    // =========================================================
+    // CURRENT GUIDE
+    // =========================================================
 
     private TourGuide myGuide() {
-        User me = requireRole(Role.TOUR_GUIDE);
-        return guideRepository.findByUserId(me.getId())
-                .orElseThrow(() -> new BusinessException("Your account is not linked to a tour guide profile yet. Please contact the operations team."));
+
+        requireRole(
+                Role.TOUR_GUIDE
+        );
+
+
+        return guideRepository
+                .findByUserId(
+                        currentUser.id()
+                )
+                .orElseThrow(() ->
+                        new BusinessException(
+                                "Your account is not linked to a tour guide profile yet."
+                        )
+                );
     }
 
-    private User requireRole(Role role) {
-        User me = currentUser.entity();
-        if (me.getRole() != role) {
-            throw new BusinessException(HttpStatus.FORBIDDEN, "This section is for " + role.getDisplayName() + " accounts");
+
+    // =========================================================
+    // ROLE CHECK
+    // =========================================================
+
+    private void requireRole(
+            Role requiredRole) {
+
+        Role actualRole =
+                currentUser.role();
+
+
+        if (actualRole
+                != requiredRole) {
+
+            throw new BusinessException(
+                    HttpStatus.FORBIDDEN,
+                    "This section is for "
+                            + requiredRole.getDisplayName()
+                            + " accounts"
+            );
         }
-        return me;
     }
 
-    private static Long supplierId(User me) {
-        if (me.getSupplier() == null) {
-            throw new BusinessException("Your account is not linked to a supplier yet. Please contact the operations team.");
+
+    // =========================================================
+    // RESOURCE EXISTS
+    // =========================================================
+
+    private void checkResourceExists(
+            ResourceType type,
+            Long id) {
+
+        switch (type) {
+
+            case HOTEL ->
+
+                    findHotel(
+                            id
+                    );
+
+
+            case VEHICLE ->
+
+                    vehicleRepository
+                            .findById(id)
+                            .orElseThrow(() ->
+                                    new NotFoundException(
+                                            "Vehicle",
+                                            id
+                                    )
+                            );
+
+
+            case GUIDE ->
+
+                    guideRepository
+                            .findById(id)
+                            .orElseThrow(() ->
+                                    new NotFoundException(
+                                            "Tour guide",
+                                            id
+                                    )
+                            );
         }
-        return me.getSupplier().getId();
+    }
+
+
+    // =========================================================
+    // FIND HOTEL
+    // =========================================================
+
+    private Hotel findHotel(
+            Long id) {
+
+        return hotelRepository
+                .findById(id)
+                .orElseThrow(() ->
+                        new NotFoundException(
+                                "Hotel",
+                                id
+                        )
+                );
+    }
+
+
+    // =========================================================
+    // DATE VALIDATION
+    // =========================================================
+
+    private void validateRange(
+            LocalDate from,
+            LocalDate to) {
+
+        if (from == null) {
+
+            throw new BusinessException(
+                    "Start date is required"
+            );
+        }
+
+
+        if (to == null) {
+
+            throw new BusinessException(
+                    "End date is required"
+            );
+        }
+
+
+        if (to.isBefore(from)) {
+
+            throw new BusinessException(
+                    "End date cannot be before start date"
+            );
+        }
+    }
+
+
+    // =========================================================
+    // BOOKING REFERENCE
+    // =========================================================
+
+    private String bookingReference(
+            Booking booking) {
+
+        if (booking == null
+                || booking.getBookingId()
+                == null) {
+
+            return "BOOKING";
+        }
+
+
+        return "BOOK-"
+                + booking.getBookingId();
+    }
+
+
+    // =========================================================
+    // CUSTOMER NAME
+    // =========================================================
+
+    private String customerName(
+            Booking booking) {
+
+        if (booking == null
+                || booking.getCustomer()
+                == null) {
+
+            return "Customer";
+        }
+
+
+        User customer =
+                booking.getCustomer();
+
+
+        if (customer.getName()
+                != null
+                && !customer
+                .getName()
+                .isBlank()) {
+
+            return customer.getName();
+        }
+
+
+        if (customer.getUsername()
+                != null
+                && !customer
+                .getUsername()
+                .isBlank()) {
+
+            return customer.getUsername();
+        }
+
+
+        if (customer.getEmail()
+                != null) {
+
+            return customer.getEmail();
+        }
+
+
+        return "Customer";
     }
 }
