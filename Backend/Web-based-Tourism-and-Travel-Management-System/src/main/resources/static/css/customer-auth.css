@@ -1,0 +1,652 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --brown: #6b3e26;
+
+    --dark-brown: #4c2b1a;
+
+    --green: #2e7032;
+
+    --dark-green: #235a28;
+
+    --gold: #b99a63;
+
+    --cream: #f7f3ea;
+
+    --light-cream: #fffdf8;
+
+    --text: #2b2927;
+
+    --gray: #777777;
+
+    --border: #ddd2c3;
+
+    --error: #b94235;
+
+    --success: #2e7032;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: var(--cream);
+
+    color: var(--text);
+}
+
+
+.page-container {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+}
+
+
+/* ============================= */
+/* LEFT SIDE */
+/* ============================= */
+
+.left-section {
+
+    min-height: 100vh;
+
+    background:
+            linear-gradient(
+                    rgba(26, 58, 31, 0.72),
+                    rgba(72, 43, 25, 0.80)
+            ),
+            url("/images/Explore-lanka.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    position: relative;
+}
+
+
+.overlay {
+
+    min-height: 100vh;
+
+    padding: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    color: white;
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.logo-circle {
+
+    width: 52px;
+
+    height: 52px;
+
+    background: var(--brown);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+
+.brand h2 {
+
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    letter-spacing: 1px;
+}
+
+
+.brand p {
+
+    font-size: 9px;
+
+    margin-top: 3px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.9;
+}
+
+
+.welcome-text {
+
+    max-width: 620px;
+
+    margin-bottom: 60px;
+}
+
+
+.welcome-text h1 {
+
+    font-family: Georgia, serif;
+
+    font-size: 55px;
+
+    line-height: 1.15;
+
+    margin-bottom: 20px;
+}
+
+
+.welcome-text p {
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    max-width: 520px;
+
+    color: #f0ebe5;
+}
+
+
+/* ============================= */
+/* RIGHT SIDE */
+/* ============================= */
+
+.right-section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 35px;
+
+    background: var(--cream);
+}
+
+
+.auth-container {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    background: var(--light-cream);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 38px;
+
+    box-shadow:
+            0 12px 35px rgba(68, 45, 29, 0.12);
+}
+
+
+/* Login/Register top tabs removed intentionally. */
+
+/* ============================= */
+/* HEADING */
+/* ============================= */
+
+.form-heading {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.form-heading h1 {
+
+    color: var(--brown);
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+
+    margin-bottom: 8px;
+}
+
+
+.form-heading p {
+
+    color: var(--gray);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================= */
+/* INPUT */
+/* ============================= */
+
+.input-group {
+
+    margin-bottom: 17px;
+}
+
+
+.input-group label {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+
+.input-group input,
+.input-group textarea {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.input-group input:focus,
+.input-group textarea:focus {
+
+    border-color: var(--green);
+
+    box-shadow:
+            0 0 0 3px rgba(46, 112, 50, 0.08);
+}
+
+
+textarea {
+
+    resize: vertical;
+}
+
+
+.two-column {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+
+/* ============================= */
+/* PASSWORD */
+/* ============================= */
+
+.password-wrapper {
+
+    position: relative;
+}
+
+
+.password-wrapper input {
+
+    padding-right: 50px;
+}
+
+
+.password-btn {
+
+    position: absolute;
+
+    right: 8px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+
+/* ============================= */
+/* LOGIN OPTIONS */
+/* ============================= */
+
+.form-options {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+
+    margin-bottom: 20px;
+}
+
+
+.form-options a {
+
+    color: var(--green);
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.main-btn {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 13px;
+
+    border-radius: 8px;
+
+    background: var(--green);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.main-btn:hover {
+
+    background: var(--dark-green);
+
+    transform: translateY(-1px);
+}
+
+
+.main-btn:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* ============================= */
+/* BOTTOM TEXT */
+/* ============================= */
+
+.bottom-text {
+
+    text-align: center;
+
+    margin-top: 22px;
+
+    color: var(--gray);
+
+    font-size: 13px;
+}
+
+
+.bottom-text button {
+
+    border: none;
+
+    background: none;
+
+    color: var(--brown);
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* ============================= */
+/* MESSAGE */
+/* ============================= */
+
+.message-box {
+
+    padding: 11px 14px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+
+.message-success {
+
+    color: #205e26;
+
+    background: #e7f4e3;
+
+    border: 1px solid #bddbb7;
+}
+
+
+.message-error {
+
+    color: #9b3329;
+
+    background: #f8e3df;
+
+    border: 1px solid #ecc1ba;
+}
+
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+    .page-container {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .left-section {
+
+        min-height: 350px;
+    }
+
+
+    .overlay {
+
+        min-height: 350px;
+
+        padding: 30px;
+    }
+
+
+    .welcome-text {
+
+        margin-bottom: 10px;
+    }
+
+
+    .welcome-text h1 {
+
+        font-size: 38px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .right-section {
+
+        padding: 18px;
+    }
+
+
+    .auth-container {
+
+        padding: 25px 20px;
+    }
+
+
+    .two-column {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .left-section {
+
+        display: none;
+    }
+
+
+    .form-heading h1 {
+
+        font-size: 27px;
+    }
+
+}
+/* Reliable text logo used on auth pages (no missing image dependency) */
+.auth-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.auth-brand-badge {
+    width: 48px;
+    height: 48px;
+    border: 2px solid rgba(255,255,255,.78);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: rgba(255,255,255,.10);
+    box-shadow: 0 6px 20px rgba(0,0,0,.15);
+}
+
+.auth-brand-copy {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.auth-brand-copy strong {
+    font-family: Georgia, serif;
+    font-size: 21px;
+    letter-spacing: 1.8px;
+    font-weight: 700;
+}
+
+.auth-brand-copy small {
+    margin-top: 7px;
+    font-size: 8px;
+    letter-spacing: 2.2px;
+    opacity: .9;
+}
+
+
+/* ===== Premium customer authentication motion ===== */
+.left-section{overflow:hidden;background-position:center;animation:authKenBurns 18s ease-in-out infinite alternate}
+.left-section::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 76% 18%,rgba(255,224,157,.20),transparent 25%),
+      linear-gradient(135deg,rgba(255,255,255,.04),transparent 40%);
+}
+@keyframes authKenBurns{from{background-size:100% auto}to{background-size:108% auto}}
+.auth-brand-badge{position:relative;overflow:hidden;animation:authLogoPulse 4s ease-in-out infinite}
+.auth-brand-badge::after{content:"";position:absolute;inset:-50%;background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.65) 50%,transparent 62%);transform:translateX(-90%);animation:authShine 5s ease-in-out infinite}
+@keyframes authLogoPulse{50%{box-shadow:0 10px 30px rgba(255,224,157,.22)}}
+@keyframes authShine{0%,55%{transform:translateX(-90%) rotate(12deg)}80%,100%{transform:translateX(90%) rotate(12deg)}}
+.welcome-text{animation:authTextIn .8s .12s ease both}
+.auth-container{position:relative;overflow:hidden;animation:authCardIn .7s .05s cubic-bezier(.2,.8,.2,1) both;box-shadow:0 22px 55px rgba(68,45,29,.14)}
+.auth-container::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-95px;top:-95px;background:radial-gradient(circle,rgba(185,154,99,.18),transparent 70%)}
+@keyframes authCardIn{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes authTextIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.input-group input,.input-group textarea{transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease}
+.input-group input:focus,.input-group textarea:focus{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(46,112,50,.08),0 10px 22px rgba(68,45,29,.06)}
+.main-btn{position:relative;overflow:hidden;box-shadow:0 12px 25px rgba(46,112,50,.18)}
+.main-btn::after{content:"";position:absolute;inset:-2px;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.35) 50%,transparent 75%);transform:translateX(-120%);transition:transform .55s ease}
+.main-btn:hover::after{transform:translateX(120%)}
+.main-btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(46,112,50,.24)}
+@media(max-width:900px){.left-section{animation:none;background-size:cover}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
