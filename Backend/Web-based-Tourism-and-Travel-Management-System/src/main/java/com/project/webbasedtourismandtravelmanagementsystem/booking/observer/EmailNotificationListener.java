@@ -8,134 +8,28 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 /**
- * Observer 3:
- * Simulated e-mail confirmation.
- *
- * A real deployment can later replace this with an SMTP sender.
+ * Observer 3: simulated e-mail confirmation. A real deployment would plug in an SMTP sender
+ * here; for the academic version the e-mail is written to the application log.
  */
 @Component
 public class EmailNotificationListener {
 
-    private static final Logger log =
-            LoggerFactory.getLogger(
-                    EmailNotificationListener.class
-            );
+    private static final Logger log = LoggerFactory.getLogger(EmailNotificationListener.class);
 
     private final BookingRepository bookingRepository;
 
-
-    public EmailNotificationListener(
-            BookingRepository bookingRepository) {
-
-        this.bookingRepository =
-                bookingRepository;
+    public EmailNotificationListener(BookingRepository bookingRepository) {
+        this.bookingRepository = bookingRepository;
     }
-
 
     @EventListener
-    public void onStatusChanged(
-            BookingStatusChangedEvent event) {
-
-        Booking booking =
-                bookingRepository
-                        .findById(
-                                event.bookingId()
-                        )
-                        .orElse(null);
-
-
-        if (booking == null) {
+    public void onStatusChanged(BookingStatusChangedEvent event) {
+        Booking b = bookingRepository.findById(event.bookingId()).orElse(null);
+        if (b == null || event.oldStatus() == event.newStatus()) {
             return;
         }
-
-
-        if (event.oldStatus()
-                == event.newStatus()) {
-
-            return;
-        }
-
-
-        // -----------------------------------------------------
-        // Booking reference
-        // Current Booking has no getReference()
-        // -----------------------------------------------------
-
-        String reference =
-                bookingReference(
-                        booking
-                );
-
-
-        // -----------------------------------------------------
-        // Customer email
-        // -----------------------------------------------------
-
-        String email =
-                booking.getCustomer() == null
-                        ? "unknown"
-                        : booking
-                        .getCustomer()
-                        .getEmail();
-
-
-        // -----------------------------------------------------
-        // Package name
-        // -----------------------------------------------------
-
-        String packageName =
-                booking.getTourPackage() == null
-                        ? "Tour"
-                        : booking
-                        .getTourPackage()
-                        .getName();
-
-
-        // -----------------------------------------------------
-        // Total amount
-        // getTotalAmount() is Double, not BigDecimal
-        // -----------------------------------------------------
-
-        String totalAmount =
-                booking.getTotalAmount() == null
-                        ? "0.00"
-                        : String.format(
-                        "%.2f",
-                        booking.getTotalAmount()
-                );
-
-
-        log.info(
-                "[SIMULATED E-MAIL] "
-                        + "to={} "
-                        + "subject=\"Explore Lanka booking {} is now {}\" "
-                        + "package=\"{}\" "
-                        + "total=LKR {}",
-
-                email,
-                reference,
-                event.newStatus(),
-                packageName,
-                totalAmount
-        );
-    }
-
-
-    // =========================================================
-    // BOOKING REFERENCE
-    // =========================================================
-
-    private String bookingReference(
-            Booking booking) {
-
-        if (booking == null
-                || booking.getBookingId() == null) {
-
-            return "BOOKING";
-        }
-
-
-        return "BOOK-"
-                + booking.getBookingId();
+        log.info("[SIMULATED E-MAIL] to={} subject=\"Explore Lanka booking {} is now {}\" package=\"{}\" total=LKR {}",
+                b.getCustomer().getEmail(), b.getReference(), event.newStatus(), b.getTourPackage().getName(),
+                b.getTotalAmount().toPlainString());
     }
 }

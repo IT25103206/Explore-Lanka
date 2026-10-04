@@ -1,48 +1,39 @@
 package com.project.webbasedtourismandtravelmanagementsystem.booking.repository;
 
 import com.project.webbasedtourismandtravelmanagementsystem.booking.model.Booking;
+import com.project.webbasedtourismandtravelmanagementsystem.booking.model.BookingStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface BookingRepository
-        extends JpaRepository<Booking, Long> {
+public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    // =========================================================
-    // CUSTOMER BOOKINGS
-    // =========================================================
+    Optional<Booking> findByReference(String reference);
 
-    List<Booking> findByCustomer_UserIdOrderByBookingIdDesc(
-            Long customerId
-    );
+    boolean existsByReference(String reference);
 
+    List<Booking> findByCustomerIdOrderByCreatedAtDesc(Long customerId);
 
-    // =========================================================
-    // PROMOTION COMPATIBILITY
-    // =========================================================
-    //
-    // The current Booking entity has NO Promotion field.
-    //
-    // Old PromotionService code still calls:
-    //
-    // bookingRepository.findByPromotion_PromotionId(id)
-    //
-    // If this is declared as a normal Spring Data method,
-    // Spring tries to find Booking.promotion and startup fails.
-    //
-    // Therefore keep this as a DEFAULT compatibility method.
-    //
-    // Until Promotion is actually added to Booking,
-    // there is no database relationship we can query.
-    // =========================================================
+    List<Booking> findAllByOrderByCreatedAtDesc();
 
-    default List<Booking> findByPromotion_PromotionId(
-            Long promotionId
-    ) {
+    List<Booking> findByStatusOrderByStartDateAsc(BookingStatus status);
 
-        return Collections.emptyList();
-    }
+    List<Booking> findByStatusAndEndDateBefore(BookingStatus status, LocalDate date);
+
+    List<Booking> findByStatusIn(Collection<BookingStatus> statuses);
+
+    long countByStatus(BookingStatus status);
+
+    long countByCustomerIdAndStatusIn(Long customerId, Collection<BookingStatus> statuses);
+
+    boolean existsByTourPackageId(Long packageId);
+
+    boolean existsByCustomerId(Long customerId);
+
+    List<Booking> findTop6ByOrderByCreatedAtDesc();
+
+    List<Booking> findByPromotionId(Long promotionId);
 }
