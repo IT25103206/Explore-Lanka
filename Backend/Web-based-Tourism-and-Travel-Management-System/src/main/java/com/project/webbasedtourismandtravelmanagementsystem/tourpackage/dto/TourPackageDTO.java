@@ -24,6 +24,8 @@ public class TourPackageDTO {
 
     private String status;
 
+    private String image;
+
 
 
     public Long getPackageId() {
@@ -99,6 +101,15 @@ public class TourPackageDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }
