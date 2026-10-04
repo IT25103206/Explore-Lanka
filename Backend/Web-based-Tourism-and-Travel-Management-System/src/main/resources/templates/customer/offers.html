@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Offers · Explore Lanka</title>
+    <link rel="icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body data-page="offers">
+<div id="page" class="stack" hidden></div>
+<noscript><p style="padding:20px">Explore Lanka needs JavaScript enabled.</p></noscript>
+<script src="/js/app.js"></script>
+<script src="/js/pages/shared-cards.js"></script>
+<script>
+(async function () {
+    const { $ } = EL;
+    await EL.portal({ kind: "customer", active: "offers", title: "Offers" });
+    const page = $("#page");
+    page.innerHTML = '<div class="page-intro"><p>Copy a code and enter it on the final step of your booking. Only currently running offers are shown.</p></div>' +
+        '<div class="cards" id="offers"></div>';
+    $("#offers").innerHTML = EL.skeleton(2);
+    EL.api("/api/public/promotions").then((list) => {
+        $("#offers").innerHTML = list.map(Cards.offerCard).join("") || EL.emptyState("There are no running offers right now - check back soon!", "tag");
+        Cards.bindCopy($("#offers"));
+    }).catch(EL.toastError);
+})();
+</script>
+</body>
+</html>
