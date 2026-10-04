@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tour details · Explore Lanka</title>
+    <link rel="icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+    <style>
+        .pkg-hero { height: 360px; border-radius: var(--radius); overflow: hidden; position: relative; }
+        .pkg-hero img { width: 100%; height: 100%; object-fit: cover; }
+        .pkg-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; margin-top: 22px; }
+        .book-card { position: sticky; top: 90px; }
+        @media (max-width: 900px) { .pkg-layout { grid-template-columns: 1fr; } .book-card { position: static; } .pkg-hero { height: 240px; } }
+    </style>
+</head>
+<body>
+<main class="container section" id="root">
+    <div class="skeleton" style="height:360px"></div>
+</main>
+<script src="/js/app.js"></script>
+<script src="/js/pages/shared-cards.js"></script>
+<script>
+(async function () {
+    const { $, $$, esc, fmt, icon, api, badge, titleCase } = EL;
+    const id = EL.qs("id");
+    // customers see the tour inside their dashboard; visitors get the public website layout
+    const viewer = await EL.me();
+    const inDashboard = !!viewer && viewer.role === "CUSTOMER";
+    const allTours = inDashboard ? "/customer/packages.html" : "/packages.html";
+    if (inDashboard) {
+        const page = document.createElement("div");
+        page.id = "page";
+        page.className = "stack";
+        page.hidden = true;
+        const root = $("#root");
+        root.className = "";
+        root.parentNode.insertBefore(page, root);
+        page.appendChild(root);
+        await EL.portal({ kind: "customer", active: "packages", title: "Tour details" });
+    } else {
+        EL.publicLayout("packages");
+    }
+    const list = (s) => (s || "").split(";").map((x) => x.trim()).filter(Boolean).map((x) => "<li>" + esc(x) + "</li>").join("");
+
+    async function load() {
+        let p;
+        try { p = await api("/api/public/packages/" + id); }
+        catch (e) { $("#root").innerHTML = '<div class="card center">' + EL.emptyState("This tour is not available.", "package") + '<a class="btn" href="' + allTours + '">All tour packages</a></div>'; return; }
+        document.title = p.name + " · Explore Lanka";
+        const seasonal = p.type === "SEASONAL" ? '<div class="alert info small">' + esc(p.seasonName) + ": " + fmt.date(p.seasonStart) + " - " + fmt.date(p.seasonEnd) +
+            " (" + (p.seasonalAdjustmentPercent > 0 ? "+" : "") + Number(p.seasonalAdjustmentPercent) + "% on the package price)</div>" : "";
+        const custom = p.type === "CUSTOM" ? '<div class="alert info small">Customisable: add up to ' + p.maxExtraDays + " extra day(s) at " + fmt.money(p.extraDayPrice) + " per traveller per day.</div>" : "";
+        $("#root").innerHTML =
+            '<a href="' + allTours + '" class="small">&larr; All tours</a>' +
+            '<div class="pkg-hero" style="margin-top:10px"><img src="' + esc(p.imageUrl) + '" alt="' + esc(p.name) + '"></div>' +
+            '<div class="pkg-layout"><div class="stack">' +
+            '<div><div class="row" style="gap:6px">' + badge(p.type) + '<span class="badge">' + esc(titleCase(p.category)) + "</span>" + (p.trending ? '<span class="badge solid">Trending</span>' : "") + "</div>" +
+            '<h1 style="margin-top:8px">' + esc(p.name) + '</h1><div class="row muted small"><span>' + icon("map", 14) + " " + esc(p.destinations.join(" · ")) + " (" + esc(p.region) + ")</span><span>" + icon("clock", 14) + " " + p.durationDays + " days / " + p.nights + " nights</span>" +
+            (p.reviewCount ? "<span>" + fmt.stars(p.averageRating) + " " + p.averageRating + " · " + p.reviewCount + " review(s)</span>" : "<span>No reviews yet</span>") + "</div></div>" +
+            '<div class="tabs" id="tabs"><button class="active" data-t="overview">Overview</button><button data-t="itinerary">Itinerary</button><button data-t="events">Festivals during this tour</button><button data-t="reviews">Reviews</button></div>' +
+            '<div data-p="overview" class="stack"><p>' + esc(p.description || "") + "</p>" + seasonal + custom +
+            '<div class="grid grid-3"><div class="panel"><h4>Highlights</h4><ul class="small">' + list(p.highlights) + '</ul></div><div class="panel"><h4>Included</h4><ul class="small">' + list(p.inclusions) +
+            '</ul></div><div class="panel"><h4>Not included</h4><ul class="small">' + list(p.exclusions) + "</ul></div></div></div>" +
+            '<div data-p="itinerary" class="hidden"><ol class="timeline">' + p.itinerary.map((d) => "<li><b>Day " + d.dayNumber + ": " + esc(d.title) + '</b><div class="small">' + esc(d.description || "") + "</div>" +
+                (d.route ? '<div class="small muted">' + icon("route", 13) + " " + esc(d.route) + "</div>" : "") + "</li>").join("") + "</ol></div>" +
+            '<div data-p="events" class="hidden"><div class="row" style="margin-bottom:12px"><label class="small">Travel date <input type="date" id="evDate" style="width:auto"></label></div><div class="grid" id="evList"></div></div>' +
+            '<div data-p="reviews" class="hidden" id="reviews"></div>' +
+            "</div>" +
+            '<aside class="card book-card"><div class="muted small">From, per adult</div><div style="font-size:1.9rem;font-weight:700;color:var(--brown)">' + fmt.money(p.currentPrice) + "</div>" +
+            (p.currentPrice != p.basePrice ? '<div class="small muted">Standard price ' + fmt.money(p.basePrice) + "</div>" : "") +
+            '<p class="small muted" style="margin-top:8px">Children under 12 pay 50%. Hotel, transport and guide are added based on your choice.</p>' +
+            '<ul class="small" style="padding-left:18px"><li>Max group size: ' + p.maxGroupSize + "</li><li>Runs " + fmt.date(p.availableFrom) + " - " + fmt.date(p.availableTo) + "</li><li>Free changes up to 7 days before travel</li></ul>" +
+            '<a class="btn green block" id="bookBtn" href="/customer/book.html?package=' + p.id + '">Book now</a>' +
+            '<button class="btn outline block" style="margin-top:8px" id="favBtn" data-fav="' + p.id + '">' + icon("heart", 16) + " Save to wishlist</button></aside></div>";
+
+        $$("#tabs button").forEach((b) => b.addEventListener("click", () => {
+            $$("#tabs button").forEach((x) => x.classList.toggle("active", x === b));
+            $$("[data-p]").forEach((x) => x.classList.toggle("hidden", x.dataset.p !== b.dataset.t));
+        }));
+        $("#bookBtn").addEventListener("click", async (e) => {
+            const u = await EL.me();
+            if (!u) { e.preventDefault(); location.href = "/login.html?next=" + encodeURIComponent("/customer/book.html?package=" + p.id); }
+            else if (u.role !== "CUSTOMER") { e.preventDefault(); EL.toast("Please use a customer account to book tours"); }
+        });
+        Cards.bindFavourites($("#root"));
+
+        const loadEvents = async () => {
+            const list = await api("/api/public/packages/" + p.id + "/events", { query: { date: $("#evDate").value } });
+            $("#evList").innerHTML = list.map(Cards.eventCard).join("") || EL.emptyState("No festivals listed for this area and date yet.", "festival");
+            $$("#evList [data-event]").forEach((c) => c.addEventListener("click", () => { location.href = (inDashboard ? "/customer/festivals.html" : "/events.html") + "?event=" + c.dataset.event; }));
+        };
+        $("#evDate").addEventListener("change", loadEvents);
+        loadEvents();
+
+        const reviews = await api("/api/public/packages/" + p.id + "/reviews");
+        $("#reviews").innerHTML = reviews.length ? reviews.map((r) => '<div class="card flat" style="margin-bottom:12px"><div class="row between"><b>' + esc(r.customerName) + "</b>" + fmt.stars(r.overallRating) + "</div>" +
+            '<p style="margin:6px 0">' + esc(r.comment) + '</p><div class="small muted">' + fmt.date(r.createdAt) + "</div>" +
+            (r.response ? '<div class="panel small" style="margin-top:8px"><b>Response from Explore Lanka:</b> ' + esc(r.response) + "</div>" : "") + "</div>").join("")
+            : EL.emptyState("No reviews yet - be the first after your trip!", "star");
+    }
+    load();
+})();
+</script>
+</body>
+</html>
