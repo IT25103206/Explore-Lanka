@@ -1,140 +1,139 @@
 package com.project.webbasedtourismandtravelmanagementsystem.tourpackage.model;
 
+import com.project.webbasedtourismandtravelmanagementsystem.common.BaseEntity;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+/**
+ * A tour product in the catalogue. Subclasses (Standard / Seasonal / Custom) are created by
+ * {@link com.project.webbasedtourismandtravelmanagementsystem.tourpackage.service.TourPackageFactory}
+ * and stored in one table (single-table inheritance) with a "package_type" discriminator.
+ */
 @Entity
 @Table(name = "tour_packages")
-public class TourPackage {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "package_type", length = 20)
+@Getter
+@Setter
+public abstract class TourPackage extends BaseEntity {
 
+    /** Children (under 12) pay half the adult package price. */
+    public static final BigDecimal CHILD_RATE = new BigDecimal("0.50");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long packageId;
+    public enum Category { CULTURAL, WILDLIFE, BEACH, HILL_COUNTRY, ADVENTURE, RELIGIOUS, HONEYMOON, FAMILY }
 
+    public enum Status { ACTIVE, INACTIVE }
 
-    @Column(nullable = false)
-    private String packageName;
+    @Column(nullable = false, unique = true, length = 20)
+    private String code;
 
+    @Column(nullable = false, length = 120)
+    private String name;
 
-    @Column(columnDefinition = "TEXT")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Category category;
+
+    /** Province used to match festivals and events, e.g. "Central". */
+    @Column(nullable = false, length = 40)
+    private String region;
+
+    /** Towns visited, comma separated, e.g. "Kandy, Nuwara Eliya, Ella". Hotels are matched on these. */
+    @Column(nullable = false, length = 255)
+    private String destinations;
+
+    @Column(name = "duration_days", nullable = false)
+    private int durationDays;
+
+    /** Package price per adult (excluding hotel, vehicle and guide which the tourist selects). */
+    @Column(name = "base_price", nullable = false, precision = 12, scale = 2)
+    private BigDecimal basePrice;
+
+    @Column(name = "max_group_size", nullable = false)
+    private int maxGroupSize;
+
+    @Column(name = "guide_recommended", nullable = false)
+    private boolean guideRecommended = true;
+
+    @Column(length = 2000)
     private String description;
 
+    @Column(length = 1000)
+    private String highlights;
 
-    private Double price;
+    @Column(length = 1000)
+    private String inclusions;
 
+    @Column(length = 1000)
+    private String exclusions;
 
-    private Integer durationDays;
+    @Column(name = "image_url", length = 255)
+    private String imageUrl;
 
+    /** Schedule window in which the tour can start. */
+    @Column(name = "available_from", nullable = false)
+    private LocalDate availableFrom;
 
-    private String category;
+    @Column(name = "available_to", nullable = false)
+    private LocalDate availableTo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Status status = Status.ACTIVE;
 
-    private String status;
+    @OneToMany(mappedBy = "tourPackage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("dayNumber ASC")
+    private List<PackageItineraryDay> itineraryDays = new ArrayList<>();
 
+    // ---------------------------------------------------------------- polymorphic behaviour
 
+    public abstract PackageType getPackageType();
 
-    // Constructors
+    /** Adult price for a tour starting on the given date. */
+    public abstract BigDecimal pricePerAdult(LocalDate travelDate);
 
-    public TourPackage() {
-
+    /** Extra cost when a tourist lengthens the tour (only custom packages allow it). */
+    public BigDecimal extraDaysCost(int extraDays, int travellers) {
+        return BigDecimal.ZERO;
     }
 
-
-
-    public TourPackage(String packageName,
-                       String description,
-                       Double price,
-                       Integer durationDays,
-                       String category,
-                       String status) {
-
-        this.packageName = packageName;
-        this.description = description;
-        this.price = price;
-        this.durationDays = durationDays;
-        this.category = category;
-        this.status = status;
+    public int maxExtraDays() {
+        return 0;
     }
 
-
-
-    // Getters and Setters
-
-
-    public Long getPackageId() {
-        return packageId;
+    /** CalculateFinalPrice() from the sequence diagram: package part of a booking. */
+    public BigDecimal packageCost(LocalDate travelDate, int adults, int children, int extraDays) {
+        BigDecimal adult = pricePerAdult(travelDate);
+        BigDecimal total = adult.multiply(BigDecimal.valueOf(adults))
+                .add(adult.multiply(CHILD_RATE).multiply(BigDecimal.valueOf(children)))
+                .add(extraDaysCost(extraDays, adults + children));
+        return total.setScale(2, RoundingMode.HALF_UP);
     }
 
-
-    public void setPackageId(Long packageId) {
-        this.packageId = packageId;
+    public List<String> destinationList() {
+        return Arrays.stream(destinations.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .toList();
     }
 
-
-
-    public String getPackageName() {
-        return packageName;
+    public boolean isBookable() {
+        return status == Status.ACTIVE && !availableTo.isBefore(LocalDate.now());
     }
 
-
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
+    public void replaceItinerary(List<PackageItineraryDay> days) {
+        itineraryDays.clear();
+        for (PackageItineraryDay d : days) {
+            d.setTourPackage(this);
+            itineraryDays.add(d);
+        }
     }
-
-
-
-    public String getDescription() {
-        return description;
-    }
-
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-
-    public Double getPrice() {
-        return price;
-    }
-
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-
-
-    public Integer getDurationDays() {
-        return durationDays;
-    }
-
-
-    public void setDurationDays(Integer durationDays) {
-        this.durationDays = durationDays;
-    }
-
-
-
-    public String getCategory() {
-        return category;
-    }
-
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-
-
-    public String getStatus() {
-        return status;
-    }
-
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
 }
