@@ -4,107 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9226cc0-b6ca-4203-b31d-3198693c1271" name="Changes" comment="Update other js and css">
-      <change afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/css/customer-auth.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/customer-auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="d9226cc0-b6ca-4203-b31d-3198693c1271" name="Changes" comment="Update system  files">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Common/ApiResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/Controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/Controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/Model/Event.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/Repository/EventRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/Service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/Service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/Service/EventServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Event/dto/EventDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Exception/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Exception/ResourceNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/Controller/Partner_Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/DTO/PartnerDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/Model/Partner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/Repository/Partner_Repository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/Service/PartnerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/Service/PartnerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Partner/Service/PartnerServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Promotion/Controller/Promotion_Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Promotion/Model/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Promotion/Model/Promotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Promotion/Repository/Promotion_Repository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Promotion/Service/PromotionServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Promotion/Service/Promotion_Service.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/Promotion/dto/Promotion_dto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/WebBasedTourismAndTravelManagementSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/WebBasedTourismAndTravelManagementSystemApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/Controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/dto/LoginRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/dto/RegisterReques.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/service/AuthService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/controller/BookingController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/dto/BookingDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/model/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/repository/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/service/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/service/BookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/booking/service/BookingServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/controller/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/controller/ResourceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/dto/ResourceDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/model/Resource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/repository/ResourceRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/service/ResourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/service/ResourceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/resource/service/ResourceServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/controller/TourPackageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/controller/TourPackageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/dto/TourPackageDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/model/TourPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/model/TourPackage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/repository/TourPackageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/repository/TourPackageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/service/TourPackageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/service/TourPackageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/tourpackage/service/TourPackageServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/css/admin-data.css" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/css/admin-data.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/css/components/account-menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/css/components/account-menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/images/nine-arch-bridge-about.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/images/nine-arch-bridge-about.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/Promotion.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/Promotion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/admin-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/admin-data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/admin-staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/admin-staff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/app-486jh97.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/app-486jh97.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/destination-carousel-strict.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/destination-carousel-strict.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/bookings.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/bookings.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/notifications.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/packages.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/packages.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/partners.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/promotions.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/promotions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/reports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/resources.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/resources.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/admin/users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/access-denied.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/access-denied.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/admin-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/admin-login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/customer-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/customer-login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/customer-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/auth/customer-register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/booking-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/booking-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/booking.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/booking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/destinations.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/destinations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/notifications.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/package-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/package-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/reviews.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/reviews.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/tour-packages.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/tour-packages.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/customer/wishlist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/admin-sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/admin-sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/customer-sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/customer-sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/Explore_Lanka_Database.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,9 +34,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="41ccd848-2e00-4c8d-ae61-8cf4c15cbebc" />
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IT25103206/Explore-Lanka.git&quot;,
+    &quot;accountId&quot;: &quot;0aa947de-6612-4772-9232-77d90f063613&quot;
+  }
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -173,7 +78,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/senut/OneDrive/Desktop/Explore-Lanka&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
 }</component>
   <component name="RunManager">
@@ -248,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791003817373</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update system  files">
+      <option name="closed" value="true" />
+      <created>1791193474545</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1791193474545</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -263,11 +176,16 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$USER_HOME$/Downloads/Blood-Donation-System/Blood-Donation-System" />
+      <path value="$USER_HOME$/Downloads/senuth-portfolio-all-features-added/senuth-premium-spring-portfolio-v12" />
+    </ignored-roots>
     <MESSAGE value="coded my package all java classes" />
     <MESSAGE value="coded my package css class" />
     <MESSAGE value="coded my package js class" />
     <MESSAGE value="Update my part and make other js and css" />
     <MESSAGE value="Update other js and css" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update other js and css" />
+    <MESSAGE value="Update system  files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update system  files" />
   </component>
 </project>
