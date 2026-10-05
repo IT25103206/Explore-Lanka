@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9226cc0-b6ca-4203-b31d-3198693c1271" name="Changes" comment="Promotion Package Update">
+    <list default="true" id="d9226cc0-b6ca-4203-b31d-3198693c1271" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;IT25101444&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IT25103206/Explore-Lanka.git&quot;,
+    &quot;accountId&quot;: &quot;4e551b77-e87c-4ee2-a39b-f7cfb84f542f&quot;
+  }
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -59,15 +72,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "#2 on main",
+    "Spring Boot.WebBasedTourismAndTravelManagementSystemApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="WebBasedTourismAndTravelManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="Web-based-Tourism-and-Travel-Management-System" />
+      <module name="Explore-Lanka" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.webbasedtourismandtravelmanagementsystem.WebBasedTourismAndTravelManagementSystemApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -77,7 +93,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>
@@ -106,58 +122,40 @@
       <option name="project" value="LOCAL" />
       <updated>1789388129132</updated>
     </task>
-    <task id="LOCAL-00004" summary="Promotion Package Update">
+    <task id="LOCAL-00004" summary="Redefined Promotion Controller Update">
       <option name="closed" value="true" />
-      <created>1791096267700</created>
+      <created>1791044182216</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1791096267700</updated>
+      <updated>1791044182217</updated>
     </task>
-    <task id="LOCAL-00005" summary="Promotion File Chages Update">
+    <task id="LOCAL-00005" summary="*Updated Resource Files Updated">
       <option name="closed" value="true" />
-      <created>1791096429016</created>
+      <created>1791044778775</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1791096429016</updated>
+      <updated>1791044778775</updated>
     </task>
-    <task id="LOCAL-00006" summary="Minor Changes Update">
+    <task id="LOCAL-00006" summary="Project Resource Allocation Files Update">
       <option name="closed" value="true" />
-      <created>1791096488512</created>
+      <created>1791044837137</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1791096488512</updated>
+      <updated>1791044837137</updated>
     </task>
-    <task id="LOCAL-00007" summary="Other Changes Update">
-      <option name="closed" value="true" />
-      <created>1791096595275</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1791096595275</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Promotion Package Update">
-      <option name="closed" value="true" />
-      <created>1791097039291</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1791097039291</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="coded my package all java classes" />
     <MESSAGE value="coded my package css class" />
     <MESSAGE value="coded my package js class" />
-    <MESSAGE value="Promotion File Chages Update" />
-    <MESSAGE value="Minor Changes Update" />
-    <MESSAGE value="Promotion Package Redefined Update" />
-    <MESSAGE value="Other Changes Update" />
-    <MESSAGE value="Promotion Package Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Promotion Package Update" />
+    <MESSAGE value="Redefined Promotion Controller Update" />
+    <MESSAGE value="*Updated Resource Files Updated" />
+    <MESSAGE value="Project Resource Allocation Files Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project Resource Allocation Files Update" />
   </component>
 </project>

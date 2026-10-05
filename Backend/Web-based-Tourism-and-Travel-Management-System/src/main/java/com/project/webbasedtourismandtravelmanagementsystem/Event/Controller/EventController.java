@@ -2,7 +2,6 @@ package com.project.webbasedtourismandtravelmanagementsystem.Event.Controller;
 
 
 
-import com.project.webbasedtourismandtravelmanagementsystem.Event.Controller.EventController;
 import com.project.webbasedtourismandtravelmanagementsystem.Event.Model.Event;
 import com.project.webbasedtourismandtravelmanagementsystem.Event.Service.EventService;
 
