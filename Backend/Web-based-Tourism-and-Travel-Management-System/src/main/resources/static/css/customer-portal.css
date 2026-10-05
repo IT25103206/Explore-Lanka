@@ -1,0 +1,124 @@
+/* Explore Lanka - customer portal pages connected to the API */
+[hidden]{display:none!important}
+.cp-muted{font-size:11px;color:var(--muted)}
+.cp-ok{color:#27642d;font-weight:700;font-size:11px}
+.cp-bad{color:#9f3b32;font-weight:700;font-size:11px}
+.cp-wide{width:100%;justify-content:center;margin-top:10px}
+.cp-block{margin-top:20px}
+.cp-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cp-h{font:700 17px Georgia,serif;color:var(--brown);margin-bottom:10px}
+.cp-text{font-size:12px;line-height:1.75;color:#4b4038;margin-bottom:12px}
+.cp-note{font-size:11px;line-height:1.6;background:#fff8e6;border:1px solid #f0e0b5;border-radius:12px;padding:10px 12px;margin:12px 0;color:#6b4a0f}
+.cp-filters{align-items:center}
+.cp-filters input{flex:1}
+.cp-checkbox{display:flex;align-items:center;gap:6px;font-size:11px;color:#4b4038;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.cp-two{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:18px;align-items:start;margin-top:18px}
+.cp-two>div>.card,.cp-two>aside>.card,.cp-two>aside>form{margin-bottom:18px}
+/* package cards */
+.cp-pkg .place-body,.cp-event .place-body{display:flex;flex-direction:column;height:100%}
+.cp-price-row{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-top:auto;padding-top:14px}
+.cp-price-row small{display:block;font-size:9px;color:var(--muted)}
+.cp-price-row .price{font-size:20px}
+.cp-ribbon{position:absolute!important;top:12px;right:12px;font-size:10px!important;font-weight:800;background:#c4a56a;color:#3d2a17!important;padding:5px 9px;border-radius:999px;filter:none!important}
+.cp-date{background:#fff;color:var(--brown)!important;border-radius:12px;padding:6px 10px;font-size:10px!important;text-align:center;filter:none!important;line-height:1.1}
+.cp-date b{display:block;font:700 20px Georgia,serif}
+/* hero banners */
+.cp-hero{min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(100deg,rgba(21,74,35,.85),rgba(91,62,39,.45)),var(--cp-img) center/cover no-repeat}
+.cp-hero .eyebrow{position:relative;z-index:1;font-size:9px;letter-spacing:2px;font-weight:800;color:#f0d395;margin-bottom:8px}
+.cp-hero-rating{position:relative;z-index:1;color:#f0d395;font-size:12px;font-weight:700;align-self:center}
+.cp-facts{margin-top:4px}
+.cp-facts h3{font-size:16px}
+.cp-days{list-style:none;display:grid;gap:8px}
+.cp-days li{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:11px}
+.cp-days b{color:#2e7032}
+.cp-days small{display:block;font-weight:400;color:var(--muted);font-size:9px}
+.cp-incl{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;color:#4b4038}
+.cp-review{padding:12px 0;border-bottom:1px solid var(--line)}
+.card.cp-review{padding:16px;margin-bottom:10px}
+.cp-review div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cp-review b{font-size:12px;color:var(--brown)}
+.cp-review small{font-size:9px;color:var(--muted)}
+.cp-review p{font-size:11px;line-height:1.6;margin-top:6px;color:#4b4038}
+.cp-stars{color:#c4a56a;letter-spacing:1px}
+.cp-avail .field{margin-bottom:10px}
+.cp-av-out{margin:10px 0;min-height:16px}
+.cp-total{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);padding-top:12px;margin-top:6px}
+.cp-total small{font-size:10px;color:var(--muted)}
+.cp-chips{display:flex;flex-wrap:wrap;gap:6px}
+.cp-chips span{background:#eaf3e7;color:#27642d;border-radius:999px;padding:6px 10px;font-size:10px;font-weight:700}
+.cp-offer-mini{font-size:11px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.cp-offer-mini b{color:#2e7032}
+.cp-code{font-family:Consolas,monospace;font-weight:800;background:#fff0cb;color:#6b4a0f;padding:3px 8px;border-radius:7px;letter-spacing:.6px}
+.cp-event-mini{display:block;padding:9px 0;border-bottom:1px dashed var(--line)}
+.cp-event-mini b{display:block;font-size:12px;color:var(--brown)}
+.cp-event-mini small{font-size:10px;color:var(--muted)}
+/* booking form */
+.cp-trav-list{display:grid;gap:8px}
+.cp-trav{display:grid;grid-template-columns:26px 2fr 1.4fr 80px;gap:8px;align-items:center}
+.cp-trav span{width:26px;height:26px;border-radius:50%;background:#eaf3e7;color:#27642d;display:grid;place-items:center;font-size:10px;font-weight:800}
+.cp-trav input,.cp-coupon-row input{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 12px;outline:none;font-size:11px;min-width:0}
+.cp-trav input:focus,.cp-coupon-row input:focus{border-color:#2e7032}
+.cp-coupon-row{display:flex;gap:8px;max-width:420px}
+.cp-coupon-row input{flex:1;text-transform:uppercase;letter-spacing:.6px}
+.cp-coupon-out{margin-top:8px;min-height:16px}
+.cp-coupon-out .bk-link{border:0;background:none;cursor:pointer;margin-left:6px}
+.cp-sum-img{height:120px;border-radius:14px;background:#efe7dd center/cover no-repeat;margin-bottom:12px}
+/* booking details */
+.cp-banner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:linear-gradient(100deg,rgba(255,253,248,.97),rgba(255,253,248,.82)),var(--cp-img) center/cover no-repeat}
+.cp-banner small{font-size:10px;color:var(--muted)}
+.cp-banner h2{font:700 24px Georgia,serif;color:var(--brown);margin:4px 0}
+.cp-banner p{font-size:11px;color:#4b4038;margin-bottom:8px}
+.cp-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.cp-steps div{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:11px;color:var(--muted)}
+.cp-steps i{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:11px}
+.cp-steps .done{color:#27642d;font-weight:700;border-color:#cfe5ca;background:#f3f9f1}
+.cp-steps .done i{background:#2e7032;border-color:#2e7032;color:#fff}
+.cp-res{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.cp-res>span{font-size:22px}
+.cp-res b{font-size:12px;color:var(--brown)}
+.cp-res small{display:block;font-size:10px;color:var(--muted)}
+.cp-table{min-width:0}
+.cp-pay{border:2px solid #c4a56a}
+.cp-tabs{display:flex;gap:10px;margin-bottom:12px}
+.cp-tabs label{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:11px;padding:9px 12px;font-size:11px;cursor:pointer;background:#fff}
+.table-wrap td small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+/* events, trips, offers */
+.cp-region{font:700 18px Georgia,serif;color:var(--brown);margin:22px 0 12px}
+.cp-region small{font:600 10px "Segoe UI",sans-serif;background:#eaf3e7;color:#27642d;border-radius:999px;padding:3px 8px;margin-left:6px}
+.cp-next{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cp-next small{font-size:10px;color:#2e7032;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.cp-next h3{font:700 20px Georgia,serif;color:var(--brown);margin:4px 0}
+.cp-next p{font-size:11px;color:#4b4038}
+.cp-trip{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:center;margin-bottom:12px}
+.cp-trip .trip-art{height:120px;border-radius:14px;background-size:cover;background-position:center}
+.cp-trip-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cp-trip-head h4{font:700 17px Georgia,serif;color:var(--brown);margin-right:4px}
+.cp-trip p{font-size:11px;color:var(--muted);margin:4px 0}
+.cp-offer{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.cp-offer-top{height:110px;background:linear-gradient(135deg,#2e7032,#6b4429);background-size:cover;background-position:center;display:flex;justify-content:space-between;align-items:flex-start;padding:14px;position:relative}
+.cp-offer-top:before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,30,20,.55),rgba(20,30,20,.1))}
+.cp-offer-top>*{position:relative}
+.cp-offer-top .offer-percent{font:700 30px Georgia,serif;color:#fff;line-height:1}
+.cp-offer-top .offer-percent small{font-size:11px;margin-left:3px}
+.cp-offer-body{padding:16px;display:flex;flex-direction:column;flex:1}
+.cp-offer-body h4{font:700 17px Georgia,serif;color:var(--brown)}
+.cp-offer-body p{font-size:11px;color:var(--muted);line-height:1.6;margin:6px 0}
+.cp-offer-body .cp-wide{margin-top:auto}
+.cp-coupon{display:flex;align-items:center;gap:8px;margin:12px 0 10px}
+.cp-refund{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.cp-refund b{font-size:12px;color:var(--brown)}
+.cp-refund small{display:block;font-size:10px;color:var(--muted)}
+.cp-rate{display:flex;gap:4px}
+.cp-rate button{border:0;background:none;font-size:28px;color:#e2d6c3;cursor:pointer;transition:.15s}
+.cp-rate button.on,.cp-rate button:hover{color:#c4a56a;transform:scale(1.1)}
+.cp-notes{display:grid;gap:10px}
+.cp-note-card{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center}
+.cp-note-card>span{font-size:22px}
+.cp-note-card b{font-size:12px;color:var(--brown)}
+.cp-note-card p{font-size:11px;color:var(--muted);margin-top:3px}
+.cp-note-card.hot{border-left:4px solid #c4a56a}
+@media(max-width:1000px){.cp-two{grid-template-columns:1fr}.cp-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.cp-trav{grid-template-columns:26px 1fr 1fr}.cp-trav .ta{grid-column:2/4}.cp-trip{grid-template-columns:1fr}.cp-incl{grid-template-columns:1fr}}
+.form-grid>.field{min-width:0}
+.form-grid select,.form-grid input,.form-grid textarea{width:100%;min-width:0}
+.search .cp-checkbox input,.cp-checkbox input{min-width:0;width:auto;flex:none;padding:0}

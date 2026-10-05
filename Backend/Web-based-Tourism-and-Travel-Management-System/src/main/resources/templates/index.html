@@ -21,7 +21,7 @@
     <!-- =========================
              HOME PAGE CSS
         ========================== -->
-    <link href="../css/pages/home.css" rel="stylesheet"/>
+    <link href="/css/home.css" rel="stylesheet"/>
     <!-- =========================
              COMPONENT CSS
         ========================== -->
@@ -30,15 +30,33 @@
     <link href="../css/components/vision.css" rel="stylesheet"/>
     <link href="../css/components/destinations.css" rel="stylesheet"/>
     <link href="../css/components/account-menu.css" rel="stylesheet"/>
+    <style>
+        /* Landing page overflow guard: prevents the unwanted horizontal browser bar */
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip !important;   /* clip, not hidden - hidden breaks sticky video */
+            overflow-y: visible !important;
+        }
+        body, main, [data-taxi], [data-taxi-view] {
+            min-width: 0;
+        }
+        img, video, svg {
+            max-width: 100%;
+        }
+        .swiper, .swiper-container, .swiper-wrapper {
+            max-width: 100vw;
+        }
+    </style>
 </head>
 <body class="" style="--body-scrollbar-width: 15px; --header-height: 82px;">
 <div class="project-account-bridge" id="projectAccountBridge">
     <button id="projectAccountToggle" type="button">Explore Lanka Account</button>
     <div class="project-account-menu" id="projectAccountMenu">
-        <a data-taxi-ignore="" href="customer-login.html"><strong>Customer Login</strong><small>Bookings, wishlist and
+        <a data-taxi-ignore="" href="/login.html"><strong>Customer Login</strong><small>Bookings, wishlist and
             profile</small></a>
-        <a data-taxi-ignore="" href="admin-login.html"><strong>Admin Login</strong><small>Management portal</small></a>
-        <a data-taxi-ignore="" href="customer-packages.html"><strong>Tour Packages</strong><small>Browse available
+        <a data-taxi-ignore="" href="/staff-login.html"><strong>Admin Login</strong><small>Management portal</small></a>
+        <a data-taxi-ignore="" href="/customer/packages.html"><strong>Tour Packages</strong><small>Browse available
             journeys</small></a>
     </div>
 </div>
@@ -60,7 +78,7 @@
                             </svg>
                         </button>
                     </div>
-                    <a class="navMenu__logo" href="#">
+                    <a data-taxi-ignore="" class="navMenu__logo" href="/index.html">
                         <svg fill="none" height="207" viewbox="0 0 1449 207" width="1449">
                             <path d="M1136.99 11.09v.69c.45-.23.45-.46 0-.69Zm-9.63 0v.69c.45-.23.45-.46 0-.69Zm73.62 112.519v.69c.45-.23.45-.46 0-.69Z"
                                   fill="currentColor"></path>
@@ -87,7 +105,7 @@
                     </a>
                     <div class="right">
                         <a class="explore-account-icon explore-header-icon" data-taxi-ignore=""
-                           href="customer-login.html">
+                           href="/login.html">
                             <svg aria-hidden="true" viewbox="0 0 24 24">
                                 <circle cx="12" cy="8" r="4"></circle>
                                 <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"></path>
@@ -131,7 +149,7 @@
 <svg><use href="../images/icons.svg#line-arrowRight"></use></svg>
 </span> <span class="multi-menu-arrow"></span></a>
                         </li>
-                        <li><a class="navMenu__link" href="#">
+                        <li><a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html">
                             <div class="label">Trip Finder</div>
                         </a></li>
                         <li><a class="navMenu__link" href="#">
@@ -148,7 +166,7 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Destinations</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html">
                                 <div class="image">
                                     <img alt="All Destinations" loading="lazy" src="../images/sigiriya-card.png"/>
                                 </div>
@@ -156,7 +174,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html">
                                 <div class="image">
                                     <img alt="Sri Lanka" loading="lazy" src="../images/yala-card.png"/>
                                 </div>
@@ -164,7 +182,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?q=Kandy">
                                 <div class="image">
                                     <img alt="Kandy" loading="lazy" src="../images/kandy-card.png"/>
                                 </div>
@@ -172,7 +190,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?q=Mirissa">
                                 <div class="image">
                                     <img alt="Mirissa" loading="lazy" src="../images/mirissa-card.png"/>
                                 </div>
@@ -180,7 +198,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?q=Ella">
                                 <div class="image">
                                     <img alt="Ella" loading="lazy" src="../images/ella-card.png"/>
                                 </div>
@@ -188,7 +206,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?q=Nuwara+Eliya">
                                 <div class="image">
                                     <img alt="Nuwara Eliya" loading="lazy" src="../images/nuwara-eliya-card.png"/>
                                 </div>
@@ -272,7 +290,7 @@
 </span> <span class="multi-menu-arrow"></span></a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html">
                                 <div class="label">View All Inspiration</div>
                             </a>
                         </li>
@@ -315,7 +333,7 @@
 </span> <span class="multi-menu-arrow"></span></a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?q=Ella">
                                 <div class="label">Scenic Train Journeys</div>
                             </a>
                         </li>
@@ -334,12 +352,12 @@
 </span> <span class="multi-menu-arrow"></span></a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=ADVENTURE">
                                 <div class="label">Hidden Gems of Sri Lanka</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?sort=price_desc">
                                 <div class="label">Luxury</div>
                             </a>
                         </li>
@@ -354,12 +372,12 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Cultural Heritage Tours</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=CULTURAL">
                                 <div class="label">Cultural Heritage Tours in Sri Lanka</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=CULTURAL">
                                 <div class="label">Cultural Heritage Tours in Kandy</div>
                             </a>
                         </li>
@@ -374,13 +392,13 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Wildlife and Safari</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=WILDLIFE">
                                 <div class="label">Wildlife and Safari in Sri Lanka</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
-                                <div class="label">Wildlife and Safari in Kandy</div>
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=WILDLIFE">
+                                <div class="label">Wildlife and Safari in Yala</div>
                             </a>
                         </li>
                     </ul>
@@ -394,7 +412,7 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Honeymoon Packages</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=HONEYMOON">
                                 <div class="label">Honeymoon Packages in Sri Lanka</div>
                             </a>
                         </li>
@@ -422,7 +440,7 @@
 </span> <span class="multi-menu-arrow"></span></a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=FAMILY">
                                 <div class="label">Multigenerational Travel</div>
                             </a>
                         </li>
@@ -442,7 +460,7 @@
                         </li>
                         <li>
                             <a class="navMenu__link js-collapse" data-title="Beach Holidays" data-ul-id="10" href="#">
-                                <div class="label">Beach Holidays (small kids)</div>
+                                <div class="label">Beach Holidays with Little Ones</div>
                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
 <svg fill="none" height="50" viewbox="0 0 50 50" width="50">
@@ -464,12 +482,12 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Families</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=FAMILY">
                                 <div class="label">Families in Sri Lanka</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=FAMILY">
                                 <div class="label">Families in Kandy</div>
                             </a>
                         </li>
@@ -484,13 +502,13 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Tea Country Escapes</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=HILL_COUNTRY">
                                 <div class="label">Tea Country Escapes in Sri Lanka</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
-                                <div class="label">Tea Country Escapes in Kandy</div>
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=HILL_COUNTRY">
+                                <div class="label">Tea Country Escapes in Nuwara Eliya</div>
                             </a>
                         </li>
                     </ul>
@@ -504,13 +522,13 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Beach Holidays</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=BEACH">
                                 <div class="label">Beach Holidays in Sri Lanka</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
-                                <div class="label">Beach Holidays in Kandy</div>
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=BEACH">
+                                <div class="label">Beach Holidays in Mirissa</div>
                             </a>
                         </li>
                     </ul>
@@ -524,8 +542,8 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Combinations</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
-                                <div class="label">Sri Lanka and The Mirissa</div>
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?q=Mirissa">
+                                <div class="label">Sri Lanka and Mirissa</div>
                             </a>
                         </li>
                     </ul>
@@ -539,32 +557,32 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">Destination Guides</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=CULTURAL">
                                 <div class="label">Sri Lanka's Ancient Cities</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?category=HILL_COUNTRY">
                                 <div class="label">The Pekoe Trail</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/festivals.html?category=FOOD_AND_DRINK">
                                 <div class="label">Colombo Restaurant Guide</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?sort=price_desc">
                                 <div class="label">Sri Lanka's Hottest Hotels</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?sort=price_desc">
                                 <div class="label">Luxury in Kandy</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/packages.html?sort=price_desc">
                                 <div class="label">Villas in Sri Lanka</div>
                             </a>
                         </li>
@@ -579,34 +597,34 @@
                                 href="../images/icons.svg#line-arrowLeft"></use></svg></span></a><span class="label">When to travel</span>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/festivals.html">
                                 <div class="label">Weather in Sri Lanka</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/festivals.html">
                                 <div class="label">Weather in Kandy</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/festivals.html">
                                 <div class="label">Weather in Ella</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
-                                <div class="label">Weather in The Mirissa</div>
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/festivals.html">
+                                <div class="label">Weather in Mirissa</div>
                             </a>
                         </li>
                         <li>
-                            <a class="navMenu__link" href="#">
-                                <div class="label">Weather in The Nuwara Eliya</div>
+                            <a data-taxi-ignore="" class="navMenu__link" href="/customer/festivals.html">
+                                <div class="label">Weather in Nuwara Eliya</div>
                             </a>
                         </li>
                     </ul>
                 </nav>
                 &lt;div class="navMenu__footer"&gt;
-                &lt;a href="/plan-your-trip" class="btn btn--red btn--fill btn--full"&gt;
+                &lt;a href="/customer/dashboard.html" class="btn btn--red btn--fill btn--full"&gt;
                 &lt;span class="btn__label"&gt;
                 Plan your trip
                 &lt;/span&gt; &lt;span class="btn__icon"&gt;
@@ -688,14 +706,14 @@
                         <ul class="siteHeader__nav">
                             <li class="siteHeaderDropdown__toggle" data-dropdown="destinationsDropdown"
                                 data-lenis-prevent="">
-                                <a data-transition="destinations" href="#">Destinations</a>
+                                <a data-taxi-ignore="" data-transition="destinations" href="/customer/packages.html">Destinations</a>
                                 <div class="siteHeaderDropdown destinationsDropdown" id="destinationsDropdown">
                                     <div class="siteHeaderDropdown__container px-container">
                                         <nav aria-label="Destinations menu" class="destinationsMega"
                                              data-destinations-mega-initialized="true">
                                             <ul class="destinationsMega__countries">
                                                 <li class="destinationsMega__country is-active">
-                                                    <a class="destinationsMega__country-link" href="#">
+                                                    <a data-taxi-ignore="" class="destinationsMega__country-link" href="/customer/packages.html">
                                                         <span>Sri Lanka</span>
                                                         <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -709,29 +727,29 @@
                                                     <div class="destinationsMega__details">
                                                         <ul class="destinationsMega__links">
                                                             <li>
-                                                                <a href="#">Overview</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html">Overview</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Itineraries</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html">Itineraries</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Hotels</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html">Hotels</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Places to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html">Places to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">When to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/festivals.html">When to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Experiences</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html">Experiences</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Get inspired</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html">Get inspired</a>
                                                             </li>
                                                         </ul>
                                                         <div class="destinationsMega__feature-wrap">
-                                                            <a class="destinationsMega__feature" href="#">
+                                                            <a data-taxi-ignore="" class="destinationsMega__feature" href="/customer/packages.html">
                                                                 <img alt="Sri Lanka" loading="lazy"
                                                                      src="../images/anuradhapura-card.png"/>
                                                                 <span class="destinationsMega__feature-content">
@@ -746,7 +764,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="destinationsMega__country">
-                                                    <a class="destinationsMega__country-link" href="#">
+                                                    <a data-taxi-ignore="" class="destinationsMega__country-link" href="/customer/packages.html?q=Kandy">
                                                         <span>Kandy</span>
                                                         <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -760,31 +778,31 @@
                                                     <div class="destinationsMega__details">
                                                         <ul class="destinationsMega__links">
                                                             <li>
-                                                                <a href="#">Overview</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Kandy">Overview</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Itineraries</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Kandy">Itineraries</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Hotels</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Kandy">Hotels</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Places to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Kandy">Places to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">When to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/festivals.html">When to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Experiences</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Kandy">Experiences</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Get inspired</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Kandy">Get inspired</a>
                                                             </li>
                                                         </ul>
                                                         <div class="destinationsMega__feature-wrap">
-                                                            <a class="destinationsMega__feature" href="#">
+                                                            <a data-taxi-ignore="" class="destinationsMega__feature" href="/customer/packages.html?q=Kandy">
                                                                 <img alt="Kandy" loading="lazy"
-                                                                     src="../images/trincomalee-card.png"/>
+                                                                     src="../images/kandy-card.png"/>
                                                                 <span class="destinationsMega__feature-content">
 <span class="destinationsMega__feature-eyebrow">Step inside</span>
 <span class="destinationsMega__feature-title">Kandy</span>
@@ -797,7 +815,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="destinationsMega__country">
-                                                    <a class="destinationsMega__country-link" href="#">
+                                                    <a data-taxi-ignore="" class="destinationsMega__country-link" href="/customer/packages.html?q=Mirissa">
                                                         <span>Mirissa</span>
                                                         <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -811,31 +829,31 @@
                                                     <div class="destinationsMega__details">
                                                         <ul class="destinationsMega__links">
                                                             <li>
-                                                                <a href="#">Overview</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">Overview</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Itineraries</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">Itineraries</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Hotels</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">Hotels</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Places to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">Places to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">When to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/festivals.html">When to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Experiences</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">Experiences</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Get inspired</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">Get inspired</a>
                                                             </li>
                                                         </ul>
                                                         <div class="destinationsMega__feature-wrap">
-                                                            <a class="destinationsMega__feature" href="#">
+                                                            <a data-taxi-ignore="" class="destinationsMega__feature" href="/customer/packages.html?q=Mirissa">
                                                                 <img alt="Mirissa" loading="lazy"
-                                                                     src="../images/arugam-bay-card.png"/>
+                                                                     src="../images/mirissa-card.png"/>
                                                                 <span class="destinationsMega__feature-content">
 <span class="destinationsMega__feature-eyebrow">Step inside</span>
 <span class="destinationsMega__feature-title">Mirissa</span>
@@ -848,7 +866,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="destinationsMega__country">
-                                                    <a class="destinationsMega__country-link" href="#">
+                                                    <a data-taxi-ignore="" class="destinationsMega__country-link" href="/customer/packages.html?q=Ella">
                                                         <span>Ella</span>
                                                         <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -862,31 +880,31 @@
                                                     <div class="destinationsMega__details">
                                                         <ul class="destinationsMega__links">
                                                             <li>
-                                                                <a href="#">Overview</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">Overview</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Itineraries</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">Itineraries</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Hotels</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">Hotels</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Places to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">Places to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">When to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/festivals.html">When to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Experiences</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">Experiences</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Get inspired</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">Get inspired</a>
                                                             </li>
                                                         </ul>
                                                         <div class="destinationsMega__feature-wrap">
-                                                            <a class="destinationsMega__feature" href="#">
+                                                            <a data-taxi-ignore="" class="destinationsMega__feature" href="/customer/packages.html?q=Ella">
                                                                 <img alt="Ella" loading="lazy"
-                                                                     src="../images/horton-plains-card.png"/>
+                                                                     src="../images/ella-card.png"/>
                                                                 <span class="destinationsMega__feature-content">
 <span class="destinationsMega__feature-eyebrow">Step inside</span>
 <span class="destinationsMega__feature-title">Ella</span>
@@ -899,7 +917,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="destinationsMega__country">
-                                                    <a class="destinationsMega__country-link" href="#">
+                                                    <a data-taxi-ignore="" class="destinationsMega__country-link" href="/customer/packages.html?q=Nuwara+Eliya">
                                                         <span>Nuwara Eliya</span>
                                                         <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -913,31 +931,31 @@
                                                     <div class="destinationsMega__details">
                                                         <ul class="destinationsMega__links">
                                                             <li>
-                                                                <a href="#">Overview</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Nuwara+Eliya">Overview</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Itineraries</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Nuwara+Eliya">Itineraries</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Hotels</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Nuwara+Eliya">Hotels</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Places to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Nuwara+Eliya">Places to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">When to visit</a>
+                                                                <a data-taxi-ignore="" href="/customer/festivals.html">When to visit</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Experiences</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Nuwara+Eliya">Experiences</a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">Get inspired</a>
+                                                                <a data-taxi-ignore="" href="/customer/packages.html?q=Nuwara+Eliya">Get inspired</a>
                                                             </li>
                                                         </ul>
                                                         <div class="destinationsMega__feature-wrap">
-                                                            <a class="destinationsMega__feature" href="#">
+                                                            <a data-taxi-ignore="" class="destinationsMega__feature" href="/customer/packages.html?q=Nuwara+Eliya">
                                                                 <img alt="Nuwara Eliya" loading="lazy"
-                                                                     src="../images/unawatuna-card.png"/>
+                                                                     src="../images/nuwara-eliya-card.png"/>
                                                                 <span class="destinationsMega__feature-content">
 <span class="destinationsMega__feature-eyebrow">Step inside</span>
 <span class="destinationsMega__feature-title">Nuwara Eliya</span>
@@ -950,7 +968,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="destinationsMega__view-all">
-                                                    <a class="btn btn--bare" href="#">
+                                                    <a data-taxi-ignore="" class="btn btn--bare" href="/customer/packages.html">
                                                         <svg>
                                                             <use href="../images/icons.svg#line-pin"></use>
                                                         </svg>
@@ -967,7 +985,7 @@
                             <li><a href="#">About Us</a></li>
                             <li class="siteHeaderDropdown__toggle" data-dropdown="inspirationDropdown"
                                 data-lenis-prevent="">
-                                <a href="#">Inspiration</a>
+                                <a data-taxi-ignore="" href="/customer/packages.html">Inspiration</a>
                                 <div class="siteHeaderDropdown inspirationDropdown" id="inspirationDropdown" style="">
                                     <div class="siteHeaderDropdown__container px-container">
                                         <div class="inspirationMega" id="inspirationMega" style="min-height: 388px;">
@@ -1042,7 +1060,7 @@
 </span></button>
                                                     </li>
                                                     <li>
-                                                        <a class="btn btn--bare" href="#">
+                                                        <a data-taxi-ignore="" class="btn btn--bare" href="/customer/packages.html">
                                                             <svg>
                                                                 <use href="../images/icons.svg#line-stars"></use>
                                                             </svg>
@@ -1085,7 +1103,7 @@
 </span></button>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">
                                                                 <span class="inspirationMega__trigger-label">Scenic Train Journeys</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1112,7 +1130,7 @@
 </span></button>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?category=ADVENTURE">
                                                                 <span class="inspirationMega__trigger-label">Hidden Gems of Sri Lanka</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1125,7 +1143,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?sort=price_desc">
                                                                 <span class="inspirationMega__trigger-label">Luxury</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1156,7 +1174,7 @@
 </span></button>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?category=FAMILY">
                                                                 <span class="inspirationMega__trigger-label">Multigenerational Travel</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1185,7 +1203,7 @@
                                                         <li>
                                                             <button class="inspirationMega__trigger"
                                                                     data-target="little">
-                                                                <span class="inspirationMega__trigger-label">Beach Holidays (small kids)</span>
+                                                                <span class="inspirationMega__trigger-label">Beach Holidays with Little Ones</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
 <svg fill="none" height="50" viewbox="0 0 50 50" width="50">
@@ -1201,8 +1219,8 @@
                                                 <div class="inspirationMega__panel" id="combinations">
                                                     <ul class="inspirationMega__list">
                                                         <li>
-                                                            <a href="#">
-                                                                <span class="inspirationMega__trigger-label">Sri Lanka and The Mirissa</span>
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">
+                                                                <span class="inspirationMega__trigger-label">Sri Lanka and Mirissa</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
 <svg fill="none" height="50" viewbox="0 0 50 50" width="50">
@@ -1218,7 +1236,7 @@
                                                 <div class="inspirationMega__panel" id="guides">
                                                     <ul class="inspirationMega__list">
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?category=CULTURAL">
                                                                 <span class="inspirationMega__trigger-label">Sri Lanka's Ancient Cities</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1231,7 +1249,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?category=HILL_COUNTRY">
                                                                 <span class="inspirationMega__trigger-label">The Pekoe Trail</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1244,7 +1262,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/festivals.html?category=FOOD_AND_DRINK">
                                                                 <span class="inspirationMega__trigger-label">Colombo Restaurant Guide</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1257,7 +1275,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?sort=price_desc">
                                                                 <span class="inspirationMega__trigger-label">Sri Lanka's Hottest Hotels</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1270,7 +1288,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?sort=price_desc">
                                                                 <span class="inspirationMega__trigger-label">Luxury in Kandy</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1283,7 +1301,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/packages.html?sort=price_desc">
                                                                 <span class="inspirationMega__trigger-label">Villas in Sri Lanka</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1300,7 +1318,7 @@
                                                 <div class="inspirationMega__panel" id="travel">
                                                     <ul class="inspirationMega__list">
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/festivals.html">
                                                                 <span class="inspirationMega__trigger-label">Weather in Sri Lanka</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1313,7 +1331,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/festivals.html">
                                                                 <span class="inspirationMega__trigger-label">Weather in Kandy</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1326,7 +1344,7 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
+                                                            <a data-taxi-ignore="" href="/customer/festivals.html">
                                                                 <span class="inspirationMega__trigger-label">Weather in Ella</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -1339,8 +1357,8 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
-                                                                <span class="inspirationMega__trigger-label">Weather in The Mirissa</span>
+                                                            <a data-taxi-ignore="" href="/customer/festivals.html">
+                                                                <span class="inspirationMega__trigger-label">Weather in Mirissa</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
 <svg fill="none" height="50" viewbox="0 0 50 50" width="50">
@@ -1352,8 +1370,8 @@
 </span> </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">
-                                                                <span class="inspirationMega__trigger-label">Weather in The Nuwara Eliya</span>
+                                                            <a data-taxi-ignore="" href="/customer/festivals.html">
+                                                                <span class="inspirationMega__trigger-label">Weather in Nuwara Eliya</span>
                                                                 <span class="btn__icon">
 <span class="btn__icon-stroke">
 <svg fill="none" height="50" viewbox="0 0 50 50" width="50">
@@ -1370,47 +1388,47 @@
                                             <div class="inspirationMega__level inspirationMega__level--3 is-empty">
                                                 <div class="inspirationMega__panel" id="culture">
                                                     <ul class="inspirationMega__links">
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Cultural Heritage Tours in Sri Lanka</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=CULTURAL"><span class="inspirationMega__trigger-label">Cultural Heritage Tours in Sri Lanka</span></a>
                                                         </li>
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Cultural Heritage Tours in Kandy</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=CULTURAL"><span class="inspirationMega__trigger-label">Cultural Heritage Tours in Kandy</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="inspirationMega__panel" id="wildlife">
                                                     <ul class="inspirationMega__links">
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Wildlife Safaris in Sri Lanka</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=WILDLIFE"><span class="inspirationMega__trigger-label">Wildlife Safaris in Sri Lanka</span></a>
                                                         </li>
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Wildlife Safaris in Kandy</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=WILDLIFE"><span class="inspirationMega__trigger-label">Wildlife Safaris in Yala</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="inspirationMega__panel" id="honeymoons">
                                                     <ul class="inspirationMega__links">
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Honeymoon Packages in Sri Lanka</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=HONEYMOON"><span class="inspirationMega__trigger-label">Honeymoon Packages in Sri Lanka</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="inspirationMega__panel" id="families">
                                                     <ul class="inspirationMega__links">
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Families in Sri Lanka</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=FAMILY"><span class="inspirationMega__trigger-label">Families in Sri Lanka</span></a>
                                                         </li>
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Families in Kandy</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=FAMILY"><span class="inspirationMega__trigger-label">Families in Kandy</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="inspirationMega__panel" id="teenagers">
                                                     <ul class="inspirationMega__links">
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Tea Country Escapes in Sri Lanka</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=HILL_COUNTRY"><span class="inspirationMega__trigger-label">Tea Country Escapes in Sri Lanka</span></a>
                                                         </li>
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Tea Country Escapes in Kandy</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=HILL_COUNTRY"><span class="inspirationMega__trigger-label">Tea Country Escapes in Nuwara Eliya</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="inspirationMega__panel" id="little">
                                                     <ul class="inspirationMega__links">
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Beach Holidays in Sri Lanka</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=BEACH"><span class="inspirationMega__trigger-label">Beach Holidays in Sri Lanka</span></a>
                                                         </li>
-                                                        <li><a href="#"><span class="inspirationMega__trigger-label">Beach Holidays in Kandy</span></a>
+                                                        <li><a data-taxi-ignore="" href="/customer/packages.html?category=BEACH"><span class="inspirationMega__trigger-label">Beach Holidays in Mirissa</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -1419,7 +1437,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#">Trip Finder</a></li>
+                            <li><a data-taxi-ignore="" href="/customer/packages.html">Trip Finder</a></li>
                             <li><a href="#">Journal</a></li>
                         </ul>
                     </div>
@@ -1427,14 +1445,14 @@
                        href="index.html"><span class="explore-lanka-logo-main">EXPLORE LANKA</span><span
                             class="explore-lanka-logo-sub">TAILOR-MADE SRI LANKA</span></a>
                     <div class="siteHeader__side siteHeader__right">
-                        <a class="btn btn--fill" data-taxi-ignore="" href="customer-packages.html">
+                        <a class="btn btn--fill" data-taxi-ignore="" href="/customer/dashboard.html">
 <span class="btn__label">
     Plan Your Trip
 </span>
                         </a>
                         <div class="siteHeader__actions">
                             <a class="explore-account-icon explore-header-icon" data-taxi-ignore=""
-                               href="customer-login.html">
+                               href="/login.html">
                                 <svg aria-hidden="true" viewbox="0 0 24 24">
                                     <circle cx="12" cy="8" r="4"></circle>
                                     <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"></path>
@@ -1615,11 +1633,11 @@
                         <div class="imageMontage">
                             <div class="imageMontage__primary"
                                  style="translate: none; rotate: none; scale: none; transform: translate(0%, -5%);">
-                                <img alt="Sri Lanka travel experience" loading="lazy"
+                                <img alt="Sunrise from Adam's Peak" loading="lazy"
                                      src="../images/adams-peak-card.png"/>
                             </div>
                             <div class="imageMontage__secondary">
-                                <img alt="Sri Lanka travel experience" loading="lazy"
+                                <img alt="Train crossing the Nine Arches Bridge, Ella" loading="lazy"
                                      src="../images/nine-arch-bridge-about.jpg"
                                      style="translate: none; rotate: none; scale: none; transform: translate(0%, 5%);"/>
                             </div>
@@ -1635,26 +1653,26 @@
                              style="width: 1521px; opacity: 0; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
                             <div class="homeDestinationsCarousel__slide" data-slide-title="Sri Lanka"
                                  data-slide-url="#destinations" style="--destination-bg: url('/images/sigiriya.png')">
-                                <a class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
-                                   data-swiper-parallax-y="-80" href="#"
+                                <a data-taxi-ignore="" class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
+                                   data-swiper-parallax-y="-80" href="/customer/packages.html"
                                    style="transform: translate3d(0px, -80px, 0px); transition-duration: 0ms;">
                                     Sri
                                     Lanka
                                 </a>
                                 <div class="homeDestinationsCarousel__images">
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Sri Lanka travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Sigiriya Rock Fortress" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="/images/sigiriya.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Sri Lanka travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Sri Lankan leopard in Yala National Park" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy" src="/images/yala.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Sri Lanka travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Ruwanwelisaya stupa in Anuradhapura" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/anuradhapura.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
@@ -1666,25 +1684,25 @@
                              style="width: 1521px; opacity: 0; transform: translate3d(-1521px, 0px, 0px); transition-duration: 0ms;">
                             <div class="homeDestinationsCarousel__slide" data-slide-title="Kandy"
                                  data-slide-url="#destinations" style="--destination-bg: url('/images/kandy.png')">
-                                <a class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
-                                   data-swiper-parallax-y="-80" href="#"
+                                <a data-taxi-ignore="" class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
+                                   data-swiper-parallax-y="-80" href="/customer/packages.html?q=Kandy"
                                    style="transform: translate3d(0px, -80px, 0px); transition-duration: 0ms;">
                                     Kandy
                                 </a>
                                 <div class="homeDestinationsCarousel__images">
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Kandy travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Kandy city" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy" src="../images/kandy.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Kandy travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Kandy city" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/kandy-card.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Kandy travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Kandy city" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/destinations/kandy.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
@@ -1696,26 +1714,26 @@
                              data-swiper-slide-index="2"
                              style="width: 1521px; opacity: 1; transform: translate3d(-3042px, 0px, 0px); transition-duration: 0ms;">
                             <div class="homeDestinationsCarousel__slide" data-slide-title="Mirissa"
-                                 data-slide-url="#destinations" style="--destination-bg: url('../images/mirissa.png')">
-                                <a class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
-                                   data-swiper-parallax-y="-80" href="#"
+                                 data-slide-url="#destinations" style="--destination-bg: url('/images/mirissa.png')">
+                                <a data-taxi-ignore="" class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
+                                   data-swiper-parallax-y="-80" href="/customer/packages.html?q=Mirissa"
                                    style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
                                     Mirissa
                                 </a>
                                 <div class="homeDestinationsCarousel__images">
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Mirissa travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Palm trees at Mirissa beach" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy" src="../images/mirissa.png"
                                              style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale(1); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Mirissa travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Palm trees at Mirissa beach" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/mirissa-card.png"
                                              style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale(1); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Mirissa travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Sunset over Mirissa" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/mirissa-sunset-wallpaper.png"
                                              style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale(1); transition-duration: 0ms;"/>
@@ -1727,25 +1745,25 @@
                              style="width: 1521px; opacity: 0; transform: translate3d(-4563px, 0px, 0px); transition-duration: 0ms;">
                             <div class="homeDestinationsCarousel__slide" data-slide-title="Ella"
                                  data-slide-url="#destinations" style="--destination-bg: url('/images/ella.png')">
-                                <a class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
-                                   data-swiper-parallax-y="-80" href="#"
+                                <a data-taxi-ignore="" class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
+                                   data-swiper-parallax-y="-80" href="/customer/packages.html?q=Ella"
                                    style="transform: translate3d(0px, 80px, 0px); transition-duration: 0ms;">
                                     Ella
                                 </a>
                                 <div class="homeDestinationsCarousel__images">
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Ella travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Train crossing the Nine Arches Bridge, Ella" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy" src="../images/ella.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Ella travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Train crossing the Nine Arches Bridge, Ella" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/ella-card.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Ella travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Train crossing the Nine Arches Bridge, Ella" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/destinations/ella.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
@@ -1758,27 +1776,27 @@
                             <div class="homeDestinationsCarousel__slide" data-slide-title="Nuwara Eliya"
                                  data-slide-url="#destinations"
                                  style="--destination-bg: url('/images/nuwara-eliya.png')">
-                                <a class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
-                                   data-swiper-parallax-y="-80" href="#"
+                                <a data-taxi-ignore="" class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
+                                   data-swiper-parallax-y="-80" href="/customer/packages.html?q=Nuwara+Eliya"
                                    style="transform: translate3d(0px, 80px, 0px); transition-duration: 0ms;">
                                     Nuwara
                                     Eliya
                                 </a>
                                 <div class="homeDestinationsCarousel__images">
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Nuwara Eliya travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Tea estates in Nuwara Eliya" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/nuwara-eliya.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Nuwara Eliya travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Tea estates in Nuwara Eliya" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/nuwara-eliya-card.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Nuwara Eliya travel experience" data-swiper-parallax-opacity="0"
+                                        <img alt="Horton Plains National Park" data-swiper-parallax-opacity="0"
                                              data-swiper-parallax-scale="1.3" loading="lazy"
                                              src="../images/horton-plains.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
@@ -1791,27 +1809,27 @@
                             <div class="homeDestinationsCarousel__slide" data-slide-title="Beyond the Highlights"
                                  data-slide-url="#destinations"
                                  style="--destination-bg: url('/images/trincomalee.png')">
-                                <a class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
-                                   data-swiper-parallax-y="-80" href="#"
+                                <a data-taxi-ignore="" class="homeDestinationsCarousel__title" data-cursor="View" data-swiper-opacity="0"
+                                   data-swiper-parallax-y="-80" href="/customer/packages.html?category=ADVENTURE"
                                    style="transform: translate3d(0px, 80px, 0px); transition-duration: 0ms;">
                                     Beyond the
                                     Highlights
                                 </a>
                                 <div class="homeDestinationsCarousel__images">
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Beyond the Highlights travel experience"
+                                        <img alt="Fishing boats at Trincomalee"
                                              data-swiper-parallax-opacity="0" data-swiper-parallax-scale="1.3"
                                              loading="lazy" src="../images/trincomalee.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Beyond the Highlights travel experience"
+                                        <img alt="Arugam Bay"
                                              data-swiper-parallax-opacity="0" data-swiper-parallax-scale="1.3"
                                              loading="lazy" src="../images/arugam-bay.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
                                     </div>
                                     <div class="homeDestinationsCarousel__image">
-                                        <img alt="Beyond the Highlights travel experience"
+                                        <img alt="Coastline near Unawatuna"
                                              data-swiper-parallax-opacity="0" data-swiper-parallax-scale="1.3"
                                              loading="lazy" src="../images/unawatuna.png"
                                              style="opacity: 0; transform: translate3d(0px, 0px, 0px) scale(1.3); transition-duration: 0ms;"/>
@@ -1914,7 +1932,7 @@
                         <div class="swiper-slide" data-swiper-slide-index="0"
                              style="width: 1521px; z-index: 4; transform: translate3d(calc(-100% + 0px), calc(0px), calc(-1px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 1; transition-duration: 0ms;">
                             <div class="homeDestinationsBackground__slide">
-                                <img alt="Sri Lanka travel experience" data-swiper-parallax-x="80%" loading="lazy"
+                                <img alt="Sri Lankan leopard in Yala National Park" data-swiper-parallax-x="80%" loading="lazy"
                                      src="../images/yala-card.png"
                                      style="transform: translate3d(80%, 0px, 0px); transition-duration: 0ms;"/>
                             </div>
@@ -1922,7 +1940,7 @@
                         <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="1"
                              style="width: 1521px; z-index: 5; transform: translate3d(calc(-100% - 1521px), calc(0px), calc(-1px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 1; transition-duration: 0ms;">
                             <div class="homeDestinationsBackground__slide">
-                                <img alt="Sri Lanka travel experience" data-swiper-parallax-x="80%" loading="lazy"
+                                <img alt="Kandy city" data-swiper-parallax-x="80%" loading="lazy"
                                      src="../images/kandy-card.png"
                                      style="transform: translate3d(80%, 0px, 0px); transition-duration: 0ms;"/>
                             </div>
@@ -1931,7 +1949,7 @@
                              data-swiper-slide-index="2"
                              style="width: 1521px; z-index: 6; transform: translate3d(calc(-3042px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 1; transition-duration: 0ms;">
                             <div class="homeDestinationsBackground__slide">
-                                <img alt="Sri Lanka travel experience" data-swiper-parallax-x="80%" loading="lazy"
+                                <img alt="Palm trees at Mirissa beach" data-swiper-parallax-x="80%" loading="lazy"
                                      src="../images/mirissa-card.png"
                                      style="transform: translate3d(0%, 0px, 0px); transition-duration: 0ms;"/>
                             </div>
@@ -1939,7 +1957,7 @@
                         <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="3"
                              style="width: 1521px; z-index: 5; transform: translate3d(calc(100% - 4563px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 1; transition-duration: 0ms;">
                             <div class="homeDestinationsBackground__slide">
-                                <img alt="Sri Lanka travel experience" data-swiper-parallax-x="80%" loading="lazy"
+                                <img alt="Train crossing the Nine Arches Bridge, Ella" data-swiper-parallax-x="80%" loading="lazy"
                                      src="../images/ella-card.png"
                                      style="transform: translate3d(-80%, 0px, 0px); transition-duration: 0ms;"/>
                             </div>
@@ -1947,7 +1965,7 @@
                         <div class="swiper-slide" data-swiper-slide-index="4"
                              style="width: 1521px; z-index: 4; transform: translate3d(calc(100% - 6084px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 1; transition-duration: 0ms;">
                             <div class="homeDestinationsBackground__slide">
-                                <img alt="Sri Lanka travel experience" data-swiper-parallax-x="80%" loading="lazy"
+                                <img alt="Tea estates in Nuwara Eliya" data-swiper-parallax-x="80%" loading="lazy"
                                      src="../images/nuwara-eliya-card.png"
                                      style="transform: translate3d(-80%, 0px, 0px); transition-duration: 0ms;"/>
                             </div>
@@ -1955,7 +1973,7 @@
                         <div class="swiper-slide" data-swiper-slide-index="5"
                              style="width: 1521px; z-index: 3; transform: translate3d(calc(100% - 7605px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 1; transition-duration: 0ms;">
                             <div class="homeDestinationsBackground__slide">
-                                <img alt="Sri Lanka travel experience" data-swiper-parallax-x="80%" loading="lazy"
+                                <img alt="Ruwanwelisaya stupa in Anuradhapura" data-swiper-parallax-x="80%" loading="lazy"
                                      src="../images/anuradhapura-card.png"
                                      style="transform: translate3d(-80%, 0px, 0px); transition-duration: 0ms;"/>
                             </div>
@@ -2041,75 +2059,75 @@
                          style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                         <div class="tabs__pane active" id="by-trip-type">
                             <div class="tripListings--alternate">
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?category=CULTURAL">
                                     <span class="tripListings__title">Cultural Heritage Tours</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Sunrise from Adam's Peak" class="tripListings__image left"
                                          loading="lazy" src="../images/adams-peak-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 10.5351%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Sigiriya Rock Fortress" class="tripListings__image right"
                                          loading="lazy" src="../images/sigiriya-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 11.1833%); opacity: 0; visibility: hidden;"/>
                                 </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?q=Ella">
                                     <span class="tripListings__title">Scenic Train Journeys</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Train crossing the Nine Arches Bridge, Ella" class="tripListings__image left"
                                          loading="lazy" src="../images/ella-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 12.1787%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Train crossing the Nine Arches Bridge, Ella" class="tripListings__image right"
                                          loading="lazy" src="../images/ella-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 11.1349%); opacity: 0; visibility: hidden;"/>
                                 </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?category=WILDLIFE">
                                     <span class="tripListings__title">Wildlife Safaris</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Sri Lankan leopard" class="tripListings__image left"
                                          loading="lazy" src="../images/images1.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 12.1378%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Elephants in Minneriya National Park" class="tripListings__image right"
                                          loading="lazy" src="../images/caption.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 12.0919%); opacity: 0; visibility: hidden;"/>
                                 </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?category=HILL_COUNTRY">
                                     <span class="tripListings__title">Tea Country Escapes</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Tea terraces in the hill country" class="tripListings__image left"
                                          loading="lazy" src="../images/images2.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 15.5655%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Sunrise over tea estates" class="tripListings__image right"
                                          loading="lazy" src="../images/images3.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 12.2984%); opacity: 0; visibility: hidden;"/>
                                 </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?category=BEACH">
                                     <span class="tripListings__title">Beach Holidays</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Arugam Bay" class="tripListings__image left"
                                          loading="lazy" src="../images/arugam-bay-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 18.6535%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Palm trees at Mirissa beach" class="tripListings__image right"
                                          loading="lazy" src="../images/mirissa-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 16.035%); opacity: 0; visibility: hidden;"/>
                                 </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?category=HONEYMOON">
                                     <span class="tripListings__title">Honeymoon Packages</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Tea estates in Nuwara Eliya" class="tripListings__image left"
                                          loading="lazy" src="../images/nuwara-eliya-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 11.6902%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Tea estates in Nuwara Eliya" class="tripListings__image right"
                                          loading="lazy" src="../images/nuwara-eliya-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 15.9443%); opacity: 0; visibility: hidden;"/>
                                 </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?category=FAMILY">
                                     <span class="tripListings__title">Family Holidays</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Kandy city" class="tripListings__image left"
                                          loading="lazy" src="../images/kandy-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 12.0295%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Ruwanwelisaya stupa in Anuradhapura" class="tripListings__image right"
                                          loading="lazy" src="../images/anuradhapura-card.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 18.058%); opacity: 0; visibility: hidden;"/>
                                 </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/packages.html?category=ADVENTURE">
                                     <span class="tripListings__title">Hidden Gems of Sri Lanka</span>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image left"
+                                    <img alt="Waterfall in the hill country" class="tripListings__image left"
                                          loading="lazy" src="../images/images4.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 12.2313%); opacity: 0; visibility: hidden;"/>
-                                    <img alt="Sri Lanka travel experience" class="tripListings__image right"
+                                    <img alt="Infinity pool overlooking a hill country lake" class="tripListings__image right"
                                          loading="lazy" src="../images/Gartmore-Falls.png"
                                          style="translate: none; rotate: none; scale: none; transform: translate(0%, 12.772%); opacity: 0; visibility: hidden;"/>
                                 </a>
@@ -2124,7 +2142,7 @@
                         </div>
                         <div class="tabs__pane" id="by-month">
                             <div class="tripListings">
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=1">
                                     <span class="tripListings__title">January</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2137,7 +2155,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=2">
                                     <span class="tripListings__title">February</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2150,7 +2168,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=3">
                                     <span class="tripListings__title">March</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2163,7 +2181,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=4">
                                     <span class="tripListings__title">April</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2176,7 +2194,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=5">
                                     <span class="tripListings__title">May</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2189,7 +2207,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=6">
                                     <span class="tripListings__title">June</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2202,7 +2220,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=7">
                                     <span class="tripListings__title">July</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2215,7 +2233,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=8">
                                     <span class="tripListings__title">August</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2228,7 +2246,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=9">
                                     <span class="tripListings__title">September</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2241,7 +2259,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=10">
                                     <span class="tripListings__title">October</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2254,7 +2272,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=11">
                                     <span class="tripListings__title">November</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2267,7 +2285,7 @@
 <use href="../images/icons.svg#line-arrowRight"></use>
 </svg>
 </span> </a>
-                                <a class="tripListings__item" href="#">
+                                <a data-taxi-ignore="" class="tripListings__item" href="/customer/festivals.html?month=12">
                                     <span class="tripListings__title">December</span>
                                     <span class="btn__icon">
 <span class="btn__icon-stroke">
@@ -2293,10 +2311,9 @@
                 </div>
             </div>
             <div class="homeVideo">
-                <div class="homeVideo__container"
-                     style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                    <video autoplay="" loop="" muted="" playsinline="" src="../images/1761142786video_link.mp4"
-                           style="clip-path: inset(20%);"></video>
+                <div class="homeVideo__container">
+                    <video autoplay="" loop="" muted="" playsinline="" preload="auto"
+                           src="../images/1761142786video_link.mp4"></video>
                 </div>
             </div>
             <div class="homeJourney bg-darkbrown overflow-hidden">
@@ -2393,11 +2410,11 @@
                         </h2>
                         <div class="homeJourney__body fadeInReveal"
                              style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden; font-size: 30px">
-                            <p>From cool boutique hotels to charming ancestral homes, our personally-vetted address book
+                            From cool boutique hotels to charming ancestral homes, our personally-vetted address book
                                 is bursting with unique places to stay.  Our bespoke itineraries include hand-picked
                                 hotels and places to stay, based around your personal tastes, how much you'd like to
                                 spend and our unmatched expertise. </p></div>
-                        <a class="btn fadeInReveal" href="#"
+                        <a data-taxi-ignore="" class="btn fadeInReveal" href="/customer/packages.html"
                            style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden; font-size: 30px">
 <span class="btn__label">
     Discover Your Stay
@@ -2518,31 +2535,29 @@
             opacity: 1;
             visibility: inherit;
         ">
-                        <p>Feel it to believe it. Personalised to you, our itineraries are packed with the kinds of
+                        Feel it to believe it. Personalised to you, our itineraries are packed with the kinds of
                             experiences you won't find in the guidebooks, but they'll fill page after page of your own
-                            travel journal. Below are some ideas of our private itineraries to Sri Lanka, Kandy, Ella
-                            and The Mirissa, but remember these are just samples - all of our trips are made completely
+                            travel journal. Below are some ideas of our private itineraries around Sri Lanka - Kandy, Ella, Mirissa and beyond, but remember these are just samples - all of our trips are made completely
                             from scratch and are ultra-personalised around your likes and dislikes, along with our many
                             years of research and expertise.</p>
                     </div>
                 </div>
                 <div class="itinerariesListings itinerariesListings--no-filter">
-                    <a class="card card--contained" href="#">
+                    <a data-taxi-ignore="" class="card card--contained" href="/customer/packages.html?category=CULTURAL">
                         <div class="card__image">
-                            <img alt="Sri Lanka travel experience" loading="lazy" src="../images/adams-peak-card.png"/>
+                            <img alt="Sigiriya Rock Fortress" loading="lazy" src="../images/sigiriya-card.png"/>
                         </div>
                         <div class="card__body">
                             <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                <span class="iconTag__label">Kandy</span>
+                                <span class="iconTag__label">Sigiriya, Sri Lanka</span>
                             </div>
                             <div class="card__heading">Simply Cultural Triangle</div>
                             <div class="card__description">
                                 9 nights
-                                From RS.200,000
-                                per person
+                                From LKR 200,000 per person
                             </div>
                             <div class="btnGroup">
                                 <button class="btn">
@@ -2553,23 +2568,21 @@
                             </div>
                         </div>
                     </a>
-                    <a class="card card--contained" href="#">
+                    <a data-taxi-ignore="" class="card card--contained" href="/customer/packages.html?category=CULTURAL">
                         <div class="card__image">
-                            <img alt="Sri Lanka travel experience" loading="lazy"
-                                 src="../images/nine-arch-bridge-about.jpg"/>
+                            <img alt="Ruwanwelisaya stupa in Anuradhapura" loading="lazy" src="../images/anuradhapura-card.png"/>
                         </div>
                         <div class="card__body">
                             <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                <span class="iconTag__label">Kandy</span>
+                                <span class="iconTag__label">Anuradhapura, Sri Lanka</span>
                             </div>
                             <div class="card__heading">Classic Cultural Triangle</div>
                             <div class="card__description">
                                 13 nights
-                                From RS.350,000
-                                per person
+                                From LKR 350,000 per person
                             </div>
                             <div class="btnGroup">
                                 <button class="btn">
@@ -2580,10 +2593,9 @@
                             </div>
                         </div>
                     </a>
-                    <a class="card card--contained" href="#">
+                    <a data-taxi-ignore="" class="card card--contained" href="/customer/packages.html">
                         <div class="card__image">
-                            <img alt="Sri Lanka travel experience" loading="lazy"
-                                 src="../images/mirissa-sunset-wallpaper.png"/>
+                            <img alt="Kandy, Sri Lanka" loading="lazy" src="../images/kandy-card.png"/>
                         </div>
                         <div class="card__body">
                             <div class="iconTag">
@@ -2595,8 +2607,7 @@
                             <div class="card__heading">Simply Sri Lanka</div>
                             <div class="card__description">
                                 10 nights
-                                From RS.240,000
-                                per person
+                                From LKR 240,000 per person
                             </div>
                             <div class="btnGroup">
                                 <button class="btn">
@@ -2607,10 +2618,9 @@
                             </div>
                         </div>
                     </a>
-                    <a class="card card--contained" href="#">
+                    <a data-taxi-ignore="" class="card card--contained" href="/customer/packages.html?category=FAMILY">
                         <div class="card__image">
-                            <img alt="Sri Lanka travel experience" loading="lazy"
-                                 src="../images/sri-lanka-real-map.jpg"/>
+                            <img alt="Elephants gathering in Minneriya National Park" loading="lazy" src="../images/caption.png"/>
                         </div>
                         <div class="card__body">
                             <div class="iconTag">
@@ -2622,8 +2632,7 @@
                             <div class="card__heading">Sri Lanka with Little Ones</div>
                             <div class="card__description">
                                 12 nights
-                                From RS.370,000
-                                per person
+                                From LKR 370,000 per person
                             </div>
                             <div class="btnGroup">
                                 <button class="btn">
@@ -2634,22 +2643,21 @@
                             </div>
                         </div>
                     </a>
-                    <a class="card card--contained" href="#">
+                    <a data-taxi-ignore="" class="card card--contained" href="/customer/packages.html?category=BEACH">
                         <div class="card__image">
-                            <img alt="Sri Lanka travel experience" loading="lazy" src="../images/sigiriya-card.png"/>
+                            <img alt="Arugam Bay on the east coast" loading="lazy" src="../images/arugam-bay-card.png"/>
                         </div>
                         <div class="card__body">
                             <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                <span class="iconTag__label">Kandy</span>
+                                <span class="iconTag__label">Arugam Bay, Sri Lanka</span>
                             </div>
-                            <div class="card__heading">Journey into Arugam bay</div>
+                            <div class="card__heading">Journey into Arugam Bay</div>
                             <div class="card__description">
                                 13 nights
-                                From RS.400,000
-                                per person
+                                From LKR 400,000 per person
                             </div>
                             <div class="btnGroup">
                                 <button class="btn">
@@ -2660,22 +2668,21 @@
                             </div>
                         </div>
                     </a>
-                    <a class="card card--contained" href="#">
+                    <a data-taxi-ignore="" class="card card--contained" href="/customer/packages.html?q=Mirissa">
                         <div class="card__image">
-                            <img alt="Sri Lanka travel experience" loading="lazy" src="../images/yala-card.png"/>
+                            <img alt="Palm trees at Mirissa beach" loading="lazy" src="../images/mirissa-card.png"/>
                         </div>
                         <div class="card__body">
                             <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                <span class="iconTag__label">Sri Lanka, Mirissa</span>
+                                <span class="iconTag__label">Mirissa, Sri Lanka</span>
                             </div>
-                            <div class="card__heading">Sri Lanka and The Mirissa in Style</div>
+                            <div class="card__heading">Sri Lanka and Mirissa in Style</div>
                             <div class="card__description">
                                 12 nights
-                                From RS.500,000
-                                per person
+                                From LKR 500,000 per person
                             </div>
                             <div class="btnGroup">
                                 <button class="btn">
@@ -2689,7 +2696,7 @@
                 </div>
                 <div class="btnGroup btnGroup--centered fadeInReveal"
                      style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden; font-size: 35px">
-                    <a class="btn" href="#">
+                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     View all itineraries
 </span> <span class="btn__icon">
@@ -2744,9 +2751,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Stuart (March 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide swiper-slide-next"
@@ -2758,9 +2765,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Jessica E (August 2025) London, UK</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="2"
@@ -2775,9 +2782,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Roy L (March 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="3"
@@ -2787,9 +2794,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Charlotte (August 2024) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="4"
@@ -2804,9 +2811,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Sarah (July 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="5"
@@ -2819,9 +2826,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Malcolm (April 2024) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="6"
@@ -2835,9 +2842,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Nina (July 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="7"
@@ -2850,9 +2857,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Anupa (July 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="8"
@@ -2865,9 +2872,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Rene (March 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="9"
@@ -2880,9 +2887,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Karen - United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="10"
@@ -2897,9 +2904,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Bob (November 2024) United States</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="11"
@@ -2912,9 +2919,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Gill (March 2025) Kent, United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="12"
@@ -2928,9 +2935,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Anne (January 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                                 <div class="reviewsCarousel__slide swiper-slide" data-swiper-slide-index="13"
@@ -2947,9 +2954,9 @@
                                     </div>
                                     <div class="reviewsCarousel__ref">
                                         <span class="reviewsCarousel__ref-primary">Anna (February 2025) United Kingdom</span>
-                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a
-                                                href="#" rel="nofollow noopener"
-                                                style="color: #f4f3ef; text-decoration: underline;" target="_blank">Guest review</a></span>
+                                        <span class="reviewsCarousel__ref-secondary">Read the whole review here <a data-taxi-ignore=""
+                                                href="/customer/packages.html?sort=rating" rel="nofollow noopener"
+                                                style="color: #f4f3ef; text-decoration: underline;">Guest review</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -2983,20 +2990,20 @@
                     </div>
                     <div class="reviewsCarousel__image span-12 lg-span-12 fadeInReveal"
                          style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
-                        <img alt="Explore Lanka Testimonial" src="../images/ella-card.png"/>
+                        <img alt="Train crossing the Nine Arches Bridge, Ella" src="../images/ella-card.png"/>
                     </div>
                 </div>
                 <div class="reviewsLinks fadeInReveal"
                      style="translate: none; rotate: none; scale: none; transform: translate(0px, 5px); opacity: 0; visibility: hidden;font-size: 40px">
-                    <a class="reviewsLinks__item" href="#" rel="nofollow noopener" target="_blank">
+                    <a data-taxi-ignore="" class="reviewsLinks__item" href="/customer/packages.html?sort=rating" rel="nofollow noopener">
                         <div class="reviewsLinks__image">
-                            <img alt="Guest Reviews" src="../images/mirissa-card.png"/>
+                            <img alt="Palm trees at Mirissa beach" src="../images/mirissa-card.png"/>
                         </div>
                         <div class="reviewsLinks__label">Rated 5 on <span>Guest Reviews</span></div>
                     </a>
-                    <a class="reviewsLinks__item" href="#" rel="nofollow noopener" target="_blank">
+                    <a data-taxi-ignore="" class="reviewsLinks__item" href="/customer/packages.html?sort=rating" rel="nofollow noopener">
                         <div class="reviewsLinks__image">
-                            <img alt="Guest Reviews" src="../images/kandy-card.png"/>
+                            <img alt="Kandy city" src="../images/kandy-card.png"/>
                         </div>
                         <div class="reviewsLinks__label">Rated 4.9 on <span>Guest Reviews</span></div>
                     </a>
@@ -3020,7 +3027,7 @@
             opacity: 1;
             visibility: inherit;
         ">
-                        <p>Boutique hotel, beach retreat or mountain lodge? We've got just the place for your budget and
+                        Boutique hotel, beach retreat or mountain lodge? We've got just the place for your budget and
                             taste. Take a trip through a selection of our favourite places to find your dream stays. We
                             can then weave these into your personalised holiday to any one of our destinations, and
                             along with your private driver, personal guides and experiences you'll have the most
@@ -3046,19 +3053,13 @@
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="/images/images5.png"/>
+                                    <img alt="Sunset on the south coast near Ahangama" loading="lazy" src="/images/images5.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Tekanda Lodge is a beautiful small six-roomed property perched on a plantation,
-                                        just in land from Sri Lanka's Southern Coast. It's one of most authentic and
-                                        exciting openings in recent years on the island and we love the paddy views, the
-                                        stylish design, and their sustainable policy.
-                                        Perched in a 10 acre estate, less than 10 minutes by tuk-tuk from
-                                        Ahangama and Kabalana Beach, means guests get...
-                                    </div>
-                                    <a class="btn" href="#">
+Tekanda Lodge is a small six-room property set on a plantation, just inland from Sri Lanka's south coast. We love the paddy views, the stylish design and its sustainable approach. Less than 10 minutes by tuk-tuk from Ahangama and Kabalana Beach, it's a peaceful base for surfing, beaches and village life.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3078,18 +3079,13 @@
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="/images/ahangama_kabalana_the_rock_overhead.png"/>
+                                    <img alt="Aerial view of Galle Fort" loading="lazy" src="/images/images9.png.jpg"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Behind the tasteful, and very discreet entrance of 41 Lighthouse Street , is one
-                                        of Galle Fort’s prettiest houses. With just three bedrooms, this can be booked
-                                        in its entirety as a private villa or as individual rooms.
-                                        The seriously special villa tucked away inside Galle Fort offers a
-                                        spacious living area, beautifully designed rooms, a shimmering swimming...
-                                    </div>
-                                    <a class="btn" href="#">
+Behind a discreet entrance, 41 Lighthouse Street is one of Galle Fort's prettiest houses. With just three bedrooms, it can be booked as a private villa or by the room, with a spacious living area, beautifully designed rooms and a shimmering pool - all inside the historic fort walls.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3105,22 +3101,17 @@
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                        <span class="iconTag__label">Arugam bay, Arugam bay</span>
+                                        <span class="iconTag__label">Kandy, Sri Lanka</span>
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="../images/trincomalee-card.png"/>
+                                    <img alt="Historic building in Kandy" loading="lazy" src="../images/kandy.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Tucked away just 15 minutes from Kandy’s Old City, Niravi Kandy is a newly
-                                        refurbished, boutique heritage property that strikes the perfect balance between
-                                        authenticity, design and comfort.
-                                        &lt;p&gt;Originally a family homestay, the property has been sensitively
-                                        extended and now offers 21 spacious rooms, while retaining the intimate...
-                                    </div>
-                                    <a class="btn" href="#">
+Just 15 minutes from Kandy's city centre, Niravi is a refurbished boutique heritage property that balances authenticity, design and comfort. Originally a family homestay, it has been sensitively extended while keeping its warm, intimate feel - an easy base for the Temple of the Tooth and the hill country.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3140,17 +3131,13 @@
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="../images/arugam-bay-card.png"/>
+                                    <img alt="Golden beach on the east coast" loading="lazy" src="../images/arugam-bay-card.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Karpaha Sands is a luxury glamping retreat nestled on the untouched golden
-                                        shores of Kalkudah Beach, on Sri Lanka’s serene east coast.
-                                        &lt;p&gt;Spread across a 12-acre estate, this boutique property offers 17
-                                        spacious tented suites, each designed with natural materials, such as...
-                                    </div>
-                                    <a class="btn" href="#">
+Karpaha Sands is a luxury glamping retreat on the untouched golden shores of Kalkudah Beach, on Sri Lanka's quiet east coast. Spread across a large beachfront estate, its spacious tented suites are built from natural materials, with the ocean just steps away.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3160,26 +3147,22 @@
                             <div class="swiper-slide" data-swiper-slide-index="2"
                                  style="width: 478px; transition-duration: 0ms; z-index: 8; transform: translate3d(calc(200% - 1912px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 0;">
                                 <div class="homeAccommodation__top">
-                                    <h3 class="homeAccommodation__title font-serif">Brij Lakshman Sagar</h3>
+                                    <h3 class="homeAccommodation__title font-serif">Jetwing Vil Uyana</h3>
                                     <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                        <span class="iconTag__label">Galle, Kandy</span>
+                                        <span class="iconTag__label">Sigiriya, Sri Lanka</span>
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="../images/horton-plains-card.png"/>
+                                    <img alt="Sigiriya Rock at sunrise" loading="lazy" src="../images/sigiriya-card.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Originally built in the late 19th century as hunting lodges, Brij Lakshman Sagar
-                                        is a secluded haven, covering 32 acres of unspoilt rural Cultural Triangle.
-                                        &lt;p&gt;Its 12 private mud and stone cottages are alive with influence from
-                                        local culture, and every trinket in every room...
-                                    </div>
-                                    <a class="btn" href="#">
+Jetwing Vil Uyana is a private nature reserve of villas set among paddy fields, lakes and wetlands near Sigiriya. It's a calm, eco-minded base for exploring the Cultural Triangle - Sigiriya, Dambulla and Polonnaruwa are all close by.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3189,27 +3172,22 @@
                             <div class="swiper-slide" data-swiper-slide-index="3"
                                  style="width: 478px; transition-duration: 0ms; z-index: 7; transform: translate3d(calc(200% - 2390px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 0;">
                                 <div class="homeAccommodation__top">
-                                    <h3 class="homeAccommodation__title font-serif">Daspan House</h3>
+                                    <h3 class="homeAccommodation__title font-serif">Ceylon Tea Trails</h3>
                                     <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                        <span class="iconTag__label">Galle, Kandy</span>
+                                        <span class="iconTag__label">Hatton, Sri Lanka</span>
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="../images/unawatuna-card.png"/>
+                                    <img alt="Infinity pool overlooking a hill country lake" loading="lazy" src="../images/Gartmore-Falls.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Amidst a maze of streets in Galle’s Ratanada neighbourhood, Daspan House is a
-                                        stylish and delightful heritage property that feels special without being too
-                                        ornate.
-                                        &lt;p&gt;The red sandstone architecture reflects its heritage, complemented by
-                                        old photographs, antique furniture and art work. There are plenty of...
-                                    </div>
-                                    <a class="btn" href="#">
+Ceylon Tea Trails is a collection of restored colonial tea planters' bungalows in the hills around Hatton. Wake up to misty tea estates, walk between bungalows through the plantations and enjoy views over the lake below - the hill country at its most relaxing.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3219,26 +3197,22 @@
                             <div class="swiper-slide" data-swiper-slide-index="4"
                                  style="width: 478px; transition-duration: 0ms; z-index: 6; transform: translate3d(calc(200% - 2868px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 0;">
                                 <div class="homeAccommodation__top">
-                                    <h3 class="homeAccommodation__title font-serif">Khem Villas</h3>
+                                    <h3 class="homeAccommodation__title font-serif">Wild Coast Tented Lodge</h3>
                                     <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                        <span class="iconTag__label">Ranthambore National Park, Kandy</span>
+                                        <span class="iconTag__label">Yala, Sri Lanka</span>
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="../images/adams-peak-card.png"/>
+                                    <img alt="Sri Lankan leopard in Yala" loading="lazy" src="/images/images1.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        A safari-style camp outside Ranthambore National Park, Khem Villas balances
-                                        luxury with sustainable tourism.
-                                        &lt;p&gt;The owners, Goverdhan and Usha, are as committed to conservation as
-                                        they are to hospitality. They’ll take every chance to...
-                                    </div>
-                                    <a class="btn" href="#">
+Wild Coast Tented Lodge is a luxury tented camp on the edge of Yala National Park, where the jungle meets the beach. Head out on game drives in search of leopards, elephants and sloth bears, then come back to the sound of the ocean.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3248,26 +3222,22 @@
                             <div class="swiper-slide" data-swiper-slide-index="5"
                                  style="width: 478px; transition-duration: 0ms; z-index: 5; transform: translate3d(calc(200% - 3346px), calc(0px), calc(0px)) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); opacity: 0;">
                                 <div class="homeAccommodation__top">
-                                    <h3 class="homeAccommodation__title font-serif">47 Jobner Bagh</h3>
+                                    <h3 class="homeAccommodation__title font-serif">Thotalagala</h3>
                                     <div class="iconTag">
 <span class="iconTag__icon"><svg>
 <use href="../images/icons.svg#line-pin"></use>
 </svg></span>
-                                        <span class="iconTag__label">Kandy, Kandy</span>
+                                        <span class="iconTag__label">Haputale, Sri Lanka</span>
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="../images/nine-arch-bridge-about.jpg"/>
+                                    <img alt="Sunrise over tea estates in the hill country" loading="lazy" src="/images/images3.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        This family-run stylish boutique hotel acts as a sanctuary from the roar of
-                                        Kandy, its simple decor a calming blend of muted colours and wooden furnishings.
-                                        &lt;p&gt;47 Jobner Bagh is neatly hidden inside the bustling Pink City and is a
-                                        beautiful respite after a morning exploring....
-                                    </div>
-                                    <a class="btn" href="#">
+Thotalagala is a beautifully restored tea planter's bungalow near Haputale, surrounded by rolling tea estates. With only a handful of rooms, attentive staff and sweeping views, it's a perfect stop between Nuwara Eliya and Ella.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3286,17 +3256,13 @@
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="../images/mirissa-sunset-wallpaper.png"/>
+                                    <img alt="Aerial view of Sigiriya Rock" loading="lazy" src="../images/ancient-cities.jpg"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Roo Mansala is a small six-room hotel set in a quiet countryside spot just a
-                                        short drive from Sigiriya.
-                                        &lt;p&gt;This small and incredibly friendly hotel boasts magnificent views of
-                                        both Sigiriya Rock and neighbouring Pidurangala Rock, and offers a...
-                                    </div>
-                                    <a class="btn" href="#">
+Roo Mansala is a small six-room hotel in a quiet countryside spot just a short drive from Sigiriya. This friendly hotel has magnificent views of both Sigiriya Rock and neighbouring Pidurangala Rock - ideal for an early-morning climb.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3315,17 +3281,13 @@
                                     </div>
                                 </div>
                                 <div class="homeAccommodation__image">
-                                    <img alt="Sri Lanka travel experience" loading="lazy"
-                                         src="/images/images6.png"/>
+                                    <img alt="Coastline near Galle" loading="lazy" src="../images/unawatuna.png"/>
                                 </div>
                                 <div class="homeAccommodation__bottom">
                                     <div class="homeAccommodation__description">
-                                        Fort Bazaar, which enjoys a prime position in Galle Fort, is a seriously stylish
-                                        18-room boutique hotel that was once a merchant's house.
-                                        With interiors inspired by the building's Portuguese heritage, this Sri
-                                        Lanka heritage hotel is fast becoming one of the most...
-                                    </div>
-                                    <a class="btn" href="#">
+Fort Bazaar enjoys a prime position inside Galle Fort. Once a merchant's house, it is now a stylish 18-room boutique hotel with interiors inspired by the building's colonial heritage - one of the fort's most loved places to stay.
+</div>
+                                    <a data-taxi-ignore="" class="btn" href="/customer/packages.html">
 <span class="btn__label">
     More info
 </span>
@@ -3379,7 +3341,7 @@
                          bis_skin_checked="1">
 
                         <p></p>
-                        <p>Our unique destinations offer something truly exceptional. We avoid established and cliched
+                        Our unique destinations offer something truly exceptional. We avoid established and cliched
                             areas and instead fill our tailor-made holidays with untouched scenery, local people and
                             wildlife encounters away from the crowds.  </p>
                         <p></p>
@@ -3496,11 +3458,10 @@
         </div>
         <div class="homeNews grid-container-fluid">
             <div class="homeNews__featured span-12 lg-span-12">
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=WILDLIFE"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/sigiriya-card.png"/>
+                        <img alt="Horton Plains, a top birdwatching spot" loading="lazy" src="../images/horton-plains-card.png"/>
                     </div>
                     <div class="card__heading">Birds in Sri Lanka: when to go and where to find the island's
                         best
@@ -3511,13 +3472,12 @@
                 </a>
             </div>
             <div class="homeNews__listings span-12 lg-span-12">
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=ADVENTURE"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy" src="../images/yala-card.png"/>
+                        <img alt="Train crossing the Nine Arches Bridge, Ella" loading="lazy" src="../images/ella-card.png"/>
                     </div>
-                    <div class="card__heading">Cherylle’s Journey through Ella: Thimphu, Punakha, Gangtey, Haa
-                        Valley and Paro
+                    <div class="card__heading">Cherylle’s Journey through Ella: Nine Arches Bridge, Little Adam’s Peak and Ravana Falls
                     </div>
                     <div class="card__tags">
                         <div class="card__tags-item">Hidden Gems of Sri Lanka Travel</div>
@@ -3525,22 +3485,22 @@
                         <div class="card__tags-item">Nature</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=CULTURAL"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy" src="../images/ella-card.png"/>
+                        <img alt="Tea estates in the hill country" loading="lazy" src="../images/nuwara-eliya-card.png"/>
                     </div>
-                    <div class="card__heading">Why we think Cultural Triangle is made for Tea Country Escapes
+                    <div class="card__heading">Why the Cultural Triangle and Tea Country make the perfect pair
                     </div>
                     <div class="card__tags">
                         <div class="card__tags-item">Tea Country Escapes</div>
                         <div class="card__tags-item">Adventure</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=FAMILY"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy" src="../images/mirissa-card.png"/>
+                        <img alt="Kandy city" loading="lazy" src="../images/kandy-card.png"/>
                     </div>
                     <div class="card__heading">Kandy for Kids the Explore Lanka Way</div>
                     <div class="card__tags">
@@ -3549,29 +3509,27 @@
                         <div class="card__tags-item">Tea Country Escapes</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy" src="../images/kandy-card.png"/>
+                        <img alt="Colombo skyline" loading="lazy" src="../images/Explore-lanka.jpg"/>
                     </div>
                     <div class="card__heading">What Vaccinations Do I Need for Sri Lanka?</div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/festivals.html?category=FOOD_AND_DRINK"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/nuwara-eliya-card.png"/>
+                        <img alt="Aerial view of Galle Fort" loading="lazy" src="../images/images9.png.jpg"/>
                     </div>
                     <div class="card__heading">The Best Restaurants in Galle</div>
                     <div class="card__tags">
                         <div class="card__tags-item">Food</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=FAMILY"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/anuradhapura-card.png"/>
+                        <img alt="Elephants in Minneriya National Park" loading="lazy" src="../images/caption.png"/>
                     </div>
                     <div class="card__heading">Family-Friendly Sri Lanka: Wild, Wonderful, and Full of
                         Surprises
@@ -3583,11 +3541,10 @@
                         <div class="card__tags-item">Adventure</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=CULTURAL"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/trincomalee-card.png"/>
+                        <img alt="Ancient stupa in Anuradhapura" loading="lazy" src="../images/anuradhapura-card.png"/>
                     </div>
                     <div class="card__heading">Explore Lanka Recommends: Five of the Best Ancient Sites in Sri
                         Lanka
@@ -3598,11 +3555,10 @@
                         <div class="card__tags-item">Adventure</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=HILL_COUNTRY"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/arugam-bay-card.png"/>
+                        <img alt="Hikers on the Pekoe Trail" loading="lazy" src="../images/why-is-the-pekoe-trail-so-thumbnail.jpg"/>
                     </div>
                     <div class="card__heading">Why is The Pekoe Trail so special?</div>
                     <div class="card__tags">
@@ -3612,26 +3568,24 @@
                         <div class="card__tags-item">Adventure</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=ADVENTURE"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/horton-plains-card.png"/>
+                        <img alt="Fishing boats at Trincomalee" loading="lazy" src="../images/trincomalee-card.png"/>
                     </div>
-                    <div class="card__heading">Five reasons you should visit Eastern Kandy</div>
+                    <div class="card__heading">Five reasons you should visit Sri Lanka’s East Coast</div>
                     <div class="card__tags">
                         <div class="card__tags-item">Hidden Gems of Sri Lanka Travel</div>
                         <div class="card__tags-item">Intrepid</div>
                         <div class="card__tags-item">Adventure</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?category=CULTURAL"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/unawatuna-card.png"/>
+                        <img alt="Sigiriya Rock Fortress" loading="lazy" src="../images/sigiriya-card.png"/>
                     </div>
-                    <div class="card__heading">Kandy’s Golden Triangle – The Explore Lanka Way</div>
+                    <div class="card__heading">Sri Lanka’s Cultural Triangle – The Explore Lanka Way</div>
                     <div class="card__tags">
                         <div class="card__tags-item">Families</div>
                         <div class="card__tags-item">Hidden Gems of Sri Lanka Travel</div>
@@ -3639,11 +3593,10 @@
                         <div class="card__tags-item">Adventure</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/festivals.html"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/adams-peak-card.png"/>
+                        <img alt="Unawatuna on the south coast" loading="lazy" src="../images/unawatuna-card.png"/>
                     </div>
                     <div class="card__heading">Weather on Sri Lanka’s South Coast</div>
                     <div class="card__tags">
@@ -3657,24 +3610,22 @@
                         <div class="card__tags-item">Beaches</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/festivals.html?category=FOOD_AND_DRINK"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/nine-arch-bridge-about.jpg"/>
+                        <img alt="Historic building in Kandy" loading="lazy" src="../images/kandy.png"/>
                     </div>
                     <div class="card__heading">Kandy Restaurant Guide</div>
                     <div class="card__tags">
                         <div class="card__tags-item">Food</div>
                     </div>
                 </a>
-                <a class="card homeNews__item fadeInReveal" href="#"
+                <a data-taxi-ignore="" class="card homeNews__item fadeInReveal" href="/customer/packages.html?sort=price_desc"
                    style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
                     <div class="card__image">
-                        <img alt="Sri Lanka travel experience" loading="lazy"
-                             src="../images/mirissa-sunset-wallpaper.png"/>
+                        <img alt="Sunset over Mirissa" loading="lazy" src="../images/mirissa-sunset-wallpaper.png"/>
                     </div>
-                    <div class="card__heading">The Mirissa: How to Choose the Right Luxury Resort</div>
+                    <div class="card__heading">Mirissa: How to Choose the Right Luxury Resort</div>
                     <div class="card__tags">
                         <div class="card__tags-item">Hidden Gems of Sri Lanka Travel</div>
                         <div class="card__tags-item">Romantic</div>
@@ -3715,10 +3666,10 @@
                 <div class="span-12 md-span-6 lg-span-12">
                     <div class="callToAction__body richtext text-block-20 fadeInReveal"
                          style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;font-size: 35px; font-weight: bold ;">
-                        <p>Speak to one of our team to get started. After all, your travel journal won’t write
+                        Speak to one of our team to get started. After all, your travel journal won’t write
                             itself.</p>
                     </div>
-                    <a class="btn fadeInReveal" href="#"
+                    <a data-taxi-ignore="" class="btn fadeInReveal" href="/customer/dashboard.html"
                        style="translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0; visibility: hidden;">
 <span class="btn__label">
     Let's get planning
@@ -3735,11 +3686,11 @@
                 </div>
             </div>
             <div class="callToAction__bg">
-                <img alt="Sri Lanka travel experience" src="/images/pexels-thilina-alagiyawanna-3266092-31001509.jpg"/>
+                <img alt="Sunrise over the hills" src="/images/pexels-thilina-alagiyawanna-3266092-31001509.jpg"/>
             </div>
         </div>
         <footer class="siteFooter px-container bg-darkbrown" data-nosnippet="">
-            <a class="btn fadeInReveal mobile-cta" data-taxi-ignore="" href="customer-packages.html"
+            <a class="btn fadeInReveal mobile-cta" data-taxi-ignore="" href="/customer/dashboard.html"
                style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1; visibility: inherit; z-index: 2147483639; position: fixed; bottom: 0px; width: 100%; height: 55px; max-width: 100%; max-height: calc(100% - 60px); min-height: 0px; min-width: 0px; border-radius: 0px; right: 0px; left: 0px; background: var(--color-pink); color: rgb(255, 255, 255); display: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none;"><span
                     class="btn__label">Plan Your Trip</span><span class="btn__icon"
                                                                   style="transform:translate(0,5px)"><span
@@ -3773,7 +3724,7 @@
             </div>
             <div class="siteFooter__section siteFooter__middle grid-container-fluid">
                 <div class="span-12 lg-span-12 xl-span-6" style="align-items: flex-start; display: flex;">
-                    <a class="siteFooter__logo" href="#">
+                    <a data-taxi-ignore="" class="siteFooter__logo" href="/index.html">
                         <svg fill="none" height="50" viewbox="0 0 50 50" width="50">
                         <svg>
                             <use href="/images/explore-lanka.svg"></use>
@@ -3784,21 +3735,21 @@
                     <div class="span-12 xs-span-6 lg-span-12">
                         <div class="siteFooter__subheading">Locations</div>
                         <div class="siteFooter__links">
-                            <a href="#">Sri Lanka</a>
-                            <a href="#">Kandy</a>
-                            <a href="#">Mirissa</a>
-                            <a href="#">Ella</a>
-                            <a href="#">Nuwara Eliya</a>
-                            <a href="#">Beyond the Highlights</a>
+                            <a data-taxi-ignore="" href="/customer/packages.html">Sri Lanka</a>
+                            <a data-taxi-ignore="" href="/customer/packages.html?q=Kandy">Kandy</a>
+                            <a data-taxi-ignore="" href="/customer/packages.html?q=Mirissa">Mirissa</a>
+                            <a data-taxi-ignore="" href="/customer/packages.html?q=Ella">Ella</a>
+                            <a data-taxi-ignore="" href="/customer/packages.html?q=Nuwara+Eliya">Nuwara Eliya</a>
+                            <a data-taxi-ignore="" href="/customer/packages.html?category=ADVENTURE">Beyond the Highlights</a>
                         </div>
                     </div>
                     <div class="span-12 xs-span-6 lg-span-12">
                         <div class="siteFooter__subheading">Contact</div>
                         <div class="siteFooter__links">
                             <a data-taxi-ignore=""
-                               href="mailto:enquiries@explorelanka.com">enquiries@explorelanka.com</a>
-                            <a data-taxi-ignore="" href="tel:+441937228844">(+44) 1937 228 844 (UK)</a>
-                            <a data-taxi-ignore="" href="tel:+94117895810">(+94) 117 895 810 (Global)</a>
+                               href="mailto:explorelanka33@gmail.com">explorelanka33@gmail.com</a>
+                            <a data-taxi-ignore="" href="tel:+94112345678">(+94) 11 234 5678</a>
+<span>No. 25, Galle Road, Colombo 03</span>
                         </div>
                     </div>
                 </div>
@@ -3849,14 +3800,7 @@
                 </div>
                 <div class="siteFooter__legal span-12 lg-span-24">
                     <div>
-                        <div class="siteFooter__disclaimer">The air holiday packages offered by Explore Lanka on
-                            this website are ATOL protected by the Civil Aviation Authority. Our ATOL number is ATOL
-                            5517. ATOL protection extends primarily to customers who book and pay for their air
-                            holiday packages in the United Kingdom. Explore Lanka is also a member of ABTOT
-                            (membership number 5664). ABTOT provides financial protection for certain package travel
-                            arrangements under the Package Travel and Linked Travel Arrangements Regulations 2018.
-                            Please see our financial protection page and booking conditions for more information.
-                        </div>
+                        <div class="siteFooter__disclaimer">Explore Lanka is a Sri Lanka based travel company creating tailor-made tours across the island - culture, wildlife, tea country and beaches. Book tours, register for festivals, pay and track your trips securely from your Explore Lanka account.</div>
                         <ul class="siteFooter__cardicons">
                             <svg>
                                 <use href="../images/icons.svg#card-visa"></use>
@@ -3869,33 +3813,23 @@
                             </svg>
                         </ul>
                     </div>
-                    <div class="siteFooter__logos">
-                        <img alt="Atol Protected" src="../images/sigiriya-card.png"/>
-                        <img alt="The Conscious Travel Foundation" src="../images/yala-card.png"/>
-                        <img alt="Guest Reviews Travelers" src="../images/ella-card.png"/>
-                        <img alt="ABTOT" src="../images/mirissa-card.png"/>
-                    </div>
+                    <div class="siteFooter__logos"></div>
                 </div>
             </div>
             <div class="siteFooter__section siteFooter__bottom">
                 <ul>
-                    <li><a href="#">Booking Conditions</a></li>
-                    <li><a href="#">Privacy and Cookie Policy</a></li>
-                    <li><a href="#">Anti-Fraud Policy</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Payment Centre</a></li>
-                    <li><a href="#">Frequent Questions</a></li>
-                    <li><a href="#">Customer Reviews</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Financial Protection</a></li>
-                    <li><a href="#" target="_blank">Guest review</a></li>
+                    <li><a data-taxi-ignore="" href="/customer/packages.html">Tour Packages</a></li>
+<li><a data-taxi-ignore="" href="/customer/festivals.html">Festivals &amp; Events</a></li>
+<li><a data-taxi-ignore="" href="/customer/offers.html">Offers</a></li>
+<li><a data-taxi-ignore="" href="/customer/payments.html">Payment Centre</a></li>
+                    <li><a data-taxi-ignore="" href="/customer/reviews.html">Customer Reviews</a></li>
+                    <li><a data-taxi-ignore="" href="mailto:explorelanka33@gmail.com">Contact Us</a></li>
+                    <li><a data-taxi-ignore="" href="/customer/packages.html?sort=rating">Top rated tours</a></li>
                 </ul>
                 <div class="siteFooter__bottom-section">
                     <ul>
                         <li>© 2026 All Rights Reserved.</li>
-                        <li>Site by Form</li>
+                        <li>Explore Lanka · Colombo, Sri Lanka</li>
                     </ul>
                     <button class="siteFooter__toplink">
 <span class="btn__icon">
@@ -3963,7 +3897,7 @@
         }
     })();
 </script>
-MODIFIED SCRIPT - Works with Taxi.js
+<!-- MODIFIED SCRIPT - Works with Taxi.js -->
 <script>
     if (!window.pageTransitionInitialized) {
         window.pageTransitionInitialized = true;
@@ -4069,5 +4003,6 @@ MODIFIED SCRIPT - Works with Taxi.js
 <script src="../js/hero-perfect-center.js"></script>
 <script src="../js/vision-final-fix.js"></script>
 <script src="../js/destination-carousel-strict.js"></script>
+<script src="../js/home-video-scroll.js"></script>
 </body>
 </html>

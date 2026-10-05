@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Lanka | Customer Login</title>
+
+    <link rel="stylesheet" href="/css/customer-auth.css">
+<link rel="stylesheet" href="/css/explore-system.css?v=20261002"><link rel="stylesheet" href="/css/ui-polish.css?v=20261004-motion2"></head>
+
+<body class="el-refresh el-auth">
+
+<div class="page-container">
+
+    <!-- LEFT SIDE -->
+    <div class="left-section">
+
+        <div class="overlay">
+
+            <div class="brand">
+                <a class="auth-brand" href="/" aria-label="Explore Lanka home">
+                    <span class="auth-brand-badge">EL</span>
+                    <span class="auth-brand-copy">
+                        <strong>EXPLORE LANKA</strong>
+                        <small>TAILOR-MADE SRI LANKA</small>
+                    </span>
+                </a>
+            </div>
+
+            <div class="welcome-text">
+                <h1>
+                    Discover Sri Lanka.<br>
+                    Create Memories.
+                </h1>
+
+                <p>
+                    Explore beautiful destinations, amazing tour packages,
+                    unforgettable events and experiences across Sri Lanka.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="right-section">
+
+        <div class="auth-container">
+
+            <!-- Login/Register tabs intentionally removed. Registration opens from Create Account. -->
+
+            <!-- MESSAGE -->
+            <div
+                    id="messageBox"
+                    class="message-box"
+                    style="display:none;">
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- LOGIN FORM -->
+            <!-- ========================= -->
+
+            <div id="loginSection">
+
+                <div class="form-heading">
+                    <h1>Welcome Back!</h1>
+                    <p>Login to continue your journey with Explore Lanka.</p>
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="input-group">
+
+                        <label for="loginUsername">
+                            Email or Username
+                        </label>
+
+                        <input
+                                type="text"
+                                id="loginUsername"
+                                placeholder="Enter email or username"
+                                required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                    type="password"
+                                    id="loginPassword"
+                                    placeholder="Enter password"
+                                    required>
+
+                            <button
+                                    type="button"
+                                    class="password-btn"
+                                    onclick="togglePassword(
+                                        'loginPassword',
+                                        this
+                                    )">
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input type="checkbox">
+
+                            Remember me
+
+                        </label>
+
+                        <a href="#">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <button
+                            type="submit"
+                            class="main-btn">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+
+                <div class="bottom-text">
+
+                    Don't have an account?
+
+                    <button
+                            type="button"
+                            onclick="showRegister()">
+
+                        Create Account
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- REGISTER FORM -->
+            <!-- ========================= -->
+
+            <div
+                    id="registerSection"
+                    style="display:none;">
+
+                <div class="form-heading">
+
+                    <h1>Create Account</h1>
+
+                    <p>
+                        Register and start exploring Sri Lanka.
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm">
+
+                    <div class="two-column">
+
+                        <div class="input-group">
+
+                            <label for="name">
+                                Full Name
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter full name"
+                                    required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="username">
+                                Username
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="username"
+                                    placeholder="Choose username"
+                                    required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter email address"
+                                required>
+
+                    </div>
+
+
+                    <div class="two-column">
+
+                        <div class="input-group">
+
+                            <label for="nic">
+                                NIC
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="nic"
+                                    placeholder="Enter NIC">
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="phone"
+                                    placeholder="07XXXXXXXX"
+                                    required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <textarea
+                                id="address"
+                                rows="3"
+                                placeholder="Enter your address">
+                        </textarea>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="registerPassword">
+                            Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                    type="password"
+                                    id="registerPassword"
+                                    placeholder="Create password"
+                                    required>
+
+                            <button
+                                    type="button"
+                                    class="password-btn"
+                                    onclick="togglePassword(
+                                        'registerPassword',
+                                        this
+                                    )">
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm password"
+                                required>
+
+                    </div>
+
+
+                    <button
+                            type="submit"
+                            class="main-btn">
+
+                        Register
+
+                    </button>
+
+                </form>
+
+
+                <div class="bottom-text">
+
+                    Already have an account?
+
+                    <button
+                            type="button"
+                            onclick="showLogin()">
+
+                        Login
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="/js/customer-auth.js"></script>
+
+<script src="/js/explore-system.js?v=20261002"></script></body>
+</html>
