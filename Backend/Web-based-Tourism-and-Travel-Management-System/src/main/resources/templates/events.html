@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Festivals & Events · Explore Lanka</title>
+    <link rel="icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main class="container section">
+    <div class="section-head">
+        <div><div class="eyebrow">Event & festival calendar</div><h1>Festivals & cultural events</h1></div>
+        <p>Peraheras, kovil festivals, Vesak lanterns, music and food - filter by region and your travel dates.</p>
+    </div>
+    <form class="card toolbar" id="filters" style="margin-bottom:22px">
+        <input class="search grow" name="q" placeholder="Search events" aria-label="Search events">
+        <select name="region" aria-label="Region"><option value="">All regions</option></select>
+        <select name="category" aria-label="Category"><option value="">All categories</option></select>
+        <label class="small row" style="gap:6px">From <input type="date" name="from"></label>
+        <label class="small row" style="gap:6px">To <input type="date" name="to"></label>
+        <button type="reset" class="btn ghost">Clear</button>
+    </form>
+    <div class="grid grid-2" id="results"></div>
+</main>
+<script src="/js/app.js"></script>
+<script src="/js/pages/shared-cards.js"></script>
+<script src="/js/pages/event-modal.js"></script>
+<script>
+(function () {
+    const { $, api } = EL;
+    EL.publicLayout("events");
+    const form = $("#filters");
+    EL.REGIONS.forEach((r) => form.region.insertAdjacentHTML("beforeend", "<option>" + r + "</option>"));
+    EL.EVENT_CATEGORIES.forEach((c) => form.category.insertAdjacentHTML("beforeend", '<option value="' + c + '">' + EL.titleCase(c) + "</option>"));
+    let events = [];
+    async function load() {
+        const q = EL.formData(form);
+        if (q.from && q.to && q.to < q.from) { EL.toast("'To' date must be after 'From' date", "error"); return; }
+        $("#results").innerHTML = EL.skeleton(2);
+        try {
+            events = await api("/api/public/events", { query: q });
+            $("#results").innerHTML = events.map(Cards.eventCard).join("") || EL.emptyState("No events match these filters.", "festival");
+            EL.$$("[data-event]").forEach((c) => {
+                c.addEventListener("click", () => EventModal.open(Number(c.dataset.event)));
+                c.addEventListener("keydown", (e) => { if (e.key === "Enter") EventModal.open(Number(c.dataset.event)); });
+            });
+        } catch (e) { EL.toastError(e); }
+    }
+    form.addEventListener("input", EL.debounce(load, 350));
+    form.addEventListener("change", load);
+    form.addEventListener("reset", () => setTimeout(load, 0));
+    load().then(() => { const id = EL.qs("event"); if (id) EventModal.open(Number(id)); });
+})();
+</script>
+</body>
+</html>
