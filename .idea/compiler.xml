@@ -2,11 +2,13 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Web-based-Tourism-and-Travel-Management-System" />
+        <module name="webbasedtourismandtravelmanagementsystem (1)" />
       </profile>
       <profile name="Annotation profile for Explore-Lanka" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -18,11 +20,15 @@
         <module name="Explore-Lanka" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="webbasedtourismandtravelmanagementsystem" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Explore-Lanka" options="-parameters" />
       <module name="Web-based-Tourism-and-Travel-Management-System" options="-parameters" />
+      <module name="webbasedtourismandtravelmanagementsystem (1)" options="-parameters" />
     </option>
   </component>
 </project>
