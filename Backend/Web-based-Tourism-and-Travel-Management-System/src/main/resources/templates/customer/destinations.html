@@ -1,10 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Explore Lanka | Destination Explorer</title>
+    <link rel="stylesheet" href="/css/portal.css">
+    <link rel="stylesheet" href="/css/customer-extras.css">
+    <link rel="stylesheet" href="/css/customer-motion.css">
+    <script>document.documentElement.classList.add('cm-motion')</script>
+    <script src="/js/customer-motion.js" defer></script>
+<link rel="stylesheet" href="/css/explore-system.css?v=20261002"><link rel="stylesheet" href="/css/ui-polish.css?v=20261004-motion2"></head>
+<body class="el-refresh el-customer">
+<div class="app">
+    <aside class="sidebar">
+        <a class="brand brand-home-link" href="/" th:href="@{/}" aria-label="Back to Explore Lanka landing page">
+            <div class="brand-badge">🌴</div>
+            <div><h2>Explore Lanka</h2><p>Traveler Portal</p></div>
+        </a>
+        <div class="nav-title">Navigation</div>
+        <nav class="nav">
+            <a href="/ui/customer-dashboard"><i>🏠</i><span>Dashboard</span></a>
+            <a class="active" href="/ui/customer-destinations"><i>🗺</i><span>Destinations</span></a>
+            <a href="/ui/customer-tour-packages"><i>🎒</i><span>Tour Packages</span></a>
+            <a href="/ui/customer-events"><i>🎉</i><span>Events</span></a>
+            <a href="/ui/customer-hotels"><i>🏨</i><span>Hotels</span></a>
+            <a href="/ui/customer-transport"><i>🚐</i><span>Transport</span></a>
+            <a href="/ui/customer-tour-guides"><i>🧭</i><span>Tour Guides</span></a>
+            <a href="/ui/customer-my-trips"><i>✈</i><span>My Trips</span></a>
+            <a href="/ui/customer-bookings"><i>📅</i><span>Bookings</span></a>
+            <a href="/ui/customer-custom-tour"><i>🧩</i><span>Custom Tour</span></a>
+            <a href="/ui/customer-travel-planner"><i>🗓</i><span>Travel Planner</span></a>
+            <a href="/ui/customer-saved-trips"><i>💾</i><span>Saved Trips</span></a>
+            <a href="/ui/customer-payment-history"><i>💳</i><span>Payments</span></a>
+            <a href="/ui/customer-wishlist"><i>♥</i><span>Wishlist</span></a>
+            <a href="/ui/customer-reviews"><i>⭐</i><span>Reviews</span></a>
+            <a href="/ui/customer-offers"><i>🎁</i><span>Offers</span></a>
+            <a href="/ui/customer-messages"><i>💬</i><span>Messages</span></a>
+            <a href="/ui/customer-support"><i>🛟</i><span>Support</span></a>
+            <a href="/ui/customer-refunds"><i>↩</i><span>Refunds</span></a>
+            <a href="/ui/customer-faq"><i>❓</i><span>FAQ</span></a>
+            <a href="/ui/customer-emergency"><i>🚨</i><span>Emergency</span></a>
+            <a href="/ui/customer-notifications"><i>🔔</i><span>Notifications</span></a>
+            <a href="/ui/customer-profile"><i>👤</i><span>Profile</span></a>
+        </nav>
+        <div class="side-note">Trips of a thousand lifetimes. Explore, book and manage your Sri Lankan journey with ease.</div>
+    </aside>
 
-</body>
+    <main class="main">
+        <header class="topbar">
+            <div style="display:flex;align-items:center;gap:12px">
+                <button class="icon-btn mobile-menu" data-menu aria-label="Open navigation">☰</button>
+                <div><h1>Destination Explorer</h1><p>Explore Lanka travel management</p></div>
+            </div>
+            <div class="top-actions">
+                <a class="icon-btn" href="/ui/customer-notifications" aria-label="Notifications">🔔</a>
+                <div class="avatar">T</div>
+            </div>
+        </header>
+
+        <div class="content">
+            <section class="hero">
+                <h2>Find your next destination</h2>
+                <p>From ancient kingdoms to misty mountains and golden beaches, explore Sri Lanka your way.</p>
+            </section>
+
+            <div class="search destination-search" aria-label="Filter destinations">
+                <input id="destinationSearch" type="search" placeholder="Search destinations..." aria-label="Search destinations">
+                <select id="destinationRegion" aria-label="Filter by region">
+                    <option value="all">All regions</option>
+                    <option value="central">Central</option>
+                    <option value="uva">Uva</option>
+                    <option value="southern">Southern</option>
+                </select>
+                <select id="destinationExperience" aria-label="Filter by experience">
+                    <option value="all">All experiences</option>
+                    <option value="nature">Nature</option>
+                    <option value="culture">Culture</option>
+                    <option value="heritage">Heritage</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="beach">Beach</option>
+                </select>
+            </div>
+
+            <div id="destinationGrid" class="grid grid-3">
+                <article class="card place destination-card" tabindex="0" role="button"
+                         aria-label="View details for Sigiriya"
+                         data-filter-item data-destination
+                         data-name="Sigiriya" data-region="central" data-experience="culture heritage historic"
+                         data-image="/images/sigiriya-card.png"
+                         data-description="Climb Sri Lanka's legendary fifth-century rock fortress and discover royal gardens, ancient frescoes and unforgettable views."
+                         data-highlights="Lion's Gate|Ancient frescoes|Royal water gardens|Panoramic summit views">
+                    <div class="place-cover" style="background-image:url('/images/sigiriya-card.png')"><span>🏯</span></div>
+                    <div class="place-body"><h4>Sigiriya</h4><p>Ancient rock fortress surrounded by history.</p><div class="meta"><span>Central</span><span>Cultural</span><span>Historic</span></div><div class="destination-card-actions"><span>View destination</span><b aria-hidden="true">→</b></div></div>
+                </article>
+
+                <article class="card place destination-card" tabindex="0" role="button"
+                         aria-label="View details for Ella"
+                         data-filter-item data-destination
+                         data-name="Ella" data-region="uva" data-experience="nature adventure hiking"
+                         data-image="/images/ella-card.png"
+                         data-description="Enjoy cool mountain air, green tea country, scenic railway journeys and some of Sri Lanka's most rewarding hikes."
+                         data-highlights="Nine Arch Bridge|Little Adam's Peak|Ella Rock|Tea plantations">
+                    <div class="place-cover" style="background-image:url('/images/ella-card.png')"><span>⛰</span></div>
+                    <div class="place-body"><h4>Ella</h4><p>Mountain scenery, hikes and tea plantations.</p><div class="meta"><span>Uva</span><span>Nature</span><span>Adventure</span></div><div class="destination-card-actions"><span>View destination</span><b aria-hidden="true">→</b></div></div>
+                </article>
+
+                <article class="card place destination-card" tabindex="0" role="button"
+                         aria-label="View details for Galle"
+                         data-filter-item data-destination
+                         data-name="Galle" data-region="southern" data-experience="heritage culture coastal"
+                         data-image="/images/mirissa-card.png"
+                         data-description="Walk along centuries-old ramparts, explore colonial streets and enjoy Indian Ocean sunsets inside the UNESCO-listed Galle Fort."
+                         data-highlights="Galle Fort|Dutch architecture|Lighthouse|Ocean ramparts">
+                    <div class="place-cover" style="background-image:url('/images/mirissa-card.png')"><span>🌅</span></div>
+                    <div class="place-body"><h4>Galle</h4><p>UNESCO fort city with ocean views.</p><div class="meta"><span>Southern</span><span>Heritage</span><span>Coastal</span></div><div class="destination-card-actions"><span>View destination</span><b aria-hidden="true">→</b></div></div>
+                </article>
+
+                <article class="card place destination-card" tabindex="0" role="button"
+                         aria-label="View details for Mirissa"
+                         data-filter-item data-destination
+                         data-name="Mirissa" data-region="southern" data-experience="beach nature relax"
+                         data-image="/images/mirissa-card.png"
+                         data-description="Relax on a palm-lined southern beach, watch whales in the Indian Ocean and enjoy beautiful coastal sunsets."
+                         data-highlights="Whale watching|Coconut Tree Hill|Secret Beach|Sunset viewpoints">
+                    <div class="place-cover" style="background-image:url('/images/mirissa-card.png')"><span>🏖</span></div>
+                    <div class="place-body"><h4>Mirissa</h4><p>Southern beaches and whale watching.</p><div class="meta"><span>Southern</span><span>Beach</span><span>Nature</span></div><div class="destination-card-actions"><span>View destination</span><b aria-hidden="true">→</b></div></div>
+                </article>
+
+                <article class="card place destination-card" tabindex="0" role="button"
+                         aria-label="View details for Kandy"
+                         data-filter-item data-destination
+                         data-name="Kandy" data-region="central" data-experience="culture heritage city"
+                         data-image="/images/kandy-card.png"
+                         data-description="Discover Sri Lanka's sacred hill capital through temple visits, lake walks, traditional arts and vibrant local culture."
+                         data-highlights="Temple of the Tooth|Kandy Lake|Royal Botanical Gardens|Cultural dance">
+                    <div class="place-cover" style="background-image:url('/images/kandy-card.png')"><span>🛕</span></div>
+                    <div class="place-body"><h4>Kandy</h4><p>Sacred city, lake walks and culture.</p><div class="meta"><span>Central</span><span>Culture</span><span>City</span></div><div class="destination-card-actions"><span>View destination</span><b aria-hidden="true">→</b></div></div>
+                </article>
+
+                <article class="card place destination-card" tabindex="0" role="button"
+                         aria-label="View details for Nuwara Eliya"
+                         data-filter-item data-destination
+                         data-name="Nuwara Eliya" data-region="central" data-experience="nature tea hiking"
+                         data-image="/images/nuwara-eliya-card.png"
+                         data-description="Experience misty hills, tea estates, waterfalls and the cool highland charm of Sri Lanka's Little England."
+                         data-highlights="Tea factory visits|Gregory Lake|Horton Plains|Waterfalls">
+                    <div class="place-cover" style="background-image:url('/images/nuwara-eliya-card.png')"><span>🍃</span></div>
+                    <div class="place-body"><h4>Nuwara Eliya</h4><p>Cool climate, tea estates and colonial charm.</p><div class="meta"><span>Central</span><span>Nature</span><span>Tea Country</span></div><div class="destination-card-actions"><span>View destination</span><b aria-hidden="true">→</b></div></div>
+                </article>
+            </div>
+
+            <div id="destinationEmpty" class="destination-empty" hidden>
+                <span>🧭</span><h3>No destinations found</h3><p>Try another search or filter.</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="destinationModal" class="destination-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="destinationModalTitle">
+    <div class="destination-modal-backdrop" data-destination-close></div>
+    <section class="destination-modal-panel" tabindex="-1">
+        <button class="destination-modal-close" type="button" data-destination-close aria-label="Close destination details">×</button>
+        <div id="destinationModalImage" class="destination-modal-image"><span>EXPLORE LANKA</span></div>
+        <div class="destination-modal-content">
+            <span id="destinationModalRegion" class="badge success">Sri Lanka</span>
+            <h2 id="destinationModalTitle">Destination</h2>
+            <p id="destinationModalDescription"></p>
+            <h3>Top highlights</h3>
+            <ul id="destinationModalHighlights" class="destination-highlights"></ul>
+            <div class="destination-modal-actions">
+                <a id="destinationPackagesLink" class="btn btn-primary" href="/ui/customer-tour-packages">🎒 Find Tour Packages</a>
+                <a id="destinationPlannerLink" class="btn btn-soft" href="/ui/customer-travel-planner">🗓 Add to Travel Planner</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="/js/portal.js"></script>
+<script src="/js/customer-extras.js"></script>
+<script src="/js/customer-destinations.js"></script>
+<script src="/js/explore-system.js?v=20261002"></script></body>
 </html>

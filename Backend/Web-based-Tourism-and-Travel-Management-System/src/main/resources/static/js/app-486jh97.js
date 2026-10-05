@@ -8794,7 +8794,7 @@ function Wm() {
             }
         })
     }
-    document.querySelector(".homeVideo") && (O.set(".homeVideo video", {clipPath: "inset(20%)"}), O.to(".homeVideo video", {
+    document.querySelector(".homeVideo[data-bundle-video]") && (O.set(".homeVideo video", {clipPath: "inset(20%)"}), O.to(".homeVideo video", {
         clipPath: "inset(0%)",
         ease: "none",
         scrollTrigger: {trigger: ".homeVideo", start: "center bottom", end: "bottom bottom", scrub: !0}

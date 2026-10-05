@@ -1,116 +1,113 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Promotion.Model;
+package com.project.webbasedtourismandtravelmanagementsystem.promotion.model;
 
+import com.project.webbasedtourismandtravelmanagementsystem.common.BaseEntity;
+import com.project.webbasedtourismandtravelmanagementsystem.tourpackage.model.TourPackage;
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
+
+/** A promotional campaign / special offer with a coupon code (UC-05). */
 @Entity
 @Table(name = "promotions")
+@Getter
+@Setter
+@NoArgsConstructor
+public class Promotion extends BaseEntity {
 
-public class Promotion {
+    public enum OfferType { EARLY_BIRD, HONEYMOON, FAMILY, SUMMER, GROUP, FESTIVAL_SEASON, GENERAL }
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long promotionId;
+    public enum DiscountType { PERCENTAGE, FIXED_AMOUNT }
 
-        @Column(nullable = false)
-        private String title;
+    /** DRAFT = not visible, ACTIVE = published, INACTIVE = deactivated, EXPIRED = end date passed. */
+    public enum Status { DRAFT, ACTIVE, INACTIVE, EXPIRED }
 
-        @Column(columnDefinition = "TEXT")
-        private String description;
+    public enum Audience { ALL_CUSTOMERS, NEW_CUSTOMERS, RETURNING_CUSTOMERS, LOCAL_RESIDENTS, INTERNATIONAL, FAMILIES, GROUPS }
 
-        private Double discountPercentage;
+    @Column(nullable = false, length = 120)
+    private String title;
 
-        private LocalDate startDate;
+    @Column(length = 1000)
+    private String description;
 
-        private LocalDate endDate;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "offer_type", nullable = false, length = 20)
+    private OfferType offerType;
 
-        private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "discount_type", nullable = false, length = 20)
+    private DiscountType discountType;
 
+    @Column(name = "discount_value", nullable = false, precision = 12, scale = 2)
+    private BigDecimal discountValue;
 
-        // Constructors
+    /** Upper limit for percentage discounts (optional). */
+    @Column(name = "max_discount", precision = 12, scale = 2)
+    private BigDecimal maxDiscount;
 
-        public Promotion() {
-        }
+    @Column(name = "min_spend", precision = 12, scale = 2)
+    private BigDecimal minSpend;
 
+    @Column(name = "coupon_code", nullable = false, unique = true, length = 30)
+    private String couponCode;
 
-        public Promotion(String title, String description,
-                         Double discountPercentage,
-                         LocalDate startDate,
-                         LocalDate endDate,
-                         String status) {
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
 
-            this.title = title;
-            this.description = description;
-            this.discountPercentage = discountPercentage;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.status = status;
-        }
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 
+    @Column(name = "usage_limit")
+    private Integer usageLimit;
 
-        // Getters and Setters
+    /** Confirmed bookings that used this promotion. */
+    @Column(name = "used_count", nullable = false)
+    private int usedCount;
 
-        public Long getPromotionId() {
-            return promotionId;
-        }
+    /** How many times customers applied the code at checkout (engagement). */
+    @Column(name = "times_applied", nullable = false)
+    private int timesApplied;
 
-        public void setPromotionId(Long promotionId) {
-            this.promotionId = promotionId;
-        }
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Status status = Status.DRAFT;
 
+    @Column(name = "image_url", length = 255)
+    private String imageUrl;
 
-        public String getTitle() {
-            return title;
-        }
+    @Column(name = "created_by", length = 120)
+    private String createdBy;
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
+    /** Empty = valid for every package. */
+    @ManyToMany
+    @JoinTable(name = "promotion_packages",
+            joinColumns = @JoinColumn(name = "promotion_id"),
+            inverseJoinColumns = @JoinColumn(name = "package_id"))
+    private Set<TourPackage> packages = new HashSet<>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "promotion_audiences", joinColumns = @JoinColumn(name = "promotion_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "audience", length = 30)
+    private Set<Audience> audiences = EnumSet.of(Audience.ALL_CUSTOMERS);
 
-        public String getDescription() {
-            return description;
-        }
+    /** "Running" = published and today is inside the campaign dates. */
+    public boolean isRunning() {
+        LocalDate today = LocalDate.now();
+        return status == Status.ACTIVE && !today.isBefore(startDate) && !today.isAfter(endDate);
+    }
 
-        public void setDescription(String description) {
-            this.description = description;
-        }
+    public boolean appliesTo(TourPackage p) {
+        return packages.isEmpty() || packages.stream().anyMatch(x -> x.getId().equals(p.getId()));
+    }
 
-
-        public Double getDiscountPercentage() {
-            return discountPercentage;
-        }
-
-        public void setDiscountPercentage(Double discountPercentage) {
-            this.discountPercentage = discountPercentage;
-        }
-
-
-        public LocalDate getStartDate() {
-            return startDate;
-        }
-
-        public void setStartDate(LocalDate startDate) {
-            this.startDate = startDate;
-        }
-
-
-        public LocalDate getEndDate() {
-            return endDate;
-        }
-
-        public void setEndDate(LocalDate endDate) {
-            this.endDate = endDate;
-        }
-
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-
+    public boolean usageLimitReached() {
+        return usageLimit != null && usedCount >= usageLimit;
+    }
 }

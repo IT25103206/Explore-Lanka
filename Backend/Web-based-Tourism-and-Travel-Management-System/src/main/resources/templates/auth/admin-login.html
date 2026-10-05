@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Lanka | Management Login</title>
+    <link rel="stylesheet" href="/css/customer-auth.css">
+<link rel="stylesheet" href="/css/explore-system.css?v=20261002"><link rel="stylesheet" href="/css/ui-polish.css?v=20261004-motion2"></head>
+<body class="el-refresh el-auth">
+<div class="page-container">
+    <div class="left-section">
+        <div class="overlay">
+            <div class="brand">
+                <a class="auth-brand" href="/" aria-label="Explore Lanka home">
+                    <span class="auth-brand-badge">EL</span>
+                    <span class="auth-brand-copy">
+                        <strong>EXPLORE LANKA</strong>
+                        <small>TAILOR-MADE SRI LANKA</small>
+                    </span>
+                </a>
+            </div>
+            <div class="welcome-text">
+                <h1>Management<br>Portal</h1>
+                <p>Secure access for Explore Lanka owners and management staff.</p>
+            </div>
+        </div>
+    </div>
 
-</body>
+    <div class="right-section">
+        <div class="auth-container">
+            <div id="messageBox" class="message-box" style="display:none;"></div>
+
+            <div id="loginSection">
+                <div class="form-heading">
+                    <h1>Management Login</h1>
+                    <p>Only authorized management accounts can continue.</p>
+                </div>
+
+                <form id="adminLoginForm">
+                    <div class="input-group">
+                        <label for="adminUsername">Email or Username</label>
+                        <input type="text" id="adminUsername" placeholder="Enter email or username" autocomplete="username" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="adminPassword">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="current-password" required>
+                            <button type="button" class="password-btn" id="toggleAdminPassword" aria-label="Show password">👁</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="main-btn">Login to Management Portal</button>
+                </form>
+
+                <div class="bottom-text">
+                    Customer account?
+                    <a href="/ui/customer-login" style="text-decoration:none; font-weight:700;">Customer Login</a>
+                </div>
+                <div class="bottom-text" style="margin-top:12px;">
+                    <a href="/">← Back to Explore Lanka</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/admin-auth.js"></script>
+<script src="/js/explore-system.js?v=20261002"></script></body>
 </html>

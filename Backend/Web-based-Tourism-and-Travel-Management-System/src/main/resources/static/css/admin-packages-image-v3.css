@@ -1,0 +1,67 @@
+/* ===== Admin data pages: tables, modal, toasts ===== */
+.admin-table td b{display:block;color:var(--brown);font-weight:700}
+.admin-table td small{display:block;margin-top:3px;font-size:9px;color:var(--muted);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ad-actions{display:flex;gap:6px;flex-wrap:wrap}
+.table-action.danger{color:#9f3b32;border-color:#efc9c3}
+.table-action.danger:hover{background:#fbe9e6}
+.table-action[disabled]{opacity:.5;cursor:not-allowed}
+.ad-empty{text-align:center;color:var(--muted);padding:34px 16px!important;font-size:11px}
+.ad-empty.bad{color:#9f3b32}
+.ad-head-actions{display:flex;gap:10px;flex-wrap:wrap}
+.ad-stars{color:#c4962f;letter-spacing:1px;white-space:nowrap}
+.ad-clip{display:block;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ad-range{height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);padding:0 12px;font-weight:700;font-size:11px;color:var(--brown)}
+.table-footer .pager{min-width:30px}
+
+/* modal */
+.ad-modal{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;padding:20px}
+.ad-modal[hidden]{display:none}
+.ad-modal-bg{position:absolute;inset:0;background:rgba(24,40,28,.42);backdrop-filter:blur(3px);animation:adFade .2s ease both}
+.ad-modal-box{position:relative;width:min(640px,100%);max-height:calc(100vh - 40px);display:flex;flex-direction:column;background:var(--paper,#fffdf8);border-radius:20px;box-shadow:0 30px 80px rgba(20,30,20,.3);animation:adPop .28s cubic-bezier(.16,1,.3,1) both}
+.ad-modal-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}
+.ad-modal-head h3{font:700 20px Georgia,serif;color:var(--brown);text-transform:capitalize}
+.ad-x{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:18px;cursor:pointer;color:var(--brown)}
+.ad-modal-body{padding:20px 22px;overflow:auto}
+.ad-modal-foot{display:flex;justify-content:flex-end;gap:10px;padding:14px 22px;border-top:1px solid var(--line)}
+.ad-modal-foot:empty{display:none}
+.ad-lock{overflow:hidden}
+.ad-form .field .hint{font-size:9px;color:var(--muted)}
+.ad-form .field .hint.bad{color:#9f3b32}
+.ad-form .invalid,.ad-modal .invalid{border-color:#c0473c!important;box-shadow:0 0 0 3px rgba(192,71,60,.1)!important}
+.ad-err{background:#f8e0dc;color:#9f3b32;border-radius:12px;padding:11px 14px;font-size:11px;font-weight:600}
+.ad-err[hidden]{display:none}
+.ad-confirm{font-size:12px;line-height:1.7;color:var(--ink)}
+.ad-dl{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-bottom:16px}
+.ad-dl div{display:flex;flex-direction:column;gap:3px;padding-bottom:8px;border-bottom:1px dashed #e6dccf}
+.ad-dl span{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.ad-dl b{font-size:12px;color:var(--brown);word-break:break-word}
+.ad-quote{background:#f8f2e8;border-left:3px solid #c4a56a;border-radius:10px;padding:14px 16px;font-size:12px;line-height:1.7;color:var(--ink)}
+.ad-note{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px}
+@keyframes adFade{from{opacity:0}}
+@keyframes adPop{from{opacity:0;transform:translateY(12px) scale(.97)}}
+
+/* toast */
+.ad-toast{position:fixed;right:24px;bottom:24px;z-index:9500;background:#2e7032;color:#fff;padding:12px 16px;border-radius:12px;font-size:11px;font-weight:600;box-shadow:0 14px 30px rgba(0,0,0,.18);animation:adPop .3s ease both;transition:opacity .3s ease,transform .3s ease;max-width:360px}
+.ad-toast.bad{background:#9f3b32}
+.ad-toast.out{opacity:0;transform:translateY(8px)}
+
+/* reports */
+.legend .lg{display:inline-block;width:10px;height:10px;border-radius:3px}
+.bars div{transition:height .8s cubic-bezier(.16,1,.3,1)}
+
+@media(max-width:640px){.ad-dl{grid-template-columns:1fr}.ad-modal-box .form-grid{grid-template-columns:1fr}}
+.admin-topbar .icon-btn svg{display:block;color:var(--brown)}
+/* two-column admin layouts: let the table scroll instead of stretching the page on small screens */
+.admin-two-col > *{min-width:0}
+@media(max-width:1100px){.admin-two-col{grid-template-columns:minmax(0,1fr)!important}}
+
+/* Package image upload */
+.ad-image-picker{display:grid;gap:10px}
+.ad-image-picker input[type=file]{width:100%;padding:10px;border:1px dashed var(--line);border-radius:12px;background:#fff;cursor:pointer}
+.ad-image-preview{min-height:105px;border:1px dashed var(--line);border-radius:14px;background:#fbf8f2;display:grid;place-items:center;overflow:hidden;color:var(--muted);font-size:11px}
+.ad-image-preview img{display:block;width:100%;max-height:190px;object-fit:cover}
+
+/* Package image uploader - visible inside Add/Edit Package modal */
+.ad-image-picker{padding:12px;border:1px solid #eadbc9;border-radius:14px;background:#fffdf9}
+.ad-image-picker input[type=file]{display:block!important;min-height:46px;font-size:12px;background:#fff}
+.ad-image-preview{margin-top:4px;min-height:120px}

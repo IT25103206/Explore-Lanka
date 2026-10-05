@@ -86,3 +86,46 @@
 .ad-drop-overlay small{font-size:10px;color:var(--muted)}
 .ad-img-empty u{color:#2e7032;text-underline-offset:2px}
 @keyframes adBob{50%{transform:translateY(-6px)}}
+
+/* ===== PDF modules: forms, booking management, approvals ===== */
+[hidden]{display:none!important}
+.ad-section{grid-column:1/-1;margin-top:6px;padding-top:12px;border-top:1px solid var(--line);font:700 13px Georgia,serif;color:var(--brown)}
+.ad-form .ad-section:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.ad-check{display:flex;align-items:center;gap:9px;padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;font-size:11px}
+.ad-check input{width:16px;height:16px;accent-color:#2e7032}
+.ad-dates{display:grid;gap:8px}
+.ad-chips{display:flex;flex-wrap:wrap;gap:6px}
+.ad-chip{display:inline-flex;align-items:center;gap:6px;background:#eaf3e7;color:#27642d;border-radius:999px;padding:5px 6px 5px 11px;font-size:10px;font-weight:700}
+.ad-chip button{border:0;background:#fff;border-radius:50%;width:18px;height:18px;cursor:pointer;color:#9f3b32;font-weight:800;line-height:1}
+.ad-inline{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ad-inline select,.ad-inline input{flex:1;min-width:150px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#fff;font-size:11px}
+.ad-subhead{margin:16px 0 8px;font:700 13px Georgia,serif;color:var(--brown)}
+.ad-mini table{min-width:0}
+.ad-mini td,.ad-mini th{padding:9px 10px}
+.ad-mini td small,.admin-table td small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.ad-past{opacity:.55}
+.ad-assign-list{display:grid;gap:8px;margin-bottom:10px}
+.ad-assign{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.ad-assign b{font-size:11px;color:var(--brown)}
+.ad-assign small{display:block;font-size:9px;color:var(--muted);margin-top:2px}
+.ad-assign-form{margin-top:4px}
+.ad-edit{margin-top:16px;border:1px dashed var(--line);border-radius:14px;padding:12px 14px;background:#fffdf8}
+.ad-edit summary{cursor:pointer;font-weight:800;font-size:11px;color:#2e7032}
+.ad-edit .form-grid{margin-top:12px}
+.ad-code{font-family:Consolas,monospace;font-size:11px;font-weight:800;background:#fff0cb;color:#6b4a0f;padding:3px 7px;border-radius:7px;letter-spacing:.5px}
+.ad-pending{color:#866115!important;font-weight:700}
+.ad-head-actions{display:flex;gap:8px;flex-wrap:wrap}
+.ad-av-out{margin-top:14px}
+.ad-cap{margin:10px 0 14px}
+.ad-approvals{display:grid;gap:12px}
+.ad-approval{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.ad-approval h4{font:700 16px Georgia,serif;color:var(--brown)}
+.ad-approval p{font-size:12px;margin:5px 0}
+.ad-approval small{font-size:9px;color:var(--muted)}
+.ad-approval .ad-inline{flex:1;justify-content:flex-end;max-width:520px}
+select.ad-range{appearance:auto;padding:10px 12px}
+.st-role{border:1px solid var(--line);border-radius:9px;padding:6px 8px;font-size:10px;background:#fff;max-width:190px}
+.st-role-card h4{font:700 14px Georgia,serif;color:var(--brown);margin-bottom:8px}
+.st-chip{display:inline-block;margin:0 5px 5px 0;background:#f2ece4;border-radius:8px;padding:4px 8px;font-size:9px;color:#63584f}
+.admin-nav a[hidden]{display:none!important}
+@media(max-width:700px){.ad-approval .ad-inline{max-width:none;justify-content:stretch}}
