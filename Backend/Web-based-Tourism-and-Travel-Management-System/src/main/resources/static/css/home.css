@@ -2442,3 +2442,49 @@ div { display: block; unicode-bidi: isolate; }
     opacity: 1;
     visibility: inherit;
 }
+
+
+/* ===== Landing page horizontal overflow fix ===== */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    /* clip (not hidden) - hidden turns body into a scroll container and breaks position:sticky */
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+}
+body > div, main, [data-taxi], [data-taxi-view] {
+    max-width: 100%;
+    min-width: 0;
+}
+img, video, svg { max-width: 100%; }
+.swiper, .swiper-container { max-width: 100vw; overflow: hidden; }
+
+
+/* ===== Home video - Red Dot style scroll reveal ===== */
+.homeVideo {
+    position: relative;
+    height: 200vh;
+    overflow: clip;            /* clip (not hidden) so sticky keeps working */
+}
+.homeVideo__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+.homeVideo video {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    object-fit: cover;
+    clip-path: inset(20%);
+    will-change: clip-path;
+}
+@media (prefers-reduced-motion: reduce) {
+    .homeVideo video { clip-path: inset(0) !important; }
+    .homeVideo__container { transform: none !important; }
+}
