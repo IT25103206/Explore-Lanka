@@ -1,6 +1,6 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common.upload;
+package com.project.webbasedtourismandtravelmanagementsystem.common.upload;
 
-import com.project.webbasedtourismandtravelmanagementsystem.Common.Access;
+import com.project.webbasedtourismandtravelmanagementsystem.common.Access;
 import com.project.webbasedtourismandtravelmanagementsystem.common.exception.BusinessException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

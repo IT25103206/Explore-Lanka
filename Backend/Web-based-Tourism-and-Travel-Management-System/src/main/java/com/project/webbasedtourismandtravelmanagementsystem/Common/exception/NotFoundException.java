@@ -1,4 +1,4 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common.exception;
+package com.project.webbasedtourismandtravelmanagementsystem.common.exception;
 
 public class NotFoundException extends RuntimeException {
 

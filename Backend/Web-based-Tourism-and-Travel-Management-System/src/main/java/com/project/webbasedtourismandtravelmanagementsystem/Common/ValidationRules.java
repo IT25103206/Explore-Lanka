@@ -1,4 +1,4 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common;
+package com.project.webbasedtourismandtravelmanagementsystem.common;
 
 /** Regular expressions shared by request DTOs (kept in sync with static/js/app.js). */
 public final class ValidationRules {

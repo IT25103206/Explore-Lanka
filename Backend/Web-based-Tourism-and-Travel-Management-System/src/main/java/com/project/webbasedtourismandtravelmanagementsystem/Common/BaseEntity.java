@@ -1,4 +1,4 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common;
+package com.project.webbasedtourismandtravelmanagementsystem.common;
 
 import jakarta.persistence.*;
 import lombok.Getter;

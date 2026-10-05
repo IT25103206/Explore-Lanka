@@ -1,4 +1,4 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common;
+package com.project.webbasedtourismandtravelmanagementsystem.common;
 
 /** Simple confirmation message returned by action endpoints. */
 public record MessageResponse(String message, Object data) {

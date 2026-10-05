@@ -1,4 +1,4 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common.exception;
+package com.project.webbasedtourismandtravelmanagementsystem.common.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

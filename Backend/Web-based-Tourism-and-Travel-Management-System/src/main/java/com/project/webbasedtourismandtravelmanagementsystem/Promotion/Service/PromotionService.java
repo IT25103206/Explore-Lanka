@@ -5,57 +5,37 @@ import com.project.webbasedtourismandtravelmanagementsystem.auth.model.Role;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.model.User;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.repository.CustomerRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.repository.UserRepository;
-
 import com.project.webbasedtourismandtravelmanagementsystem.booking.model.Booking;
+import com.project.webbasedtourismandtravelmanagementsystem.booking.model.BookingStatus;
 import com.project.webbasedtourismandtravelmanagementsystem.booking.repository.BookingRepository;
-
 import com.project.webbasedtourismandtravelmanagementsystem.common.exception.BusinessException;
 import com.project.webbasedtourismandtravelmanagementsystem.common.exception.NotFoundException;
-
 import com.project.webbasedtourismandtravelmanagementsystem.notification.model.Notification;
 import com.project.webbasedtourismandtravelmanagementsystem.notification.service.NotificationService;
-
 import com.project.webbasedtourismandtravelmanagementsystem.promotion.dto.PromotionDtos.*;
 import com.project.webbasedtourismandtravelmanagementsystem.promotion.model.Promotion;
 import com.project.webbasedtourismandtravelmanagementsystem.promotion.repository.PromotionRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.promotion.strategy.DiscountCalculator;
-
 import com.project.webbasedtourismandtravelmanagementsystem.tourpackage.model.TourPackage;
 import com.project.webbasedtourismandtravelmanagementsystem.tourpackage.repository.TourPackageRepository;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
+/** Promotion & Offer Management (IT25102633 Mandakini N.N.K.M). */
 @Service
 @Transactional
 public class PromotionService {
 
-    // =========================================================
-    // APPLIED PROMOTION
-    // =========================================================
-
-    public record AppliedPromotion(
-            Promotion promotion,
-            BigDecimal discount
-    ) {
+    /** Result of checking a coupon code against a booking. */
+    public record AppliedPromotion(Promotion promotion, BigDecimal discount) {
     }
 
-
-    // =========================================================
-    // DEPENDENCIES
-    // =========================================================
+    private static final Set<BookingStatus> SOLD = EnumSet.of(BookingStatus.CONFIRMED, BookingStatus.COMPLETED);
 
     private final PromotionRepository promotionRepository;
     private final TourPackageRepository packageRepository;
@@ -65,20 +45,10 @@ public class PromotionService {
     private final DiscountCalculator discountCalculator;
     private final NotificationService notificationService;
 
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
-
-    public PromotionService(
-            PromotionRepository promotionRepository,
-            TourPackageRepository packageRepository,
-            BookingRepository bookingRepository,
-            CustomerRepository customerRepository,
-            UserRepository userRepository,
-            DiscountCalculator discountCalculator,
-            NotificationService notificationService) {
-
+    public PromotionService(PromotionRepository promotionRepository, TourPackageRepository packageRepository,
+                            BookingRepository bookingRepository, CustomerRepository customerRepository,
+                            UserRepository userRepository, DiscountCalculator discountCalculator,
+                            NotificationService notificationService) {
         this.promotionRepository = promotionRepository;
         this.packageRepository = packageRepository;
         this.bookingRepository = bookingRepository;
@@ -88,1046 +58,271 @@ public class PromotionService {
         this.notificationService = notificationService;
     }
 
-
-    // =========================================================
-    // GET ALL PROMOTIONS
-    // =========================================================
+    // ------------------------------------------------------------------ queries
 
     @Transactional(readOnly = true)
     public List<PromotionResponse> listAll() {
-
-        return promotionRepository
-                .findAllByOrderByCreatedAtDesc()
-                .stream()
-                .map(PromotionResponse::from)
-                .toList();
+        return promotionRepository.findAllByOrderByCreatedAtDesc().stream().map(PromotionResponse::from).toList();
     }
-
-
-    // =========================================================
-    // GET PROMOTION
-    // =========================================================
 
     @Transactional(readOnly = true)
     public PromotionResponse get(Long id) {
-
-        return PromotionResponse.from(
-                find(id)
-        );
+        return PromotionResponse.from(find(id));
     }
 
-
-    // =========================================================
-    // ACTIVE OFFERS
-    // =========================================================
-
+    /** Customers only ever see published, currently running offers (PBI-15). */
     @Transactional(readOnly = true)
     public List<PromotionResponse> activeOffers() {
-
         LocalDate today = LocalDate.now();
-
-        return promotionRepository
-                .findByStatusAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByEndDateAsc(
-                        Promotion.Status.ACTIVE,
-                        today,
-                        today
-                )
-                .stream()
-                .filter(promotion ->
-                        !promotion.usageLimitReached()
-                )
-                .map(PromotionResponse::from)
-                .toList();
+        return promotionRepository.findByStatusAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByEndDateAsc(
+                        Promotion.Status.ACTIVE, today, today).stream()
+                .filter(p -> !p.usageLimitReached())
+                .map(PromotionResponse::from).toList();
     }
 
+    // ------------------------------------------------------------------ create / edit (UC-05)
 
-    // =========================================================
-    // CREATE PROMOTION
-    // =========================================================
-
-    public PromotionResponse create(
-            PromotionRequest request,
-            String actor) {
-
-        validate(request);
-
-        String code = couponCode(
-                request.couponCode(),
-                request.title()
-        );
-
+    public PromotionResponse create(PromotionRequest r, String actor) {
+        validate(r);
+        String code = couponCode(r.couponCode(), r.title());
         if (promotionRepository.existsByCouponCodeIgnoreCase(code)) {
-
-            throw BusinessException.conflict(
-                    "Coupon code "
-                            + code
-                            + " is already used by another promotion"
-            );
+            throw BusinessException.conflict("Coupon code " + code + " is already used by another promotion");
         }
-
-        if (request.endDate().isBefore(LocalDate.now())) {
-
-            throw new BusinessException(
-                    "The campaign end date is in the past"
-            );
+        if (r.endDate().isBefore(LocalDate.now())) {
+            throw new BusinessException("The campaign end date is in the past");
         }
-
-        Promotion promotion = new Promotion();
-
-        apply(
-                promotion,
-                request
-        );
-
-        promotion.setCouponCode(code);
-
-        promotion.setCreatedBy(actor);
-
-        promotion.setStatus(
-                request.publish()
-                        ? Promotion.Status.ACTIVE
-                        : Promotion.Status.DRAFT
-        );
-
-        promotionRepository.save(promotion);
-
-        if (request.publish()) {
-            announce(promotion);
+        Promotion p = new Promotion();
+        apply(p, r);
+        p.setCouponCode(code);
+        p.setCreatedBy(actor);
+        p.setStatus(r.publish() ? Promotion.Status.ACTIVE : Promotion.Status.DRAFT);
+        promotionRepository.save(p);
+        if (r.publish()) {
+            announce(p);
         }
-
-        return PromotionResponse.from(promotion);
+        return PromotionResponse.from(p);
     }
 
-
-    // =========================================================
-    // UPDATE PROMOTION
-    // =========================================================
-
-    public PromotionResponse update(
-            Long id,
-            PromotionRequest request) {
-
-        Promotion promotion = find(id);
-
-        validate(request);
-
-        boolean discountChanged =
-                promotion.getDiscountType() != request.discountType()
-
-                        ||
-
-                        promotion
-                                .getDiscountValue()
-                                .compareTo(
-                                        request.discountValue()
-                                ) != 0
-
-                        ||
-
-                        !Objects.equals(
-                                normal(promotion.getMaxDiscount()),
-                                normal(request.maxDiscount())
-                        );
-
-        if (promotion.isRunning()
-                && discountChanged) {
-
-            throw BusinessException.conflict(
-                    "The discount of a running campaign cannot be changed. "
-                            + "Deactivate it first or create a new offer."
-            );
+    /** UC-05 Edit Promotional Campaign. The discount of a running campaign cannot change (open issue decision). */
+    public PromotionResponse update(Long id, PromotionRequest r) {
+        Promotion p = find(id);
+        validate(r);
+        boolean discountChanged = p.getDiscountType() != r.discountType()
+                || p.getDiscountValue().compareTo(r.discountValue()) != 0
+                || !Objects.equals(normal(p.getMaxDiscount()), normal(r.maxDiscount()));
+        if (p.isRunning() && discountChanged) {
+            throw BusinessException.conflict("The discount of a running campaign cannot be changed. Deactivate it first or create a new offer.");
         }
-
-        String code = couponCode(
-                request.couponCode(),
-                request.title()
-        );
-
-        if (promotion.getCouponCode() != null
-                && !promotion
-                .getCouponCode()
-                .equalsIgnoreCase(code)
-
-                && promotionRepository
-                .existsByCouponCodeIgnoreCase(code)) {
-
-            throw BusinessException.conflict(
-                    "Coupon code "
-                            + code
-                            + " is already used by another promotion"
-            );
+        String code = couponCode(r.couponCode(), r.title());
+        if (!p.getCouponCode().equalsIgnoreCase(code) && promotionRepository.existsByCouponCodeIgnoreCase(code)) {
+            throw BusinessException.conflict("Coupon code " + code + " is already used by another promotion");
         }
-
-        if (promotion.getStatus()
-                == Promotion.Status.EXPIRED) {
-
-            if (request.endDate()
-                    .isBefore(LocalDate.now())) {
-
-                throw new BusinessException(
-                        "Extend the end date to edit an expired promotion"
-                );
+        if (p.getStatus() == Promotion.Status.EXPIRED) {
+            if (r.endDate().isBefore(LocalDate.now())) {
+                throw new BusinessException("Extend the end date to edit an expired promotion");
             }
-
-            promotion.setStatus(
-                    Promotion.Status.DRAFT
-            );
+            p.setStatus(Promotion.Status.DRAFT);
         }
-
-        boolean wasPublished =
-                promotion.getStatus()
-                        == Promotion.Status.ACTIVE;
-
-        apply(
-                promotion,
-                request
-        );
-
-        promotion.setCouponCode(code);
-
-        if (request.publish()
-                && !wasPublished) {
-
-            promotion.setStatus(
-                    Promotion.Status.ACTIVE
-            );
-
-            announce(promotion);
+        boolean wasPublished = p.getStatus() == Promotion.Status.ACTIVE;
+        apply(p, r);
+        p.setCouponCode(code);
+        if (r.publish() && !wasPublished) {
+            p.setStatus(Promotion.Status.ACTIVE);
+            announce(p);
         }
-
-        return PromotionResponse.from(promotion);
+        return PromotionResponse.from(p);
     }
-
-
-    // =========================================================
-    // PUBLISH PROMOTION
-    // =========================================================
 
     public PromotionResponse publish(Long id) {
-
-        Promotion promotion = find(id);
-
-        if (promotion.getEndDate() != null
-                && promotion
-                .getEndDate()
-                .isBefore(LocalDate.now())) {
-
-            throw new BusinessException(
-                    "This promotion has ended. "
-                            + "Extend the end date before publishing."
-            );
+        Promotion p = find(id);
+        if (p.getEndDate().isBefore(LocalDate.now())) {
+            throw new BusinessException("This promotion has ended. Extend the end date before publishing.");
         }
-
-        if (promotion.getStatus()
-                != Promotion.Status.ACTIVE) {
-
-            promotion.setStatus(
-                    Promotion.Status.ACTIVE
-            );
-
-            announce(promotion);
+        if (p.getStatus() != Promotion.Status.ACTIVE) {
+            p.setStatus(Promotion.Status.ACTIVE);
+            announce(p);
         }
-
-        return PromotionResponse.from(promotion);
+        return PromotionResponse.from(p);
     }
-
-
-    // =========================================================
-    // DEACTIVATE PROMOTION
-    // =========================================================
 
     public PromotionResponse deactivate(Long id) {
-
-        Promotion promotion = find(id);
-
-        promotion.setStatus(
-                Promotion.Status.INACTIVE
-        );
-
-        return PromotionResponse.from(promotion);
+        Promotion p = find(id);
+        p.setStatus(Promotion.Status.INACTIVE);
+        return PromotionResponse.from(p);
     }
-
-
-    // =========================================================
-    // DELETE PROMOTION
-    // =========================================================
 
     public void delete(Long id) {
-
-        Promotion promotion = find(id);
-
-        List<Booking> bookings =
-                bookingRepository
-                        .findByPromotion_PromotionId(id);
-
-        if (!bookings.isEmpty()) {
-
-            throw BusinessException.conflict(
-                    "Bookings have used this promotion. "
-                            + "Deactivate it instead to keep the sales history."
-            );
+        Promotion p = find(id);
+        if (!bookingRepository.findByPromotionId(id).isEmpty()) {
+            throw BusinessException.conflict("Bookings have used this promotion. Deactivate it instead to keep the sales history.");
         }
-
-        promotionRepository.delete(promotion);
+        promotionRepository.delete(p);
     }
 
+    // ------------------------------------------------------------------ checkout (UC-06 extension 3a)
 
-    // =========================================================
-    // APPLY COUPON
-    // =========================================================
-
-    @Transactional(
-            noRollbackFor = BusinessException.class
-    )
-    public AppliedPromotion apply(
-            String code,
-            TourPackage tourPackage,
-            BigDecimal subtotal,
-            User customer,
-            int adults,
-            int children,
-            boolean countEngagement) {
-
-        if (code == null
-                || code.trim().isEmpty()) {
-
-            throw new BusinessException(
-                    "Promotion code is required"
-            );
-        }
-
-        Promotion promotion =
-                promotionRepository
-                        .findByCouponCodeIgnoreCase(
-                                code.trim()
-                        )
-                        .orElseThrow(() ->
-                                new BusinessException(
-                                        "Promotion code "
-                                                + code
-                                                .trim()
-                                                .toUpperCase(
-                                                        Locale.ROOT
-                                                )
-                                                + " does not exist"
-                                )
-                        );
-
+    /**
+     * Validates a coupon for a booking and returns the discount. Throws with a clear reason
+     * (expired, not for this package, audience, minimum spend, usage limit) when it cannot be used.
+     * A rejected code must not roll back the caller's transaction (the quote is still shown).
+     */
+    @Transactional(noRollbackFor = BusinessException.class)
+    public AppliedPromotion apply(String code, TourPackage tourPackage, BigDecimal subtotal, User customer,
+                                  int adults, int children, boolean countEngagement) {
+        Promotion p = promotionRepository.findByCouponCodeIgnoreCase(code.trim())
+                .orElseThrow(() -> new BusinessException("Promotion code " + code.trim().toUpperCase(Locale.ROOT) + " does not exist"));
         if (countEngagement) {
-
-            promotion.incrementTimesApplied();
+            p.setTimesApplied(p.getTimesApplied() + 1);
         }
-
-        if (!promotion.isRunning()) {
-
-            throw new BusinessException(
-                    "Promotion code "
-                            + promotion.getCouponCode()
-                            + " is not active right now"
-            );
+        if (!p.isRunning()) {
+            throw new BusinessException("Promotion code " + p.getCouponCode() + " is not active right now");
         }
-
-        if (promotion.usageLimitReached()) {
-
-            throw new BusinessException(
-                    "Promotion code "
-                            + promotion.getCouponCode()
-                            + " has reached its usage limit"
-            );
+        if (p.usageLimitReached()) {
+            throw new BusinessException("Promotion code " + p.getCouponCode() + " has reached its usage limit");
         }
-
-        if (!promotion.appliesTo(tourPackage)) {
-
-            throw new BusinessException(
-                    "Promotion code "
-                            + promotion.getCouponCode()
-                            + " is not valid for "
-                            + tourPackage.getName()
-            );
+        if (!p.appliesTo(tourPackage)) {
+            throw new BusinessException("Promotion code " + p.getCouponCode() + " is not valid for " + tourPackage.getName());
         }
-
-        if (promotion.getMinSpend() != null
-                && subtotal != null
-                && subtotal.compareTo(
-                promotion.getMinSpend()
-        ) < 0) {
-
-            throw new BusinessException(
-                    "Spend at least LKR "
-                            + promotion
-                            .getMinSpend()
-                            .setScale(
-                                    0,
-                                    RoundingMode.HALF_UP
-                            )
-                            .toPlainString()
-                            + " to use this code"
-            );
+        if (p.getMinSpend() != null && subtotal.compareTo(p.getMinSpend()) < 0) {
+            throw new BusinessException("Spend at least LKR " + p.getMinSpend().setScale(0, RoundingMode.HALF_UP).toPlainString() + " to use this code");
         }
-
-        if (!matchesAudience(
-                promotion,
-                customer,
-                adults,
-                children)) {
-
-            throw new BusinessException(
-                    "Promotion code "
-                            + promotion.getCouponCode()
-                            + " is for a different customer group"
-            );
+        if (!matchesAudience(p, customer, adults, children)) {
+            throw new BusinessException("Promotion code " + p.getCouponCode() + " is for a different customer group");
         }
-
-        return new AppliedPromotion(
-                promotion,
-                discountCalculator.discountFor(
-                        promotion,
-                        subtotal
-                )
-        );
+        return new AppliedPromotion(p, discountCalculator.discountFor(p, subtotal));
     }
 
-
-    // =========================================================
-    // MARK PROMOTION AS USED
-    // =========================================================
-
-    public void markUsed(Promotion promotion) {
-
-        if (promotion != null) {
-
-            /*
-             * usedCount is primitive int.
-             * Therefore it must NOT be compared with null.
-             */
-            promotion.incrementUsedCount();
+    /** Counts a confirmed booking against the promotion (called after successful payment). */
+    public void markUsed(Promotion p) {
+        if (p != null) {
+            p.setUsedCount(p.getUsedCount() + 1);
         }
     }
 
-
-    // =========================================================
-    // PERFORMANCE
-    // =========================================================
+    // ------------------------------------------------------------------ performance (PBI-16)
 
     @Transactional(readOnly = true)
     public List<PromotionPerformance> performance() {
-
-        List<PromotionPerformance> result =
-                new ArrayList<>();
-
-        for (Promotion promotion :
-                promotionRepository
-                        .findAllByOrderByCreatedAtDesc()) {
-
-            List<Booking> bookings =
-                    bookingRepository
-                            .findByPromotion_PromotionId(
-                                    promotion.getPromotionId()
-                            );
-
-            List<Booking> sold =
-                    bookings.stream()
-                            .filter(booking -> {
-
-                                String status =
-                                        booking.getStatus();
-
-                                return status != null
-                                        && (
-                                        status.equalsIgnoreCase(
-                                                "CONFIRMED"
-                                        )
-                                                ||
-                                                status.equalsIgnoreCase(
-                                                        "COMPLETED"
-                                                )
-                                );
-                            })
-                            .toList();
-
-            double revenueValue =
-                    sold.stream()
-                            .mapToDouble(
-                                    Booking::getTotalAmount
-                            )
-                            .sum();
-
-            BigDecimal revenue =
-                    BigDecimal.valueOf(
-                            revenueValue
-                    );
-
-            /*
-             * Your current Booking model does not
-             * appear to have discountAmount.
-             */
-            BigDecimal discount =
-                    BigDecimal.ZERO;
-
-            int timesApplied =
-                    promotion.getTimesApplied();
-
-            double conversion =
-                    timesApplied == 0
-                            ? 0
-                            : Math.round(
-                            sold.size()
-                                    * 1000.0
-                                    / timesApplied
-                    ) / 10.0;
-
-            result.add(
-                    new PromotionPerformance(
-                            promotion.getPromotionId(),
-                            promotion.getTitle(),
-                            promotion.getCouponCode(),
-                            promotion.getStatus(),
-                            promotion.getTimesApplied(),
-                            sold.size(),
-                            revenue,
-                            discount,
-                            Math.min(
-                                    conversion,
-                                    100.0
-                            )
-                    )
-            );
+        List<PromotionPerformance> list = new ArrayList<>();
+        for (Promotion p : promotionRepository.findAllByOrderByCreatedAtDesc()) {
+            List<Booking> sold = bookingRepository.findByPromotionId(p.getId()).stream()
+                    .filter(b -> SOLD.contains(b.getStatus())).toList();
+            BigDecimal revenue = sold.stream().map(Booking::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal discount = sold.stream().map(Booking::getDiscountAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+            double conversion = p.getTimesApplied() == 0 ? 0 : Math.round(sold.size() * 1000.0 / p.getTimesApplied()) / 10.0;
+            list.add(new PromotionPerformance(p.getId(), p.getTitle(), p.getCouponCode(), p.getStatus(),
+                    p.getTimesApplied(), sold.size(), revenue, discount, Math.min(conversion, 100.0)));
         }
-
-        return result;
+        return list;
     }
 
+    // ------------------------------------------------------------------ nightly job
 
-    // =========================================================
-    // EXPIRE FINISHED PROMOTIONS
-    // =========================================================
-
+    /** Deactivates promotions whose end date has passed. */
     public int expireFinished() {
-
-        List<Promotion> finished =
-                promotionRepository
-                        .findByStatusInAndEndDateBefore(
-                                List.of(
-                                        Promotion.Status.ACTIVE,
-                                        Promotion.Status.DRAFT,
-                                        Promotion.Status.INACTIVE
-                                ),
-                                LocalDate.now()
-                        );
-
-        finished.forEach(
-                promotion ->
-                        promotion.setStatus(
-                                Promotion.Status.EXPIRED
-                        )
-        );
-
+        List<Promotion> finished = promotionRepository.findByStatusInAndEndDateBefore(
+                List.of(Promotion.Status.ACTIVE, Promotion.Status.DRAFT, Promotion.Status.INACTIVE), LocalDate.now());
+        finished.forEach(p -> p.setStatus(Promotion.Status.EXPIRED));
         return finished.size();
     }
 
+    // ------------------------------------------------------------------ helpers
 
-    // =========================================================
-    // VALIDATE REQUEST
-    // =========================================================
-
-    private void validate(
-            PromotionRequest request) {
-
-        if (request == null) {
-
-            throw new BusinessException(
-                    "Promotion information is required"
-            );
+    /** 4a invalid discount, 7a invalid date range. */
+    private void validate(PromotionRequest r) {
+        if (r.endDate().isBefore(r.startDate())) {
+            throw new BusinessException("Invalid date range: the end date must be on or after the start date");
         }
-
-        if (request.startDate() == null
-                || request.endDate() == null) {
-
-            throw new BusinessException(
-                    "Start date and end date are required"
-            );
-        }
-
-        if (request.endDate()
-                .isBefore(
-                        request.startDate()
-                )) {
-
-            throw new BusinessException(
-                    "Invalid date range: "
-                            + "the end date must be on or after the start date"
-            );
-        }
-
-        if (request.discountValue() == null) {
-
-            throw new BusinessException(
-                    "Discount value is required"
-            );
-        }
-
-        if (request.discountType()
-                == Promotion.DiscountType.PERCENTAGE) {
-
-            if (request
-                    .discountValue()
-                    .compareTo(
-                            BigDecimal.ONE
-                    ) < 0
-
-                    ||
-
-                    request
-                            .discountValue()
-                            .compareTo(
-                                    new BigDecimal("90")
-                            ) > 0) {
-
-                throw new BusinessException(
-                        "A percentage discount must be between 1% and 90%"
-                );
+        if (r.discountType() == Promotion.DiscountType.PERCENTAGE) {
+            if (r.discountValue().compareTo(BigDecimal.ONE) < 0 || r.discountValue().compareTo(new BigDecimal("90")) > 0) {
+                throw new BusinessException("A percentage discount must be between 1% and 90%");
             }
-
         } else {
-
-            if (request
-                    .discountValue()
-                    .compareTo(
-                            new BigDecimal("100")
-                    ) < 0
-
-                    ||
-
-                    request
-                            .discountValue()
-                            .compareTo(
-                                    new BigDecimal(
-                                            "1000000"
-                                    )
-                            ) > 0) {
-
-                throw new BusinessException(
-                        "A fixed discount must be between "
-                                + "LKR 100 and LKR 1,000,000"
-                );
+            if (r.discountValue().compareTo(new BigDecimal("100")) < 0 || r.discountValue().compareTo(new BigDecimal("1000000")) > 0) {
+                throw new BusinessException("A fixed discount must be between LKR 100 and LKR 1,000,000");
             }
-
-            if (request.minSpend() != null
-                    && request.minSpend().signum() > 0
-                    && request
-                    .discountValue()
-                    .compareTo(
-                            request.minSpend()
-                    ) >= 0) {
-
-                throw new BusinessException(
-                        "A fixed discount must be smaller "
-                                + "than the minimum spend"
-                );
+            if (r.minSpend() != null && r.minSpend().signum() > 0 && r.discountValue().compareTo(r.minSpend()) >= 0) {
+                throw new BusinessException("A fixed discount must be smaller than the minimum spend");
             }
         }
     }
 
-
-    // =========================================================
-    // APPLY REQUEST DATA TO ENTITY
-    // =========================================================
-
-    private void apply(
-            Promotion promotion,
-            PromotionRequest request) {
-
-        promotion.setTitle(
-                request.title().trim()
-        );
-
-        promotion.setDescription(
-                request.description()
-        );
-
-        promotion.setOfferType(
-                request.offerType()
-        );
-
-        promotion.setDiscountType(
-                request.discountType()
-        );
-
-        promotion.setDiscountValue(
-                request.discountValue()
-        );
-
-        promotion.setMaxDiscount(
-                request.discountType()
-                        == Promotion.DiscountType.PERCENTAGE
-                        ? normal(
-                        request.maxDiscount()
-                )
-                        : null
-        );
-
-        promotion.setMinSpend(
-                normal(
-                        request.minSpend()
-                )
-        );
-
-        promotion.setStartDate(
-                request.startDate()
-        );
-
-        promotion.setEndDate(
-                request.endDate()
-        );
-
-        promotion.setUsageLimit(
-                request.usageLimit()
-        );
-
-        promotion.setImageUrl(
-                request.imageUrl() == null
-                        || request.imageUrl().isBlank()
-                        ? null
-                        : request
-                        .imageUrl()
-                        .trim()
-        );
-
-        // -----------------------------------------------------
-        // PACKAGES
-        // -----------------------------------------------------
-
-        Set<TourPackage> packages =
-                new HashSet<>();
-
-        if (request.packageIds() != null) {
-
-            for (Long packageId :
-                    request.packageIds()) {
-
-                TourPackage tourPackage =
-                        packageRepository
-                                .findById(packageId)
-                                .orElseThrow(() ->
-                                        new NotFoundException(
-                                                "Tour package",
-                                                packageId
-                                        )
-                                );
-
-                packages.add(
-                        tourPackage
-                );
+    private void apply(Promotion p, PromotionRequest r) {
+        p.setTitle(r.title().trim());
+        p.setDescription(r.description());
+        p.setOfferType(r.offerType());
+        p.setDiscountType(r.discountType());
+        p.setDiscountValue(r.discountValue());
+        p.setMaxDiscount(r.discountType() == Promotion.DiscountType.PERCENTAGE ? normal(r.maxDiscount()) : null);
+        p.setMinSpend(normal(r.minSpend()));
+        p.setStartDate(r.startDate());
+        p.setEndDate(r.endDate());
+        p.setUsageLimit(r.usageLimit());
+        p.setImageUrl(r.imageUrl() == null || r.imageUrl().isBlank() ? null : r.imageUrl().trim());
+        Set<TourPackage> packages = new HashSet<>();
+        if (r.packageIds() != null) {
+            for (Long pid : r.packageIds()) {
+                packages.add(packageRepository.findById(pid).orElseThrow(() -> new NotFoundException("Tour package", pid)));
             }
         }
-
-        promotion
-                .getPackages()
-                .clear();
-
-        promotion
-                .getPackages()
-                .addAll(
-                        packages
-                );
-
-        // -----------------------------------------------------
-        // AUDIENCES
-        // -----------------------------------------------------
-
-        Set<Promotion.Audience> audiences;
-
-        if (request.audiences() == null
-                || request
-                .audiences()
-                .isEmpty()) {
-
-            audiences =
-                    EnumSet.of(
-                            Promotion.Audience
-                                    .ALL_CUSTOMERS
-                    );
-
-        } else {
-
-            audiences =
-                    EnumSet.copyOf(
-                            request.audiences()
-                    );
-        }
-
-        promotion
-                .getAudiences()
-                .clear();
-
-        promotion
-                .getAudiences()
-                .addAll(
-                        audiences
-                );
+        p.getPackages().clear();
+        p.getPackages().addAll(packages);
+        // 6a: no target criterion selected -> default to all customers
+        Set<Promotion.Audience> audiences = r.audiences() == null || r.audiences().isEmpty()
+                ? EnumSet.of(Promotion.Audience.ALL_CUSTOMERS) : EnumSet.copyOf(r.audiences());
+        p.getAudiences().clear();
+        p.getAudiences().addAll(audiences);
     }
 
-
-    // =========================================================
-    // AUDIENCE MATCHING
-    // =========================================================
-
-    private boolean matchesAudience(
-            Promotion promotion,
-            User customer,
-            int adults,
-            int children) {
-
-        Set<Promotion.Audience> audiences =
-                promotion.getAudiences();
-
-        /*
-         * ALL and ALL_CUSTOMERS both mean
-         * everyone can use the promotion.
-         */
-        if (audiences.isEmpty()
-                || audiences.contains(
-                Promotion.Audience.ALL
-        )
-                || audiences.contains(
-                Promotion.Audience.ALL_CUSTOMERS
-        )) {
-
+    private boolean matchesAudience(Promotion p, User customer, int adults, int children) {
+        if (p.getAudiences().contains(Promotion.Audience.ALL_CUSTOMERS)) {
             return true;
         }
-
-        if (customer == null
-                || customer.getUserId() == null) {
-
-            return false;
-        }
-
-        Long userId =
-                customer.getUserId();
-
-        long previousBookings =
-                bookingRepository
-                        .findByCustomer_UserIdOrderByBookingIdDesc(
-                                userId
-                        )
-                        .stream()
-                        .filter(booking -> {
-
-                            String status =
-                                    booking.getStatus();
-
-                            return status != null
-                                    && (
-                                    status.equalsIgnoreCase(
-                                            "CONFIRMED"
-                                    )
-                                            ||
-                                            status.equalsIgnoreCase(
-                                                    "COMPLETED"
-                                            )
-                            );
-                        })
-                        .count();
-
-        String country =
-                customerRepository
-                        .findByUserId(
-                                userId
-                        )
-                        .map(
-                                Customer::getCountry
-                        )
-                        .orElse(null);
-
-        boolean local =
-                country != null
-                        && country
-                        .trim()
-                        .equalsIgnoreCase(
-                                "Sri Lanka"
-                        );
-
-        for (Promotion.Audience audience :
-                audiences) {
-
-            boolean match =
-                    switch (audience) {
-
-                        case ALL,
-                             ALL_CUSTOMERS ->
-                                true;
-
-                        case NEW_CUSTOMERS ->
-                                previousBookings == 0;
-
-                        case RETURNING_CUSTOMERS ->
-                                previousBookings > 0;
-
-                        /*
-                         * There is currently no separate
-                         * loyalty-point field available here,
-                         * so use repeat booking history.
-                         */
-                        case LOYAL_CUSTOMERS ->
-                                previousBookings >= 3;
-
-                        case LOCAL_RESIDENTS ->
-                                local;
-
-                        case INTERNATIONAL ->
-                                country != null
-                                        && !local;
-
-                        case FAMILIES ->
-                                children > 0;
-
-                        case COUPLES ->
-                                adults == 2
-                                        && children == 0;
-
-                        case SOLO_TRAVELERS ->
-                                adults == 1
-                                        && children == 0;
-
-                        case GROUPS ->
-                                adults + children >= 6;
-                    };
-
-            if (match) {
+        long previous = bookingRepository.countByCustomerIdAndStatusIn(customer.getId(), SOLD);
+        String country = customerRepository.findByUserId(customer.getId()).map(Customer::getCountry).orElse(null);
+        boolean local = country != null && country.trim().equalsIgnoreCase("Sri Lanka");
+        for (Promotion.Audience a : p.getAudiences()) {
+            boolean ok = switch (a) {
+                case ALL_CUSTOMERS -> true;
+                case NEW_CUSTOMERS -> previous == 0;
+                case RETURNING_CUSTOMERS -> previous > 0;
+                case LOCAL_RESIDENTS -> local;
+                case INTERNATIONAL -> country != null && !local;
+                case FAMILIES -> children > 0;
+                case GROUPS -> adults + children >= 6;
+            };
+            if (ok) {
                 return true;
             }
         }
-
         return false;
     }
 
-
-    // =========================================================
-    // PROMOTION NOTIFICATION
-    // =========================================================
-
-    private void announce(
-            Promotion promotion) {
-
-        List<User> customers =
-                userRepository
-                        .findByRoleAndActiveTrue(
-                                Role.CUSTOMER
-                        );
-
-        for (User user : customers) {
-
-            boolean consent =
-                    customerRepository
-                            .findByUserId(
-                                    user.getUserId()
-                            )
-                            .map(
-                                    Customer::isMarketingConsent
-                            )
-                            .orElse(false);
-
+    /** Ethical marketing: only customers who opted in receive promotional notifications. */
+    private void announce(Promotion p) {
+        for (User u : userRepository.findByRoleAndActiveTrue(Role.CUSTOMER)) {
+            boolean consent = customerRepository.findByUserId(u.getId()).map(Customer::isMarketingConsent).orElse(false);
             if (consent) {
-
-                notificationService.notify(
-                        user,
-                        Notification.Type.PROMOTION,
-                        "New offer: "
-                                + promotion.getTitle(),
-                        "Use code "
-                                + promotion.getCouponCode()
-                                + " before "
-                                + promotion.getEndDate()
-                                + ".",
-                        "/offers.html"
-                );
+                notificationService.notify(u, Notification.Type.PROMOTION, "New offer: " + p.getTitle(),
+                        "Use code " + p.getCouponCode() + " before " + p.getEndDate() + ".", "/offers.html");
             }
         }
     }
 
-
-    // =========================================================
-    // GENERATE COUPON CODE
-    // =========================================================
-
-    private static String couponCode(
-            String requested,
-            String title) {
-
-        if (requested != null
-                && !requested.isBlank()) {
-
-            return requested
-                    .trim()
-                    .toUpperCase(
-                            Locale.ROOT
-                    );
+    private static String couponCode(String requested, String title) {
+        if (requested != null && !requested.isBlank()) {
+            return requested.trim().toUpperCase(Locale.ROOT);
         }
-
-        String base =
-                title == null
-                        ? ""
-                        : title
-                        .toUpperCase(
-                                Locale.ROOT
-                        )
-                        .replaceAll(
-                                "[^A-Z0-9]",
-                                ""
-                        );
-
-        base =
-                base.length() > 8
-                        ? base.substring(
-                        0,
-                        8
-                )
-                        : base;
-
-        return (
-                base.isEmpty()
-                        ? "OFFER"
-                        : base
-        )
-                +
-                (
-                        100
-                                +
-                                new Random()
-                                        .nextInt(
-                                                900
-                                        )
-                );
+        String base = title.toUpperCase(Locale.ROOT).replaceAll("[^A-Z0-9]", "");
+        base = base.length() > 8 ? base.substring(0, 8) : base;
+        return (base.isEmpty() ? "OFFER" : base) + (100 + new Random().nextInt(900));
     }
 
-
-    // =========================================================
-    // NORMALIZE BigDecimal
-    // =========================================================
-
-    private static BigDecimal normal(
-            BigDecimal value) {
-
-        return value == null
-                || value.signum() == 0
-                ? null
-                : value.stripTrailingZeros();
+    private static BigDecimal normal(BigDecimal v) {
+        return v == null || v.signum() == 0 ? null : v.stripTrailingZeros();
     }
-
-
-    // =========================================================
-    // FIND PROMOTION
-    // =========================================================
 
     private Promotion find(Long id) {
-
-        return promotionRepository
-                .findById(id)
-                .orElseThrow(() ->
-                        new NotFoundException(
-                                "Promotion",
-                                id
-                        )
-                );
+        return promotionRepository.findById(id).orElseThrow(() -> new NotFoundException("Promotion", id));
     }
 }

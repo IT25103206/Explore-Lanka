@@ -1,4 +1,4 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common;
+package com.project.webbasedtourismandtravelmanagementsystem.common;
 
 /**
  * Role checks used in {@code @PreAuthorize}. Keeping them in one place makes the

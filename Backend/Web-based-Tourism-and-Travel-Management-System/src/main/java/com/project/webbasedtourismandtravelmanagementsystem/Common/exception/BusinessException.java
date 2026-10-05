@@ -1,4 +1,4 @@
-package com.project.webbasedtourismandtravelmanagementsystem.Common.exception;
+package com.project.webbasedtourismandtravelmanagementsystem.common.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
