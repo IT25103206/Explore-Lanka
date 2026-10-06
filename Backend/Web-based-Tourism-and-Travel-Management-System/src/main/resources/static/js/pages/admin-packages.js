@@ -94,8 +94,15 @@
         (p ? p.itinerary : [{ dayNumber: 1 }]).forEach((d) => days.insertAdjacentHTML("beforeend", dayRow(d)));
         const syncType = () => {
             const t = form.type.value;
-            $$(".seasonal-only", form).forEach((x) => x.classList.toggle("hidden", t !== "SEASONAL"));
-            $$(".custom-only", form).forEach((x) => x.classList.toggle("hidden", t !== "CUSTOM"));
+            // Hidden type-specific fields must not participate in validation or the payload.
+            // Standard/seasonal responses contain maxExtraDays=0, below the custom field's min=1.
+            [[".seasonal-only", "SEASONAL"], [".custom-only", "CUSTOM"]].forEach(([selector, type]) => {
+                const active = t === type;
+                $$(selector, form).forEach((panel) => {
+                    panel.classList.toggle("hidden", !active);
+                    $$("input, select, textarea", panel).forEach((el) => { el.disabled = !active; });
+                });
+            });
             ["seasonStart", "seasonEnd", "seasonalAdjustmentPercent"].forEach((n) => { form[n].required = t === "SEASONAL"; });
             ["extraDayPrice", "maxExtraDays"].forEach((n) => { form[n].required = t === "CUSTOM"; });
         };
@@ -109,7 +116,10 @@
             actions: [{ label: "Cancel", kind: "ghost" }, {
                 label: p ? "Save changes" : "Create package", onClick: async () => {
                     $$(".day-row [data-k]", form).forEach((el) => { el.removeAttribute("name"); });
-                    if (!EL.validate(form)) return false;
+                    if (!EL.validate(form)) {
+                        EL.formAlert(form, "Please correct the highlighted fields, then save again.");
+                        return false;
+                    }
                     const d = EL.formData(form);
                     if (p) d.type = p.type;
                     d.itinerary = $$(".day-row", days).map((row) => {
