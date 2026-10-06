@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public interface EventRegistrationRepository extends JpaRepository<EventRegistration, Long> {
 
+    boolean existsByCustomerId(Long customerId);
+
     List<EventRegistration> findByEventIdOrderByCreatedAtDesc(Long eventId);
 
     List<EventRegistration> findByEventIdAndStatus(Long eventId, EventRegistration.Status status);
