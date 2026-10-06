@@ -5,15 +5,22 @@ import com.project.webbasedtourismandtravelmanagementsystem.auth.model.Customer;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.model.Role;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.model.User;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.repository.CustomerRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.auth.repository.PasswordResetOtpRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.auth.repository.PasswordResetTokenRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.auth.repository.UserRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.booking.repository.BookingRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.common.exception.BusinessException;
 import com.project.webbasedtourismandtravelmanagementsystem.common.exception.NotFoundException;
+import com.project.webbasedtourismandtravelmanagementsystem.event.repository.EventRegistrationRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.feedback.repository.FeedbackRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.notification.model.Notification;
+import com.project.webbasedtourismandtravelmanagementsystem.notification.repository.NotificationRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.notification.service.NotificationService;
 import com.project.webbasedtourismandtravelmanagementsystem.partner.model.Supplier;
 import com.project.webbasedtourismandtravelmanagementsystem.partner.repository.SupplierRepository;
 import com.project.webbasedtourismandtravelmanagementsystem.resource.repository.TourGuideRepository;
+import com.project.webbasedtourismandtravelmanagementsystem.wishlist.WishlistRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,13 +41,23 @@ public class UserService {
     private final SupplierRepository supplierRepository;
     private final BookingRepository bookingRepository;
     private final TourGuideRepository tourGuideRepository;
+    private final EventRegistrationRepository eventRegistrationRepository;
+    private final FeedbackRepository feedbackRepository;
+    private final NotificationRepository notificationRepository;
+    private final WishlistRepository wishlistRepository;
+    private final PasswordResetOtpRepository passwordResetOtpRepository;
+    private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final NotificationService notificationService;
 
     public UserService(UserRepository userRepository, CustomerRepository customerRepository,
                        SupplierRepository supplierRepository, BookingRepository bookingRepository,
                        TourGuideRepository tourGuideRepository, PasswordEncoder passwordEncoder,
-                       NotificationService notificationService) {
+                       NotificationService notificationService,
+                       EventRegistrationRepository eventRegistrationRepository,
+                       FeedbackRepository feedbackRepository, NotificationRepository notificationRepository,
+                       WishlistRepository wishlistRepository, PasswordResetOtpRepository passwordResetOtpRepository,
+                       PasswordResetTokenRepository passwordResetTokenRepository) {
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
         this.supplierRepository = supplierRepository;
@@ -48,6 +65,12 @@ public class UserService {
         this.tourGuideRepository = tourGuideRepository;
         this.passwordEncoder = passwordEncoder;
         this.notificationService = notificationService;
+        this.eventRegistrationRepository = eventRegistrationRepository;
+        this.feedbackRepository = feedbackRepository;
+        this.notificationRepository = notificationRepository;
+        this.wishlistRepository = wishlistRepository;
+        this.passwordResetOtpRepository = passwordResetOtpRepository;
+        this.passwordResetTokenRepository = passwordResetTokenRepository;
     }
 
     // ------------------------------------------------------------------ registration / login
@@ -171,9 +194,28 @@ public class UserService {
         if (bookingRepository.existsByCustomerId(id)) {
             throw BusinessException.conflict("This customer has booking history. Deactivate the account instead so records stay intact.");
         }
-        tourGuideRepository.findByUserId(id).ifPresent(g -> g.setUser(null));
-        customerRepository.findByUserId(id).ifPresent(customerRepository::delete);
-        userRepository.delete(user);
+        if (eventRegistrationRepository.existsByCustomerId(id)) {
+            throw BusinessException.conflict("This user has event registration history. Deactivate the account instead so records stay intact.");
+        }
+        if (feedbackRepository.existsByCustomerId(id)) {
+            throw BusinessException.conflict("This user has review history. Deactivate the account instead so records stay intact.");
+        }
+        try {
+            // Remove account-only records before their user; retain business history and guide profiles.
+            notificationRepository.deleteByRecipientId(id);
+            wishlistRepository.deleteByCustomerId(id);
+            passwordResetOtpRepository.deleteByUserId(id);
+            passwordResetTokenRepository.deleteByUserId(id);
+            tourGuideRepository.findByUserId(id).ifPresent(g -> g.setUser(null));
+            customerRepository.findByUserId(id).ifPresent(customerRepository::delete);
+            // Flush dependent removals and the optional guide link before deleting the parent.
+            userRepository.flush();
+            userRepository.delete(user);
+            userRepository.flush();
+        } catch (DataIntegrityViolationException ex) {
+            // The transaction rolls back, including cleanup, if an additional relationship blocks deletion.
+            throw BusinessException.conflict("This user is still linked to other records. Deactivate the account instead so records stay intact.");
+        }
     }
 
     @Transactional(readOnly = true)

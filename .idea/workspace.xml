@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d9226cc0-b6ca-4203-b31d-3198693c1271" name="Changes" comment="Update system  files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/repository/PasswordResetOtpRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/repository/PasswordResetOtpRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/repository/PasswordResetTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/repository/PasswordResetTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/auth/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/feedback/repository/FeedbackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/feedback/repository/FeedbackRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/notification/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/notification/repository/NotificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/wishlist/WishlistRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/java/com/project/webbasedtourismandtravelmanagementsystem/wishlist/WishlistRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/pages/admin-users.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Web-based-Tourism-and-Travel-Management-System/src/main/resources/static/js/pages/admin-users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791194917745</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Update system  files">
+      <option name="closed" value="true" />
+      <created>1791265188554</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1791265188554</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

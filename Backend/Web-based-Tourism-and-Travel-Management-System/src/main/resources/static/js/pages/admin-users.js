@@ -22,7 +22,7 @@
             actions: {
                 edit,
                 del: async (u) => {
-                    if (!(await EL.confirm("Delete " + u.fullName + "'s account? Customers with bookings must be deactivated instead.", { danger: true, ok: "Delete" }))) return;
+                    if (!(await EL.confirm("Delete " + u.fullName + "'s account? Accounts with booking, event registration or review history must be deactivated instead.", { danger: true, ok: "Delete" }))) return;
                     try { await api("/api/admin/users/" + u.id, { method: "DELETE" }); EL.toast("User deleted", "success"); load(); } catch (e) { EL.toastError(e); }
                 }
             }

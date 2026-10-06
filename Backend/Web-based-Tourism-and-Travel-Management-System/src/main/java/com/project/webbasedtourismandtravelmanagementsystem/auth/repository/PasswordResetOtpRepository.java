@@ -11,6 +11,8 @@ import java.util.Optional;
 
 public interface PasswordResetOtpRepository extends JpaRepository<PasswordResetOtp, Long> {
 
+    void deleteByUserId(Long userId);
+
     /** The newest code of a user - only the latest code is ever accepted. */
     Optional<PasswordResetOtp> findFirstByUserIdOrderByCreatedAtDescIdDesc(Long userId);
 
