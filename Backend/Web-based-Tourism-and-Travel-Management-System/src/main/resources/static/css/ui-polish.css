@@ -1,0 +1,268 @@
+/* Explore Lanka: shared design for the live management and traveller portals.
+   Scoped to el-refresh so public landing pages retain their own design. */
+body.el-refresh {
+ --bg:#f3f6f5; --surface:#fff; --surface-2:#f5f8f7; --paper:#fff;
+ --ink:#172e2a; --ink-2:#38534e; --text:#172e2a; --muted:#60756e;
+ --line:#d6e2dd; --line-2:#e4ece8; --border:#d6e2dd;
+ --primary:#176452; --primary-hover:#104b3f; --cta:#176452; --cta-hover:#104b3f;
+ --forest:#176452; --forest-700:#104b3f; --forest-50:#e6f3ed;
+ --green:#176452; --green2:#104b3f; --green-50:#e6f3ed; --brown:#172e2a; --brown2:#243e37;
+ --gold:#9a691c; --gold-soft:#e9c47d; --cream:#f3f6f5; --link:#176452;
+ --radius:18px; --radius-sm:10px; --sidebar-w:264px; --ring:#176452;
+ --shadow:0 12px 34px rgba(20,58,45,.08); --shadow-sm:0 3px 12px rgba(20,58,45,.04);
+ --shadow-lg:0 28px 80px rgba(16,42,35,.2);
+ --font-body:Inter,"Segoe UI",Arial,sans-serif;
+ background:radial-gradient(ellipse at 95% 0,#e5efe9 0,transparent 45%),var(--bg);
+ color:var(--ink);font-family:var(--font-body);line-height:1.6;
+}
+body.el-customer {--bg:#f7f8f4;--cream:#f7f8f4; background:radial-gradient(ellipse at 100% 0,#eaf3e6 0,transparent 40%),var(--bg)}
+.el-refresh h1,.el-refresh h2,.el-refresh h3,.el-refresh h4{color:var(--ink);letter-spacing:-.025em}
+.el-refresh h1,.el-refresh h2{font-family:"Playfair Display",Georgia,serif}
+.el-refresh h3,.el-refresh h4{font-family:var(--font-body);font-weight:650}
+.el-refresh a:focus-visible,.el-refresh button:focus-visible,.el-refresh summary:focus-visible{outline:3px solid #559c86;outline-offset:4px}
+.el-refresh .portal,.el-refresh .app{grid-template-columns:264px minmax(0,1fr);background:transparent}
+.el-refresh .main {min-width:0;isolation:auto}
+.el-refresh .main::before,.el-refresh .main::after{display:none}
+/* Navigation: a calm, dark workspace with a warm selected item. */
+.el-refresh .sidebar {padding:0;background:linear-gradient(170deg,#143d33,#102e28 80%);color:#e3ede8;border:0;box-shadow:8px 0 28px #133b3010;scrollbar-width:thin;scrollbar-color:#49695c transparent;z-index:45}
+.el-refresh .sidebar .brand {display:flex;align-items:center;gap:12px;padding:27px 22px 23px;margin:0;border-radius:0;border-bottom:1px solid #ffffff12;transform:none;box-shadow:none}
+.el-refresh .sidebar .brand::before {content:"EL";width:42px;height:42px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,#f1d9a2,#d7ad64);color:#183e31;font:800 15px var(--font-body);box-shadow:0 5px 20px #0002}
+.el-refresh .sidebar .brand:has(.brand-badge)::before{display:none}
+.el-refresh .sidebar .brand b,.el-refresh .sidebar .brand h2 {color:#fff;font:700 15px var(--font-body);letter-spacing:.025em}
+.el-refresh .sidebar .brand small,.el-refresh .sidebar .brand p {display:block;color:#adbfB5;font-size:11px;letter-spacing:.03em;margin-top:4px}
+.el-refresh .sidebar nav {padding:14px 14px 22px;gap:4px}
+.el-refresh .sidebar nav a {min-height:44px;padding:10px 12px;border-radius:11px;color:#cadbd3;font-size:12px;font-weight:500;transition:background .2s,color .2s;transform:none;gap:11px}
+.el-refresh .sidebar nav a svg,.el-refresh .sidebar nav a i {width:19px;height:19px;color:#91b5a6;background:transparent;flex:none;font-size:16px}
+.el-refresh .sidebar nav a:hover {background:#ffffff0d;color:#fff;transform:none}
+.el-refresh .sidebar nav a:hover svg {color:#d9e8de}
+.el-refresh .sidebar nav a.active {background:#e9c47d;color:#16372b;font-weight:750;box-shadow:0 5px 18px #00000012}
+.el-refresh .sidebar nav a.active svg,.el-refresh .sidebar nav a.active i {color:#16372b}
+.el-refresh .sidebar nav a.active::before {display:none}
+.el-refresh .sidebar nav .group,.el-refresh .sidebar .nav-title {color:#91b3a2;font-size:9px;font-weight:750;letter-spacing:.16em;padding:18px 12px 7px}
+.el-refresh .sidebar .nav-title{margin:0 14px;padding-top:20px}
+.el-refresh .side-foot,.el-refresh .side-note {color:#9fb9ac;border-color:#ffffff12;background:transparent;font-size:11px;line-height:1.6;padding:18px 22px}
+.el-refresh .side-foot svg {color:#d4b16d;flex:none}
+.el-refresh .side-note {margin:0}
+.el-refresh .admin-mini-profile {margin:20px 14px 0;background:#ffffff09;border-color:#ffffff13}
+/* Top bar and content */
+.el-refresh .topbar {height:82px;padding:0 34px;background:#ffffffda;backdrop-filter:blur(18px);border-bottom:1px solid var(--line-2);box-shadow:none;gap:14px}
+.el-refresh .topbar h1 {font:650 21px var(--font-body);letter-spacing:-.045em;margin:0}
+.el-refresh .topbar p {font-size:11px}
+.el-refresh .user-chip {border-color:var(--line-2);padding:5px 13px 5px 5px;background:#fff;border-radius:14px;min-height:48px}
+.el-refresh .avatar,.el-refresh .admin-mini-avatar {background:#dcece4;color:#215f49;box-shadow:none;font-weight:750}
+.el-refresh .avatar {width:36px;height:36px;border-radius:12px}
+.el-refresh .user-chip .who b {font-size:12px}
+.el-refresh .user-chip .who small {font-size:10px}
+.el-refresh .icon-btn {border:1px solid var(--line-2);border-radius:12px;background:white;color:var(--ink-2);width:42px;height:42px;box-shadow:none}
+.el-refresh .icon-btn:hover {background:#edf5f0;transform:none}
+.el-refresh .content {padding:30px 34px 50px;max-width:1560px;margin:0 auto;gap:24px}
+.el-refresh .stack {gap:24px}
+.el-refresh .page-intro {position:relative;min-height:118px;padding:28px 30px;border:1px solid #dbe8e1;border-radius:20px;background:linear-gradient(115deg,#eaf3ed,#f6f8f2);align-items:center;overflow:hidden}
+.el-refresh .page-intro p {color:#456357;font-size:13px;max-width:650px;line-height:1.8;margin:0}
+.el-refresh .page-intro h2 {font-size:32px;margin-bottom:6px!important;line-height:1.3}
+.el-refresh .page-intro > * {position:relative;z-index:1}
+.el-refresh.el-dashboard .page-intro {min-height:218px;background:linear-gradient(90deg,#113f34f5 0%,#174835df 45%,#143d3370 100%),url('/images/destinations/ella.png') center 52%/cover;border:0;padding:34px;color:#fff;box-shadow:0 14px 34px #174b3318}
+.el-refresh.el-management.el-dashboard .page-intro {background-image:linear-gradient(90deg,#102f2df5 0%,#183b34df 48%,#183b3450 100%),url('/images/destinations/sigiriya.png')}
+.el-refresh.el-dashboard .page-intro h2 {color:#fff;font-size:clamp(28px,3vw,42px)}
+.el-refresh.el-dashboard .page-intro p {color:#d1e3d9}
+.el-refresh .el-eyebrow {display:block;color:#8b662d;font:750 10px var(--font-body);letter-spacing:.17em;text-transform:uppercase;margin-bottom:9px}
+.el-refresh.el-dashboard .el-eyebrow {color:#efd298}
+.el-refresh .el-shortcuts {display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.el-refresh .el-shortcuts a {border:1px solid #ffffff40;color:#fff;padding:8px 13px;border-radius:9px;background:#ffffff10;font-size:12px;transition:background .2s}
+.el-refresh .el-shortcuts a:hover {background:#ffffff25}
+/* Cards, metrics, charts and lists */
+.el-refresh .card,.el-refresh .stat,.el-refresh .pkg-card,.el-refresh .event-card {border:1px solid var(--line-2);border-radius:18px;background:#fff;box-shadow:0 4px 18px #153b2f06;transition:box-shadow .25s,border-color .25s,transform .25s}
+.el-refresh .card {padding:24px}
+.el-refresh .card:hover {transform:none;box-shadow:0 8px 26px #153b2f09}
+.el-refresh a.stat:hover,.el-refresh .pkg-card:hover,.el-refresh .event-card:hover {transform:translateY(-3px);border-color:#b7d2c5;box-shadow:0 14px 30px #153b2f10}
+.el-refresh .card-head {margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid #edf1ee}
+.el-refresh .card-head h3,.el-refresh .section-head h3 {font:650 16px var(--font-body);letter-spacing:-.02em}
+.el-refresh .section-head p {font-size:12px}
+.el-refresh .card-head a,.el-refresh .text-link,.el-refresh .bk-link {color:#176452;font-weight:650;font-size:12px}
+.el-refresh .stats {gap:16px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.el-refresh .stat {position:relative;padding:23px;gap:16px;overflow:hidden}
+.el-refresh .stat .ico,.el-refresh .stat-icon {width:48px;height:48px;border-radius:14px;background:#eaf3ed;color:#21634d}
+.el-refresh .stat.gold .ico {background:#fcf3df;color:#987124}
+.el-refresh .stat.red .ico {background:#fdeee9;color:#ae5444}
+.el-refresh .stat b,.el-refresh .stat h3 {color:#173b2e;font:750 27px var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.el-refresh .stat span,.el-refresh .stat p {font-size:11px;color:#61766c}
+.el-refresh .stat::after {content:"";position:absolute;width:62px;height:62px;border:10px solid #eaf3ed80;border-radius:50%;right:-24px;top:-24px;pointer-events:none}
+.el-refresh .empty {padding:44px 22px;line-height:1.8;font-size:13px;background:linear-gradient(#fcfdfb,#f6f9f5);border-radius:14px;color:#647c70}
+.el-refresh .empty svg {color:#91b49a;background:#eaf2e9;border-radius:15px;padding:8px;width:52px;height:52px;margin-bottom:14px}
+.el-refresh .quick-action,.el-refresh .quick-links a {border-radius:14px;border-color:var(--line-2);background:#f9fbf8}
+/* Buttons, filters and input controls. Preserve semantic disabled/loading states. */
+.el-refresh .btn {border-radius:11px;min-height:44px;padding:11px 18px;font-size:12px;font-weight:650;background:#176452;color:white;border-color:transparent;box-shadow:0 4px 10px #17645210;transition:background .2s,box-shadow .2s,transform .2s}
+.el-refresh .btn:hover {background:#104b3f;transform:translateY(-1px);box-shadow:0 6px 16px #17645220}
+.el-refresh .btn.green,.el-refresh .btn-primary {background:#176452;color:#fff}
+.el-refresh .btn.gold,.el-refresh .btn-gold {background:#e9c47d;color:#273a2d}
+.el-refresh .btn.gold:hover,.el-refresh .btn-gold:hover {background:#dcb368}
+.el-refresh .btn.ghost,.el-refresh .btn.outline,.el-refresh .btn-soft {background:#fff;color:#315a48;border:1px solid #d3e2d9;box-shadow:none}
+.el-refresh .btn.ghost:hover,.el-refresh .btn.outline:hover,.el-refresh .btn-soft:hover {background:#edf5ef}
+.el-refresh .btn.danger {background:#b4483b;color:#fff}
+.el-refresh .btn.danger.outline,.el-refresh .btn-danger {background:#fff3ef;color:#9f3b32;border-color:#edc9bf}
+.el-refresh .btn.sm,.el-refresh .table-action {min-height:36px;padding:7px 12px;font-size:11px;border-radius:9px}
+.el-refresh .btn:disabled,.el-refresh .btn.loading {transform:none;box-shadow:none}
+.el-refresh input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=hidden]),.el-refresh select,.el-refresh textarea {border:1px solid #d5e3da;border-radius:10px;background:#fcfdfb;color:#203f30;padding:11px 13px;font:13px var(--font-body);min-height:44px;transition:border-color .2s,box-shadow .2s;max-width:100%}
+.el-refresh input::placeholder,.el-refresh textarea::placeholder {color:#84968b}
+.el-refresh input:focus,.el-refresh select:focus,.el-refresh textarea:focus {outline:none;border-color:#569d83;box-shadow:0 0 0 3px #17645212;background:#fff}
+.el-refresh input[type=checkbox],.el-refresh input[type=radio] {accent-color:#176452}
+.el-refresh label,.el-refresh .field label {font-size:12px;font-weight:650;color:#365d48}
+.el-refresh .field {gap:7px}
+.el-refresh .field small,.el-refresh .hint {font-size:11px;line-height:1.6}
+.el-refresh .toolbar.card {padding:17px 20px;background:#fff;gap:10px}
+.el-refresh .toolbar .search {min-width:200px}
+.el-refresh .tabs {gap:5px;background:#e9f0eb;border:0;border-radius:12px;padding:5px;margin-bottom:5px}
+.el-refresh .tabs button {border:0;border-radius:9px;color:#597263;padding:9px 16px;margin:0;font-size:12px}
+.el-refresh .tabs button.active {background:#fff;color:#176452;box-shadow:0 2px 7px #24463210}
+.el-refresh .tabs button:hover {background:#ffffff80}
+/* Data tables: restrained headers, comfortable rows and sticky actions. */
+.el-refresh .table-wrap {border:1px solid var(--line-2);border-radius:14px;box-shadow:none;overflow:auto}
+.el-refresh .table {font-size:12px}
+.el-refresh .table th,.el-refresh .admin-table th {background:#f1f6f2;color:#63806b;font:700 10px var(--font-body);letter-spacing:.08em;padding:16px;text-transform:uppercase;white-space:nowrap;border-color:#e0e9e2}
+.el-refresh .table td,.el-refresh .admin-table td {padding:16px;color:#34523f;border-color:#edf1eb;font-size:12px;line-height:1.6}
+.el-refresh .table tbody tr:nth-child(even) td {background:#fcfdfb}
+.el-refresh .table tbody tr:hover td {background:#f0f7f0}
+.el-refresh .table td b {color:#203e2c;font-weight:650}
+.el-refresh .table td .small {font-size:11px}
+.el-refresh .badge {border-radius:7px;padding:4px 9px;font-size:10px;font-weight:700;letter-spacing:.025em;white-space:nowrap}
+.el-refresh .badge.green,.el-refresh .badge.success {background:#e6f4e9;color:#267249}
+.el-refresh .badge.gold,.el-refresh .badge.warning {background:#fff3d9;color:#8d641e}
+.el-refresh .badge.red,.el-refresh .badge.danger {background:#fdece7;color:#aa4c3a}
+.el-refresh .badge.blue,.el-refresh .badge.info {background:#e8eff8;color:#486b99}
+/* Travel catalogue and booking flows */
+.el-refresh .cards {gap:22px;grid-template-columns:repeat(auto-fill,minmax(min(275px,100%),1fr))}
+.el-refresh .pkg-card .media {aspect-ratio:16/10}
+.el-refresh .pkg-card .body {padding:21px;gap:11px}
+.el-refresh .pkg-card h3 {font:650 17px var(--font-body);line-height:1.4}
+.el-refresh .pkg-card .meta {font-size:11px;color:#6a7b6d;gap:9px}
+.el-refresh .pkg-card .price b {font-size:20px;color:#176452}
+.el-refresh .pkg-card .price small {font-size:10px}
+.el-refresh .pkg-card .fav {box-shadow:0 4px 16px #173e2520}
+.el-refresh .event-card {padding:20px;gap:16px}
+.el-refresh .date-block {background:#edf4e8;border:1px solid #dce8d4;color:#456e38;border-radius:12px}
+.el-refresh .offer-card {background:linear-gradient(135deg,#184b3a,#103327);border:1px solid #ffffff20;border-radius:19px;padding:26px;box-shadow:0 10px 26px #143d3212;color:#fff;position:relative;overflow:hidden}
+.el-refresh .offer-card h3 {color:#fff}
+.el-refresh .offer-card .big {font-size:40px;letter-spacing:-.04em;color:#efd298}
+.el-refresh .offer-card .code {border-color:#ffffff40;background:#ffffff10;color:#f0d59c;border-radius:9px}
+.el-refresh .stepper {gap:12px}
+.el-refresh .stepper .active {color:#176452}
+.el-refresh .stepper .active .num {background:#176452;border-color:#176452}
+.el-refresh .detail-banner,.el-refresh .cp-banner {border-radius:20px;box-shadow:var(--shadow-sm)}
+/* Dialogs, uploads, profile and notifications */
+.el-refresh .modal-backdrop,.el-refresh .ad-modal-bg {background:#0c302966;backdrop-filter:blur(7px)}
+.el-refresh .modal,.el-refresh .ad-modal-box {border-radius:21px;border:1px solid #dce8df;box-shadow:0 30px 100px #0f332a40}
+.el-refresh .modal-head,.el-refresh .ad-modal-head {padding:22px 26px;background:#f6faf5;border-bottom-color:#e2ecdf;border-radius:21px 21px 0 0}
+.el-refresh .modal-head h3,.el-refresh .ad-modal-head h3 {font:650 19px var(--font-body)}
+.el-refresh .modal-body,.el-refresh .ad-modal-body {padding:26px}
+.el-refresh .modal-foot,.el-refresh .ad-modal-foot {background:#f8fbf6;border-color:#e2ecdf;padding:17px 26px}
+.el-refresh .ad-img-drop {background:#f4f8f0;border-color:#b5cbb0;border-radius:14px}
+.el-refresh .dropdown {border-radius:14px;border-color:#e3eadd;box-shadow:0 15px 35px #153d2920;padding:8px}
+.el-refresh .profile-photo {background:linear-gradient(135deg,#227259,#123f30)}
+.el-refresh .notification,.el-refresh .notice {border-radius:13px}
+.el-refresh .toast {border-radius:13px;box-shadow:0 10px 32px #153b2f20}
+/* Login and password recovery */
+.el-refresh.el-auth .auth-panel {background:radial-gradient(ellipse at 0 100%,#eaf3e6,transparent 65%),#fafcf8}
+.el-refresh.el-auth .auth-box {padding:32px 28px;background:#fff;border:1px solid #e3ecde;border-radius:23px;box-shadow:0 16px 60px #1b3f3010;margin-top:auto;margin-bottom:auto;max-width:460px}
+.el-refresh.el-auth .auth-visual .story {background:#113829bb;border-color:#ffffff30;backdrop-filter:blur(14px);border-radius:22px;padding:32px}
+.el-refresh.el-auth .auth-visual h1 {color:#fff;line-height:1.18}
+.el-refresh.el-auth .auth-box h2 {font-size:32px}
+.el-refresh.el-auth .auth-box .tag {background:#edf4e8;color:#386842;border-color:#dce8d4}
+.el-refresh.el-auth .auth-page {background:linear-gradient(135deg,#e9f2e7,#f9fbf7)}
+/* Subtle entry motion never hides controls or requires JavaScript for visibility. */
+.el-refresh .el-enter {animation:elEnter .45s ease both}
+@keyframes elEnter {from{opacity:.7;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.el-refresh .el-menu-shade {position:fixed;inset:0;background:#0b302866;backdrop-filter:blur(3px);z-index:40;border:0;display:none}
+.el-refresh .el-skip {position:fixed;left:280px;top:-100px;padding:10px 20px;background:white;color:#176452;z-index:10000;border-radius:10px}
+.el-refresh .el-skip:focus {top:12px}
+@media(min-width:901px){.el-refresh .menu-toggle {display:none}}
+@media(max-width:1100px){.el-refresh .grid-3,.el-refresh .grid-4 {grid-template-columns:repeat(2,minmax(0,1fr))}.el-refresh .content {padding:24px}.el-refresh .topbar {padding:0 24px}}
+@media(max-width:900px){
+ .el-refresh .portal,.el-refresh .app {grid-template-columns:minmax(0,1fr)}
+ .el-refresh .sidebar {position:fixed;top:0;left:0;width:264px;height:100dvh;transform:translateX(-105%);transition:transform .25s;z-index:45}
+ .el-refresh .sidebar.open {left:0;transform:translateX(0)}
+ .el-refresh:has(.sidebar.open) .el-menu-shade {display:block}
+ .el-refresh .menu-toggle,.el-refresh .mobile-menu {display:grid}
+ .el-refresh .topbar {height:72px}
+ .el-refresh .content {padding:22px 18px 38px}
+ .el-refresh .el-skip {left:20px}
+ .el-refresh .page-intro {padding:23px;gap:15px}
+ .el-refresh.el-dashboard .page-intro {padding:28px;min-height:215px}
+ .el-refresh .grid-2 {grid-template-columns:1fr}
+ .el-refresh .auth-box {margin:20px auto!important}
+}
+@media(max-width:560px){
+ .el-refresh .topbar {padding:0 16px;gap:9px}.el-refresh .topbar h1 {font-size:17px;line-height:1.25}
+ .el-refresh .user-chip {padding:4px;border:0;background:transparent}.el-refresh .user-chip .who {display:none}
+ .el-refresh .grid-3,.el-refresh .grid-4,.el-refresh .form-grid,.el-refresh .form-grid.cols-3 {grid-template-columns:1fr}
+ .el-refresh .stats {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .el-refresh .stat {padding:16px;gap:10px;flex-wrap:wrap}.el-refresh .stat b {font-size:24px}.el-refresh .stat .ico {width:35px;height:35px;border-radius:11px}
+ .el-refresh .card {padding:18px}.el-refresh .content,.el-refresh .stack {gap:18px}
+ .el-refresh .page-intro p {font-size:12px}.el-refresh .page-intro h2 {font-size:27px}
+ .el-refresh .toolbar input,.el-refresh .toolbar select {min-width:0;width:100%;flex-basis:100%}
+ .el-refresh .modal-head,.el-refresh .modal-body,.el-refresh .modal-foot {padding:18px}
+ .el-refresh .table {min-width:650px}.el-refresh .table .actions .btn {white-space:nowrap}
+ .el-refresh .top-home {display:none}.el-refresh .form-grid .full {grid-column:1/-1}
+ .el-refresh.el-auth .auth-panel {padding:16px}.el-refresh.el-auth .auth-box {padding:26px 21px}
+ .el-refresh .card-head {gap:10px}.el-refresh .card-head h3 {font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){.el-refresh *,.el-refresh *::before,.el-refresh *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print {
+ body.el-refresh{background:#fff;color:#000}.el-refresh .sidebar,.el-refresh .topbar,.el-refresh .el-menu-shade,.el-refresh .el-skip{display:none!important}
+ .el-refresh .portal,.el-refresh .app{display:block}.el-refresh .content{padding:0;max-width:none}.el-refresh .card{box-shadow:none}
+ .el-refresh .el-enter{animation:none}.el-refresh .table-wrap{overflow:visible}.el-refresh .table{min-width:0}
+}
+/* Allocation uses an inline desktop grid; allow resizing an open page to a phone. */
+.el-refresh .grid > *,.el-refresh .stack > * {min-width:0}
+@media(max-width:900px){.el-refresh #layout{grid-template-columns:minmax(0,1fr)!important}}
+
+/* Motion edition: staged entrances, responsive feedback and image depth. */
+.el-refresh .el-enter{animation:none}
+.el-refresh .btn,.el-refresh .icon-btn,.el-refresh .tabs button,.el-refresh .el-shortcuts a{position:relative;isolation:isolate;overflow:hidden}
+.el-refresh .el-wave{position:absolute;pointer-events:none;border-radius:50%;background:currentColor;opacity:0;z-index:-1;animation:elWave .65s ease-out;transform-origin:center}
+@keyframes elWave{0%{transform:scale(0);opacity:.2}100%{transform:scale(1);opacity:0}}
+.el-refresh .btn:not(:disabled):not(.loading):active{transform:translateY(1px) scale(.97);transition:transform .1s}
+.el-refresh .icon-btn:active{transform:scale(.91)}
+.el-refresh .btn svg,.el-refresh .icon-btn svg,.el-refresh .sidebar nav a svg{transition:transform .35s cubic-bezier(.16,1,.3,1),color .2s}
+.el-refresh .sidebar nav a{transition:background .25s,color .25s,box-shadow .25s}
+.el-refresh .sidebar nav a:hover svg{transform:translateY(-2px) rotate(-6deg)}
+.el-refresh .btn:hover svg{transform:translateX(2px)}
+.el-refresh .icon-btn.bell:hover svg{animation:elBell .65s ease-in-out}
+@keyframes elBell{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}45%{transform:rotate(-12deg)}70%{transform:rotate(7deg)}}
+.el-refresh .stat .ico{transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+.el-refresh a.stat:hover .ico{transform:translateY(-3px) rotate(-4deg);box-shadow:0 8px 20px #17645212}
+.el-refresh .stat::after{transition:transform .5s ease,opacity .5s ease}
+.el-refresh .stat:hover::after{transform:scale(1.3);opacity:.7}
+.el-refresh .pkg-card .media img{transition:transform .7s cubic-bezier(.16,1,.3,1),filter .7s;transform:scale(1.01)}
+@media(hover:hover) and (pointer:fine){
+ .el-refresh .pkg-card:hover .media img{transform:scale(1.08) translate(var(--el-image-x,0px),var(--el-image-y,0px));filter:saturate(1.07)}
+ .el-refresh .pkg-card .fav:hover{transform:scale(1.12)}
+ .el-refresh .event-card:hover .date-block{transform:translateY(-3px) rotate(-3deg)}
+}
+.el-refresh .date-block{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.el-refresh .offer-card::after{content:"";position:absolute;width:150px;height:150px;border:25px solid #ffffff08;border-radius:50%;right:-70px;top:-55px;pointer-events:none;transition:transform .7s}
+.el-refresh .offer-card:hover::after{transform:scale(1.3) rotate(15deg)}
+.el-refresh .offer-card:hover{transform:translateY(-4px);box-shadow:0 20px 36px #143d3220;transition:transform .4s,box-shadow .4s}
+.el-refresh.el-dashboard .page-intro::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 15%,#ffffff0d 45%,transparent 65%);background-size:250% 100%;animation:elHeroLight 12s ease-in-out infinite;pointer-events:none}
+@keyframes elHeroLight{0%,20%{background-position:150% 0}70%,100%{background-position:-100% 0}}
+.el-refresh .modal,.el-refresh .ad-modal-box{animation:elDialog .45s cubic-bezier(.16,1,.3,1)}
+@keyframes elDialog{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.el-refresh .modal-backdrop,.el-refresh .ad-modal-bg{animation:elBackdrop .3s ease}
+@keyframes elBackdrop{from{background-color:transparent;backdrop-filter:blur(0)}to{background-color:#0c302966;backdrop-filter:blur(7px)}}
+.el-refresh .dropdown.open{animation:elDropdown .28s cubic-bezier(.16,1,.3,1);transform-origin:top right}
+@keyframes elDropdown{from{opacity:0;transform:translateY(-7px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.el-refresh .toast{animation:elToast .4s cubic-bezier(.16,1,.3,1)}
+@keyframes elToast{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.el-refresh .tabs button{transition:background .25s,box-shadow .25s,color .25s,transform .2s}
+.el-refresh .tabs button:active{transform:scale(.96)}
+.el-refresh .table tbody tr{transition:background .2s}
+.el-refresh .stepper .num,.el-refresh .stepper .step{transition:background .3s,color .3s,border-color .3s,box-shadow .3s}
+.el-refresh .stepper .active .num{box-shadow:0 0 0 5px #17645212}
+.el-refresh.el-auth .auth-box{animation:elAuth .75s cubic-bezier(.16,1,.3,1)}
+.el-refresh.el-auth .auth-visual .story{animation:elAuth .9s cubic-bezier(.16,1,.3,1)}
+@keyframes elAuth{from{opacity:.2;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+ .el-refresh *,.el-refresh *::before,.el-refresh *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+ .el-refresh .pkg-card:hover .media img{transform:none}
+ .el-refresh .el-wave{display:none}
+}
+@media print{.el-refresh *,.el-refresh *::before,.el-refresh *::after{animation:none!important;transition:none!important}.el-refresh .el-wave{display:none}}

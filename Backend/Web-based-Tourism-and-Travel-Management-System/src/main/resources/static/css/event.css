@@ -1,0 +1,353 @@
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background-color: #f7f3ea;
+
+    margin:0;
+
+}
+
+
+
+/* Main Container */
+
+.event-container {
+
+    width:90%;
+
+    margin:40px auto;
+
+}
+
+
+
+/* Page Heading */
+
+.event-title {
+
+
+    text-align:center;
+
+    color:#6b3e26;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+/* Add Event Button */
+
+.add-event-btn {
+
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+
+.add-event-btn:hover {
+
+    background:#245727;
+
+}
+
+
+
+
+/* Event Form */
+
+
+.event-form {
+
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:
+            0 5px 15px rgba(0,0,0,0.1);
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+.event-form input,
+.event-form textarea,
+.event-form select {
+
+
+    width:100%;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    border-radius:8px;
+
+    border:1px solid #ccc;
+
+}
+
+
+
+
+.event-form textarea {
+
+    height:120px;
+
+    resize:none;
+
+}
+
+
+
+
+.save-event-btn {
+
+
+    background:#6b3e26;
+
+    color:white;
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+/* Event Cards */
+
+
+.event-grid {
+
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+
+
+
+.event-card {
+
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:
+            0 5px 15px rgba(0,0,0,0.1);
+
+    border-top:6px solid #2e7032;
+
+}
+
+
+
+
+.event-card h3 {
+
+
+    color:#6b3e26;
+
+    font-size:22px;
+
+}
+
+
+
+
+.event-description {
+
+
+    color:#555;
+
+    line-height:1.6;
+
+}
+
+
+
+
+.event-location {
+
+
+    color:#2e7032;
+
+    font-weight:bold;
+
+}
+
+
+
+
+.event-date {
+
+
+    color:#a68b58;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.status-active {
+
+
+    color:#2e7032;
+
+    font-weight:bold;
+
+}
+
+
+
+
+.status-inactive {
+
+
+    color:red;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+/* Buttons */
+
+
+.edit-event-btn {
+
+
+    background:#a68b58;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+.delete-event-btn {
+
+
+    background:#b33a3a;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+
+.edit-event-btn:hover,
+.delete-event-btn:hover {
+
+
+    opacity:0.8;
+
+}
+
+
+
+
+
+/* Customer Event View */
+
+
+.customer-event-card {
+
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:
+            0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+
+.customer-event-card h2 {
+
+
+    color:#6b3e26;
+
+}
+
+
+
+.view-event-btn {
+
+
+    background:#2e7032;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:10px;
+
+}

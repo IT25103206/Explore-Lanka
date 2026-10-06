@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tour Packages · Explore Lanka</title>
+    <link rel="icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main class="container section">
+    <div class="section-head">
+        <div><div class="eyebrow">Destination explorer</div><h1>Tour packages</h1></div>
+        <p>Search by destination or theme. Prices are per adult; you choose your hotel, vehicle and guide when booking.</p>
+    </div>
+    <form class="card toolbar" id="filters" role="search" style="margin-bottom:22px">
+        <input class="search grow" name="q" placeholder="Search destinations, e.g. Kandy, safari, beach" aria-label="Search">
+        <select name="category" aria-label="Theme"><option value="">All themes</option></select>
+        <select name="region" aria-label="Region"><option value="">All regions</option></select>
+        <select name="type" aria-label="Package type">
+            <option value="">All types</option><option value="STANDARD">Standard</option><option value="SEASONAL">Seasonal</option><option value="CUSTOM">Customisable</option>
+        </select>
+        <select name="maxPrice" aria-label="Budget">
+            <option value="">Any budget</option><option value="20000">Up to LKR 20,000</option><option value="40000">Up to LKR 40,000</option><option value="60000">Up to LKR 60,000</option>
+        </select>
+        <select name="maxDays" aria-label="Duration">
+            <option value="">Any length</option><option value="1">Day tours</option><option value="3">Up to 3 days</option><option value="5">Up to 5 days</option><option value="7">Up to 7 days</option>
+        </select>
+        <select name="sort" aria-label="Sort">
+            <option value="popular">Most popular</option><option value="price_asc">Price: low to high</option><option value="price_desc">Price: high to low</option><option value="rating">Top rated</option><option value="duration">Shortest first</option>
+        </select>
+        <button type="reset" class="btn ghost">Clear</button>
+    </form>
+    <p class="muted small" id="count"></p>
+    <div class="cards" id="results"></div>
+</main>
+<script src="/js/app.js"></script>
+<script src="/js/pages/shared-cards.js"></script>
+<script>
+(function () {
+    const { $, api } = EL;
+    EL.publicLayout("packages");
+    const form = $("#filters");
+    EL.CATEGORIES.forEach((c) => form.category.insertAdjacentHTML("beforeend", '<option value="' + c + '">' + EL.titleCase(c) + "</option>"));
+    EL.REGIONS.forEach((r) => form.region.insertAdjacentHTML("beforeend", '<option>' + r + "</option>"));
+    const params = new URLSearchParams(location.search);
+    params.forEach((v, k) => { if (form[k]) form[k].value = v; });
+
+    async function load() {
+        const q = EL.formData(form);
+        history.replaceState(null, "", "?" + new URLSearchParams(Object.entries(q).filter(([, v]) => v)).toString());
+        $("#results").innerHTML = EL.skeleton(3);
+        try {
+            const list = await api("/api/public/packages", { query: q });
+            $("#count").textContent = list.length + " tour" + (list.length === 1 ? "" : "s") + " found";
+            $("#results").innerHTML = list.map((p) => Cards.packageCard(p)).join("") || EL.emptyState("No tours match your search. Try removing a filter.", "search");
+            Cards.bindFavourites($("#results"));
+        } catch (e) { EL.toastError(e); }
+    }
+    form.addEventListener("input", EL.debounce(load, 350));
+    form.addEventListener("change", load);
+    form.addEventListener("submit", (e) => { e.preventDefault(); load(); });
+    form.addEventListener("reset", () => setTimeout(load, 0));
+    load();
+})();
+</script>
+</body>
+</html>

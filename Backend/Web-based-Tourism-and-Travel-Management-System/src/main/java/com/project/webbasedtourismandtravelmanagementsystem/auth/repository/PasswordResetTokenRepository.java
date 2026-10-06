@@ -1,0 +1,28 @@
+package com.project.webbasedtourismandtravelmanagementsystem.auth.repository;
+
+import com.project.webbasedtourismandtravelmanagementsystem.auth.model.PasswordResetToken;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
+
+    void deleteByUserId(Long userId);
+
+    Optional<PasswordResetToken> findByTokenHash(String tokenHash);
+
+    boolean existsByUserIdAndCreatedAtAfter(Long userId, LocalDateTime after);
+
+    /** Invalidates every open link of a user (a new request or a successful reset). */
+    @Modifying
+    @Query("update PasswordResetToken t set t.usedAt = :now where t.user.id = :userId and t.usedAt is null")
+    int expireAllForUser(@Param("userId") Long userId, @Param("now") LocalDateTime now);
+
+    @Modifying
+    @Query("delete from PasswordResetToken t where t.expiresAt < :before")
+    int deleteExpiredBefore(@Param("before") LocalDateTime before);
+}

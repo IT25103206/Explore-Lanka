@@ -1,0 +1,13 @@
+PACKAGE IMAGE UPLOAD FIX
+
+The Add Package modal now includes a Package image upload field between Price and Description.
+
+Important when copying into your Spring Boot project:
+1. Copy this entire main folder into your project's src folder so files become src/main/...
+2. Replace existing files when Windows asks.
+3. Stop the running Spring Boot app completely.
+4. Rebuild/re-run the project.
+5. Open Admin > Packages and hard refresh with Ctrl+F5.
+
+Quick verification:
+src/main/resources/static/js/admin-data.js must contain: l: "Package image"

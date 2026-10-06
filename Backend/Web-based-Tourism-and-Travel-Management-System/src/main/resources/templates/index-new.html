@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Explore Lanka · Tours, Festivals & Travel in Sri Lanka</title>
+    <meta name="description" content="Book tailor-made Sri Lanka tours with hotels, transport and guides, and discover local festivals.">
+    <link rel="icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<section class="hero">
+    <img class="hero-img" src="/images/pexels-thilina-alagiyawanna-3266092-31001509.jpg" alt="Sunrise over the central highlands of Sri Lanka">
+    <div class="container">
+        <div class="eyebrow">Explore Lanka · Trips of a thousand lifetimes</div>
+        <h1>Explore the island. Create memories.</h1>
+        <p class="lead">Tailor-made tours with hand-picked hotels, private transport and licensed guides - plus the festivals happening while you travel.</p>
+        <form class="search-bar" id="heroSearch" role="search">
+            <input name="q" placeholder="Where to? e.g. Ella, Sigiriya, beaches" aria-label="Destination or keyword">
+            <select name="category" aria-label="Theme">
+                <option value="">Any theme</option>
+            </select>
+            <select name="maxDays" aria-label="Duration">
+                <option value="">Any length</option>
+                <option value="2">Up to 2 days</option>
+                <option value="4">Up to 4 days</option>
+                <option value="7">Up to a week</option>
+            </select>
+            <button class="btn" type="submit"><span data-icon="search"></span> Search</button>
+        </form>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="section-head">
+        <div><div class="eyebrow">Popular destinations</div><h2>Where will you go first?</h2></div>
+        <a class="btn ghost" href="/packages.html">View all tours</a>
+    </div>
+    <div class="grid" id="destinations" style="grid-template-columns:repeat(auto-fill,minmax(170px,1fr))"></div>
+</section>
+
+<section class="section container">
+    <div class="section-head">
+        <div><div class="eyebrow">Tour packages</div><h2>Most loved journeys</h2></div>
+        <p>Standard, seasonal and fully customisable tours. Choose your own hotel and vehicle when you book.</p>
+    </div>
+    <div class="cards" id="featured"></div>
+</section>
+
+<section class="section container">
+    <div class="section-head">
+        <div><div class="eyebrow">Festivals & events</div><h2>Happening soon in Sri Lanka</h2></div>
+        <a class="btn ghost" href="/events.html">Full calendar</a>
+    </div>
+    <div class="grid grid-2" id="events"></div>
+</section>
+
+<section class="section container" id="offersSection">
+    <div class="section-head">
+        <div><div class="eyebrow">Special offers</div><h2>Save on your next trip</h2></div>
+        <a class="btn ghost" href="/offers.html">All offers</a>
+    </div>
+    <div class="cards" id="offers"></div>
+</section>
+
+<section class="section container">
+    <div class="grid grid-3">
+        <div class="card flat"><span data-icon="route" class="muted"></span><h3>Everything in one booking</h3><p class="muted">Package, hotel, vehicle and guide - availability is checked in real time so there are no double bookings.</p></div>
+        <div class="card flat"><span data-icon="festival" class="muted"></span><h3>Real local culture</h3><p class="muted">See which perahera, kovil festival or food fair falls during your dates and add it to your plan.</p></div>
+        <div class="card flat"><span data-icon="shield" class="muted"></span><h3>Flexible & secure</h3><p class="muted">Change or cancel up to 7 days before travel with a full refund. Your data is protected and never sold.</p></div>
+    </div>
+</section>
+
+<script src="/js/app.js"></script>
+<script src="/js/pages/shared-cards.js"></script>
+<script src="/js/pages/home.js"></script>
+</body>
+</html>
